@@ -1,0 +1,8 @@
+.idea
+node_modules
+npm-debug.log
+/typings
+*.map
+/demo/build
+styles.ts
+coverage

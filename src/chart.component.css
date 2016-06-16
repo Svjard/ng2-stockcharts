@@ -1,0 +1,34 @@
+:host {
+  display: block;
+}
+
+.epcharts-grabbing-cursor {
+  cursor: grabbing;
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing;
+}
+
+.epcharts-crosshair-cursor {
+  cursor: crosshair;
+}
+
+.epcharts-tooltip-hover {
+  pointer-events: all;
+  cursor: pointer;
+}
+
+.epcharts-default-cursor {
+  cursor: default;
+}
+
+.epcharts-move-cursor {
+  cursor: move;
+}
+
+.epcharts-ns-resize-cursor {
+  cursor: ns-resize;
+}
+
+.epcharts-ew-resize-cursor {
+  cursor: ew-resize;
+}
