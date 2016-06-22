@@ -15,9 +15,11 @@ import {
   TestComponentBuilder
 } from '@angular/compiler/testing';
 import {
-  ChartType,
   CanvasContainerComponent
 } from './canvas-container.component';
+import {
+  ChartType
+} from './utils';
 
 @Component({
   template: `
@@ -32,7 +34,7 @@ import {
 export class TestComponent {
   width: number = 320;
   height: number = 320;
-  type: ChartType = ChartType.Svg;
+  type: ChartType = ChartType.SVG;
   zindex: number = 3;
 
   @ViewChild(CanvasContainerComponent) canvasContainer: CanvasContainerComponent;
@@ -61,7 +63,7 @@ describe('CanvasContainerComponent:', () => {
         let contextObj = fixture.componentInstance.canvasContainer.getCanvasContexts();
         expect(contextObj).toEqual(undefined);
 
-        fixture.componentInstance.type = 'hybrid';
+        fixture.componentInstance.type = ChartType.HYBRID;
 
         fixture.detectChanges();
 
@@ -83,7 +85,7 @@ describe('CanvasContainerComponent:', () => {
 
         fixture.detectChanges();
 
-        fixture.componentInstance.type = 'hybrid';
+        fixture.componentInstance.type = ChartType.HYBRID;
         fixture.componentInstance.width = 600;
         fixture.componentInstance.height = 500;
 
@@ -105,7 +107,7 @@ describe('CanvasContainerComponent:', () => {
       .then((fixture: ComponentFixture<TestComponent>) => {
         let element: any = fixture.nativeElement;
 
-        fixture.componentInstance.type = 'hybrid';
+        fixture.componentInstance.type = ChartType.HYBRID;
         
         fixture.detectChanges();
 

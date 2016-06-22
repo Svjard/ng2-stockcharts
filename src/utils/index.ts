@@ -3,7 +3,6 @@ import * as d3 from 'd3';
 //export * from './accumulatingWindow';
 //export * from './mappedSlidingWindow';
 //export * from './merge';
-export * from './shallowEqual';
 //export * from './slidingWindow';
 //export * from './zipper';
 
@@ -175,6 +174,43 @@ export function hexToRGBA(inputHex: string, opacity: number) : string {
 
   return inputHex;
 }
+
+function isDate(date: any): boolean {
+  return Object.prototype.toString.call(date) === "[object Date]";
+}
+
+function isEqual(val1: any, val2: any): boolean {
+  return (isDate(val1) && isDate(val2))
+    ? val1.getTime() === val2.getTime()
+    : val1 === val2;
+}
+
+export function shallowEqual(a: any, b: any): boolean {
+  if (!a && !b) {
+    return true;
+  }
+
+  if (!a && b || a && !b) {
+    return false;
+  }
+
+  let numKeysA: number = 0;
+  let numKeysB: number = 0;
+  let key: string;
+  for (key in b) {
+    numKeysB++;
+    if (!a.hasOwnProperty(key) || !isEqual(a[key], b[key])) {
+      return false;
+    }
+  }
+
+  for (key in a) {
+    numKeysA++;
+  }
+
+  return numKeysA === numKeysB;
+}
+
 
 export enum YMousePointerDisplayLocation {
   LEFT = 1,

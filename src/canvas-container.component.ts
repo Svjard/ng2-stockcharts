@@ -1,9 +1,5 @@
 import { Component, Input, ElementRef, ViewChild } from '@angular/core';
-
-export enum ChartType {
-  Svg = 1,
-  Hybrid
-};
+import { ChartType } from './utils';
 
 export interface ICanvasContext {
   axes: CanvasRenderingContext2D;
@@ -33,7 +29,7 @@ export interface ICanvasContext {
 export class CanvasContainerComponent {
   @Input() public width: number;
   @Input() public height: number;
-  @Input() public type: ChartType = ChartType.Svg;
+  @Input() public type: ChartType = ChartType.SVG;
   @Input() public zIndex: number;
 
   @ViewChild('bg')
@@ -49,11 +45,11 @@ export class CanvasContainerComponent {
   canvas_interactive: ElementRef;
 
   public isChartHybrid(): boolean {
-    return this.type !== ChartType.Svg;
+    return this.type !== ChartType.SVG;
   }
 
   public getCanvasContexts(): ICanvasContext  {
-    if (this.type === ChartType.Svg) {
+    if (this.type === ChartType.SVG) {
       return;
     }
 
