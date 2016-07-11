@@ -1,0 +1,24 @@
+@import '../variables.scss';
+@import '../mixins.scss';
+
+/* Clock picker */
+.clockpicker-popover {
+    @include border-radius(0px !important);
+    .btn-block,
+    .btn-block:hover {
+        color: #fff !important;
+        padding: 12px 20px !important;
+    }
+}
+.clockpicker-popover.bottom {
+    margin-top: 4px !important;
+}
+.clockpicker-popover.top {
+    margin-top: -4px !important;
+}
+.clockpicker-popover.left {
+    margin-top: -3px !important;
+}
+.clockpicker-popover.right {
+    margin-top: 4px !important;
+}

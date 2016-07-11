@@ -1,0 +1,67 @@
+@import 'variables.scss';
+@import 'mixins.scss';
+
+/* **************** */
+/*      Badges      */ 
+/* **************** */
+.badge {
+    font-weight: normal;
+    &.badge-xs {
+        font-size: 10px;
+    }
+    &.badge-s {
+        font-size: 12px;
+    }
+    &.badge-m {
+        font-size: 14px;
+    }
+    &.badge-l {
+        font-size: 16px;
+    }
+    &.badge-xl {
+        font-size: 18px;
+    }
+}
+.badge-primary {
+    background-color: $primary-color !important;
+}
+.badge-primary[href]:hover, .badge-primary[href]:focus {
+    background-color: $primary-dark-color  !important;
+}
+.badge-success {
+    background-color: $success-color !important;
+}
+.badge-success[href]:hover, .badge-success[href]:focus {
+    background-color: $success-dark-color  !important;
+}
+.badge-warning {
+    background-color: $warning-color  !important;
+}
+.badge-warning[href]:hover, .badge-warning[href]:focus {
+    background-color: $warning-dark-color  !important;
+}
+.badge-info {
+    background-color: $info-color  !important;
+}
+.badge-info[href]:hover, .badge-info[href]:focus {
+    background-color: $info-dark-color  !important;
+}
+.badge-danger {
+    background-color: $danger-color  !important;
+}
+.badge-danger[href]:hover, .badge-danger[href]:focus {
+    background-color: $danger-dark-color  !important;
+}
+.badge-default {
+    background-color: $default-dark-color  !important;
+}
+.badge-default[href]:hover, .badge-default[href]:focus {
+    background-color: $default-light-color  !important;
+}
+
+// Badge inset
+.badge-inset { 
+    background: $default-color !important;
+    @include box-shadow(2px 2px 5px darken($default-color, 10%) inset);
+    margin: 2px; 
+}

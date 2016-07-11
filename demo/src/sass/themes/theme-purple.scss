@@ -1,0 +1,5 @@
+@import 'themes.scss';
+
+[data-theme='purple'], span[data-theme='purple'] {
+    @include theme-mixin($theme-purple-background, #FFFFFF);
+}

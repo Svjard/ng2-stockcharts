@@ -1,0 +1,290 @@
+@import 'variables.scss';
+@import 'mixins.scss';
+
+/* **************** */
+/*      Modals      */ 
+/* **************** */
+
+.modal-content {
+    border: none;
+    border-radius: 0px;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.15);
+    background-color: #FFFFFF;
+    outline: 0 none;
+    position: relative;
+}
+                    
+.modal-header {
+    background: #ecf3f6;
+    padding: 18px 30px;
+    border-bottom: 1px solid #e9e5e5;
+    min-height: 18px;
+    .close {
+        margin-top: 10px !important;
+    }
+    small {
+        color: #999b9e;
+        p {
+            margin: 0;
+        }
+    }
+    
+}
+
+.modal-header.modal-header-sm {
+    padding: 12px 30px;
+    .modal-title {
+        font-size: 20px;
+    }
+    .close {
+        margin-top: 4px !important;
+    }
+}
+
+.modal-title {
+    font-size: 28px;
+    font-weight: 400;
+    margin: 0;
+}
+
+.modal-body {
+    padding: 20px 30px;
+    position: relative;
+}
+                    
+.modal-footer {
+    background: #ecf3f6;
+    border-top: 1px solid #e9e5e5;
+    padding: 10px 30px;
+    text-align: right;
+    margin-top: 0px;
+}
+
+.modal-body.modal-full {
+    padding: 0px !important;
+}
+
+// Color line
+.modal .color-line {
+    height: 6px;
+}
+
+.modal-default .color-line {
+    background-color: darken($default-color, 10%) !important;
+}
+.modal-primary .color-line {
+    background-color: darken($primary-color, 10%) !important;
+}
+.modal-info .color-line {
+    background-color: darken($info-color, 10%) !important;
+}
+.modal-warning .color-line {
+    background-color: darken($warning-color, 10%) !important;
+}
+.modal-success .color-line {
+    background-color: darken($success-color, 10%) !important;
+}
+.modal-danger .color-line {
+    background-color: darken($danger-color, 10%) !important;
+}
+.modal-inverse .color-line {
+    background-color: darken($inverse-color, 10%) !important;
+}
+
+
+// Backdrop
+modal.modal-default.modal-background-color .modal-backdrop {
+    background-color: $default-color !important;
+}
+.modal-primary.modal-background-color .modal-backdrop {
+    background-color: $primary-color !important;
+}
+.modal-info.modal-background-color .modal-backdrop {
+    background-color: $info-color !important;
+}
+.modal-warning.modal-background-color .modal-backdrop {
+    background-color: $warning-color !important;
+}
+.modal-success.modal-background-color .modal-backdrop {
+    background-color: $success-color !important;
+}
+.modal-danger.modal-background-color .modal-backdrop {
+    background-color: $danger-color !important;
+}
+.modal-inverse.modal-background-color .modal-backdrop {
+    background-color: $inverse-color !important;
+}
+.modal-default.modal-background-color .modal-backdrop,
+.modal-primary.modal-background-color .modal-backdrop,
+.modal-info.modal-background-color .modal-backdrop,
+.modal-warning.modal-background-color .modal-backdrop,
+.modal-success.modal-background-color .modal-backdrop,
+.modal-danger.modal-background-color .modal-backdrop,
+.modal-inverse.modal-background-color .modal-backdrop{
+    @include opacity(0.5);
+}
+
+.modal.no-backdrop {
+    .modal-backdrop {
+        @include opacity(0);
+    }
+}
+
+
+
+// Color header
+.modal-default.modal-header-color .modal-header,
+.modal-default.modal-full-color .modal-header {
+    background-color: $default-color !important;
+}
+.modal-primary.modal-header-color .modal-header,
+.modal-primary.modal-full-color .modal-header{
+    background-color: $primary-color !important;
+}
+.modal-info.modal-header-color .modal-header,
+.modal-info.modal-full-color .modal-header {
+    background-color: $info-color !important;
+}
+.modal-warning.modal-header-color .modal-header,
+.modal-warning.modal-full-color .modal-header {
+    background-color: $warning-color !important;
+}
+.modal-success.modal-header-color .modal-header,
+.modal-success.modal-full-color .modal-header{
+    background-color: $success-color !important;
+}
+.modal-danger.modal-header-color .modal-header,
+.modal-danger.modal-full-color .modal-header {
+    background-color: $danger-color !important;
+}
+.modal-inverse.modal-header-color .modal-header,
+.modal-inverse.modal-full-color .modal-header {
+    background-color: $inverse-color !important;
+}
+
+
+.modal-default.modal-header-color .modal-title,
+.modal-primary.modal-header-color .modal-title,
+.modal-info.modal-header-color .modal-title,
+.modal-warning.modal-header-color .modal-title,
+.modal-success.modal-header-color .modal-title,
+.modal-danger.modal-header-color .modal-title,
+.modal-inverse.modal-header-color .modal-title,
+.modal-default.modal-header-color .modal-header small,
+.modal-primary.modal-header-color .modal-header small,
+.modal-info.modal-header-color .modal-header small,
+.modal-warning.modal-header-color .modal-header small,
+.modal-success.modal-header-color .modal-header small,
+.modal-danger.modal-header-color .modal-header small,
+.modal-inverse.modal-header-color .modal-header small,
+.modal-default.modal-full-color .modal-title,
+.modal-primary.modal-full-color .modal-title,
+.modal-info.modal-full-color .modal-title,
+.modal-warning.modal-full-color .modal-title,
+.modal-success.modal-full-color .modal-title,
+.modal-danger.modal-full-color .modal-title,
+.modal-inverse.modal-full-color .modal-title,
+.modal-default.modal-full-color .modal-header small,
+.modal-primary.modal-full-color .modal-header small,
+.modal-info.modal-full-color .modal-header small,
+.modal-warning.modal-full-color .modal-header small,
+.modal-success.modal-full-color .modal-header small,
+.modal-danger.modal-full-color .modal-header small,
+.modal-inverse.modal-full-color .modal-header small,
+.modal-default.modal-full-color .modal-body,
+.modal-primary.modal-full-color .modal-body,
+.modal-info.modal-full-color .modal-body,
+.modal-warning.modal-full-color .modal-body,
+.modal-success.modal-full-color .modal-body,
+.modal-danger.modal-full-color .modal-body,
+.modal-inverse.modal-full-color .modal-body,
+.modal-default.modal-full-color .modal-footer,
+.modal-primary.modal-full-color .modal-footer,
+.modal-info.modal-full-color .modal-footer,
+.modal-warning.modal-full-color .modal-footer,
+.modal-success.modal-full-color .modal-footer,
+.modal-danger.modal-full-color .modal-footer,
+.modal-inverse.modal-full-color .modal-footer{
+    color: #FFF !important;
+}
+
+
+
+
+
+// Title
+.modal-default h4.modal-title {
+    color: $default-color !important;
+}
+.modal-primary h4.modal-title {
+    color: $primary-color !important;
+}
+.modal-info h4.modal-title {
+    color: $info-color !important;
+}
+.modal-warning h4.modal-title {
+    color: $warning-color !important;
+}
+.modal-success h4.modal-title {
+    color: $success-color !important;
+}
+.modal-danger h4.modal-title {
+    color: $danger-color !important;
+}
+.modal-inverse h4.modal-title {
+    color: $inverse-color !important;
+}
+                    
+       
+
+
+// Modal full color
+.modal-default.modal-full-color .modal-body {
+    background-color: lighten($default-color, 10%) !important;
+}
+.modal-primary.modal-full-color .modal-body {
+    background-color: lighten($primary-color, 10%) !important;
+}
+.modal-info.modal-full-color .modal-body {
+    background-color: lighten($info-color, 10%) !important;
+}
+.modal-warning.modal-full-color .modal-body {
+    background-color: lighten($warning-color, 10%) !important;
+}
+.modal-success.modal-full-color .modal-body {
+    background-color: lighten($success-color, 10%) !important;
+}
+.modal-danger.modal-full-color .modal-body {
+    background-color: lighten($danger-color, 10%) !important;
+}
+.modal-inverse.modal-full-color .modal-body {
+    background-color: lighten($inverse-color, 10%) !important;
+}
+.modal-default.modal-full-color .modal-footer {
+    background-color: lighten($default-color, 5%) !important;
+}
+.modal-primary.modal-full-color .modal-footer {
+    background-color: lighten($primary-color, 5%) !important;
+}
+.modal-info.modal-full-color .modal-footer {
+    background-color: lighten($info-color, 5%) !important;
+}
+.modal-warning.modal-full-color .modal-footer {
+    background-color: lighten($warning-color, 5%) !important;
+}
+.modal-success.modal-full-color .modal-footer {
+    background-color: lighten($success-color, 5%) !important;
+}
+.modal-danger.modal-full-color .modal-footer {
+    background-color: lighten($danger-color, 5%) !important;
+}
+.modal-inverse.modal-full-color .modal-footer {
+    background-color: lighten($inverse-color, 5%) !important;
+}
+
+ 
+
+
+
+                    
+                    

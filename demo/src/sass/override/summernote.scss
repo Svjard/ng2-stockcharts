@@ -1,0 +1,33 @@
+@import '../variables.scss';
+@import '../mixins.scss';
+
+/* Summernote override for compose mail */
+.compose-email,
+.compose-email-reply {
+    .note-editor {
+        border: 0px;
+        .note-toolbar {
+            border-color: #e9e5e5  !important;
+        }
+        .note-toolbar .btn {
+            background-color: #fff !important;
+            border-color: #e9e5e5  !important;
+            color: #333 !important;
+        }
+    }
+    input.form-control {
+        border: 0px !important;
+        border-bottom: 1px solid #e9e5e5 !important;
+        @include border-radius(0px !important);
+        box-shadow: none !important;
+    }
+    input.form-control:focus {
+        box-shadow: none !important;
+    }
+    .note-editable {
+        padding: 10px 24px !important;
+    }
+}
+.note-toolbar.btn-toolbar {
+    margin-left: 0px !important;
+}

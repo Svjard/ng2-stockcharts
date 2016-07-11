@@ -1,0 +1,128 @@
+@import 'variables.scss';
+@import 'mixins.scss';
+
+/* ***************** */
+/*      Popovers     */ 
+/* ***************** */
+.default-popover + .popover {
+    background-color: $default-color;
+}
+.default-popover+ .popover.bottom > .arrow::after { 
+    border-bottom-color: $default-color; 
+}
+.default-popover+ .popover.top > .arrow::after {
+    border-top-color: $default-color; 
+}
+.default-popover+ .popover.left > .arrow::after {
+    border-left-color: $default-color; 
+}
+.default-popover+ .popover.right > .arrow::after {
+    border-right-color: $default-color; 
+}
+.primary-popover + .popover {
+    background-color: $primary-color;
+}
+.primary-popover+ .popover.bottom > .arrow::after { 
+    border-bottom-color: $primary-color; 
+}
+.primary-popover+ .popover.top > .arrow::after {
+    border-top-color: $primary-color; 
+}
+.primary-popover+ .popover.left > .arrow::after {
+    border-left-color: $primary-color; 
+}
+.primary-popover+ .popover.right > .arrow::after {
+    border-right-color: $primary-color; 
+}
+.info-popover + .popover {
+    background-color: $info-color;
+}
+.info-popover+ .popover.bottom > .arrow::after { 
+    border-bottom-color: $info-color; 
+}
+.info-popover+ .popover.top > .arrow::after {
+    border-top-color: $info-color; 
+}
+.info-popover+ .popover.left > .arrow::after {
+    border-left-color: $info-color; 
+}
+.info-popover+ .popover.right > .arrow::after {
+    border-right-color: $info-color; 
+}
+.success-popover + .popover {
+    background-color: $success-color;
+}
+.success-popover+ .popover.bottom > .arrow::after { 
+    border-bottom-color: $success-color; 
+}
+.success-popover+ .popover.top > .arrow::after {
+    border-top-color: $success-color; 
+}
+.success-popover+ .popover.left > .arrow::after { 
+    border-left-color: $success-color; 
+}
+.success-popover+ .popover.right > .arrow::after {
+    border-right-color: $success-color; 
+}
+.warning-popover + .popover {
+    background-color: $warning-color;
+}
+.warning-popover+ .popover.bottom > .arrow::after { 
+    border-bottom-color: $warning-color; 
+}
+.warning-popover+ .popover.top > .arrow::after {
+    border-top-color: $warning-color; 
+}
+.warning-popover+ .popover.left > .arrow::after { 
+    border-left-color: $warning-color; 
+}
+.warning-popover+ .popover.right > .arrow::after {
+    border-right-color: $warning-color; 
+}
+.danger-popover + .popover {
+    background-color: $danger-color;
+}
+.danger-popover+ .popover.bottom > .arrow::after { 
+    border-bottom-color: $danger-color; 
+}
+.danger-popover+ .popover.top > .arrow::after {
+    border-top-color: $danger-color; 
+}
+.danger-popover+ .popover.left > .arrow::after { 
+    border-left-color: $danger-color; 
+}
+.danger-popover+ .popover.right > .arrow::after {
+    border-right-color: $danger-color; 
+}
+.inverse-popover + .popover {
+    background-color: $inverse-color;
+}
+.inverse-popover+ .popover.bottom > .arrow::after { 
+    border-bottom-color: $inverse-color; 
+}
+.inverse-popover+ .popover.top > .arrow::after {
+    border-top-color: $inverse-color; 
+}
+.inverse-popover+ .popover.left > .arrow::after { 
+    border-left-color: $inverse-color; 
+}
+.inverse-popover+ .popover.right > .arrow::after { 
+    border-right-color: $inverse-color; 
+}
+
+.default-popover + .popover, 
+.primary-popover + .popover, 
+.info-popover + .popover, 
+.success-popover + .popover, 
+.warning-popover + .popover, 
+.danger-popover + .popover, 
+.inverse-popover + .popover {
+    color: #FFFFFF !important;
+}
+
+.popover-sm + .popover {
+    font-size: 12px;
+    .popover-content {
+        padding: 5px 12px;
+    }
+}

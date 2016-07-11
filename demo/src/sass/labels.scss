@@ -1,0 +1,90 @@
+@import 'variables.scss';
+@import 'mixins.scss';
+
+/* **************** */
+/*      Labels      */
+/* **************** */
+.label {
+    border-radius: 0px;
+    color: #FFFFFF;
+    font-weight: normal;
+    white-space: inherit !important;
+    display: inline-block;
+    font-weight: 400;
+    font-size: 100%;
+    &.label-xs {
+        font-size: 10px;
+    }
+    &.label-s {
+        font-size: 12px;
+    }
+    &.label-m {
+        font-size: 14px;
+    }
+    &.label-l {
+        font-size: 16px;
+    }
+    &.label-xl {
+        font-size: 18px;
+    }
+    .fa {
+        padding: 1px 2px;
+        vertical-align: inherit;
+    }
+}
+
+
+// Label colors
+.label.label-basic {
+    border: 1px solid #CCC;
+    color: $default-font-color !important;
+}
+.label-default {
+    background-color: $default-color;
+}
+.label-default[href]:hover, .label-default[href]:focus {
+    background-color: $default-dark-color;
+}
+.label-inverse {
+    background-color: $inverse-color;
+}
+.label-inverse[href]:hover, .label-inverse[href]:focus {
+    background-color: $inverse-dark-color;
+}
+.label-primary {
+    background-color: $primary-color;
+}
+.label-primary[href]:hover, .label-primary[href]:focus {
+    background-color: $primary-dark-color;
+}
+.label-success {
+    background-color: $success-color;
+}
+.label-success[href]:hover, .label-success[href]:focus {
+    background-color: $success-dark-color;
+}
+.label-info {
+    background-color: $info-color;
+}
+.label-info[href]:hover, .label-info[href]:focus {
+    background-color: $info-dark-color;
+}
+.label-warning {
+    background-color: $warning-color;
+}
+.label-warning[href]:hover, .label-warning[href]:focus {
+    background-color: $warning-dark-color;
+}
+.label-danger, .label-important {
+    background-color: $danger-color;
+}
+.label-danger[href]:hover, .label-important[href]:hover, .label-danger[href]:focus, .label-important[href]:focus {
+    background-color: $danger-dark-color;
+}
+
+// Label inset
+.label-inset {
+    background: $default-color !important;
+    box-shadow: 2px 2px 5px darken($default-color, 10%) inset;
+    margin: 2px 4px 4px 2px; 
+}

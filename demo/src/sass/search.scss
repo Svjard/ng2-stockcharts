@@ -1,0 +1,23 @@
+@import 'variables.scss';
+@import 'mixins.scss';
+
+/* ************************ */
+/*      Search results      */ 
+/* ************************ */
+.search-results {
+    .search-result {
+        border-top: 1px dashed #cfcfcf;
+        padding-top: 6px;
+        margin-bottom: 6px;
+        .search-result-reviews {
+            font-style: italic;
+        }
+        .search-result-words {
+            font-style: italic;
+            color: $dark-gray;
+        }
+        .search-result-description {
+            margin-top: 10px;
+        }
+    }
+}

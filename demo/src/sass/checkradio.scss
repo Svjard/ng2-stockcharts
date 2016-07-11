@@ -1,0 +1,354 @@
+@import 'variables.scss';
+@import 'mixins.scss';
+
+/* ************************************* */
+/*      Checkboxes and radio buttons     */ 
+/* ************************************* */
+.radio.radio-big-circle:before {
+    @include border-radius(14px);
+    height: 11px;
+    margin: 2px;
+    width: 11px;
+}
+.option > input {
+    height: inherit;
+    left: 0;
+    @include opacity(0);
+    position: absolute;
+    width: inherit;
+}
+label.option-disabled {
+    @include opacity(0.5);
+}
+
+.radio::before {
+    background: $checkbox-radio-color none repeat scroll 0 0;
+    @include border-radius(10px);
+    height: 7px;
+    margin: 4px;
+    width: 7px;
+}
+.checkbox::before, 
+.radio::before {
+    box-sizing: content-box;
+    content: "";
+    display: none;
+    margin: 0;
+    padding: 0;
+}
+.checkbox::before {
+    border-color: $checkbox-radio-color;
+    border-image: none;
+    border-style: solid;
+    border-width: 0 0 3px 3px;
+    height: 3px;
+    left: 3px;
+    position: absolute;
+    top: 4px;
+    transform: rotate(-45deg);
+    width: 6px;
+}
+.radio {
+    @include border-radius(20px);
+}
+.checkbox, 
+.radio {
+    background: #fff none repeat scroll 0 0;
+    border: 3px solid $checkbox-radio-color-light;
+    display: inline-block;
+    height: 21px;
+    margin-bottom: 0;
+    margin-right: 2px;
+    margin-top: 0;
+    position: relative;
+    top: 4px;
+    width: 21px;
+}
+.radio, 
+.checkbox {
+    outline: medium none;
+    transition: all 0.5s ease-in-out 0s;
+}
+input:checked + .checkbox, 
+input:checked + .radio {
+    border: 3px solid $checkbox-radio-color;
+}
+input:checked + .checkbox::before, 
+input:checked + .radio::before {
+    display: block;
+}
+.radio::before {
+    background: $checkbox-radio-color none repeat scroll 0 0;
+    @include border-radius(10px);
+    height: 7px;
+    margin: 4px;
+    width: 7px;
+} 
+
+input:checked + .checkbox.checkbox-thin, 
+input:checked + .radio.radio-thin {
+    border-width: 2px;
+}
+.checkbox.checkbox-thin, 
+.radio.radio-thin {
+    border-width: 2px;
+}
+.checkbox.checkbox-thin::before {
+    border-width: 0 0 2px 2px;
+    left: 5px;
+    top: 5px;
+}
+.radio.radio-thin::before {
+    margin: 5px;
+}
+
+input:disabled + .checkbox, 
+input:disabled + .radio,
+.disabled + .checkbox, 
+input.disabled + .radio {
+    @include opacity(0.5);
+}
+
+// Circle checkbox
+.circle-checkbox {
+    float: left;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    @include border-radius(40px);
+    display: block;
+    background-color: rgba(0, 0, 0, 0.25);
+    margin: 10px;
+    @include transition(all 0.15s cubic-bezier(0.5, 0, 0, 1.5));
+}
+.circle-checkbox:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.circle-checkbox:hover:after {
+    color: white;
+}
+.circle-checkbox:after {
+    line-height: 40px;
+    font-size: 34px;
+    font-family: "FontAwesome";
+    display: block;
+    content: "";
+    color: rgba(255, 255, 255, 0.5);
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    @include transform(scale(0.5));
+    @include border-radius(100%);
+    transition: all 0.15s cubic-bezier(0.5, 0, 0, 1.5), font-size 0.35s cubic-bezier(0.5, 0, 0, 3);
+}
+.circle-checkbox.checked:after {
+    @include transform(scale(1));
+    font-size: 22px;
+    color: #FFFFFF;
+}
+.circle-checkbox.checked:hover:after {
+    @include transform(scale(1.15));
+}
+
+.circle-checkbox:not(.checked) {
+    background-color: rgba(0, 0, 0, 0.25) !important;
+}
+
+.circle-checkbox:not(.checked):hover,
+.circle-checkbox:not(.checked).hover,
+.circle-checkbox:not(.checked):focus,
+.checcircle-checkboxkbox:not(.checked).focus {
+    background-color: rgba(0, 0, 0, 0.50) !important;
+}
+
+// Circle checkbox sizes
+.circle-checkbox.circle-checkbox-s:after {
+    line-height: 24px;
+    font-size: 20px;
+    transition: all 0.05s cubic-bezier(0.5, 0, 0, 1.5), font-size 0.15s cubic-bezier(0.5, 0, 0, 3);
+} 
+.circle-checkbox.circle-checkbox-s.checked:after {
+    font-size: 13px;
+}
+.circle-checkbox.circle-checkbox-s {
+    width: 24px;
+    height: 24px;
+    @include border-radius(24px);
+}
+
+.circle-checkbox.circle-checkbox-l:after {
+    line-height: 60px;
+    font-size: 42px;
+}
+.circle-checkbox.circle-checkbox-l.checked:after {
+    font-size: 32px;
+}
+.circle-checkbox.circle-checkbox-l {
+    width: 60px;
+    height: 60px;
+    @include border-radius(60px);
+}
+
+.circle-checkbox.circle-checkbox-xl:after {
+    line-height: 80px;
+    font-size: 52px;
+}
+.circle-checkbox.circle-checkbox-xl.checked:after {
+    font-size: 42px;
+}
+.circle-checkbox.circle-checkbox-xl {
+    width: 80px;
+    height: 80px;
+    @include border-radius(80px);
+}
+
+// Checkbox and radio colors
+input:checked + .checkbox.checkbox-default,
+input:checked + .radio.radio-default {
+    background-color: $default-color;
+    border-color: $default-color;
+}
+input:checked + .checkbox.checkbox-info,
+input:checked + .radio.radio-info {
+    background-color: $info-color;
+    border-color: $info-color;
+}
+input:checked + .checkbox.checkbox-primary,
+input:checked + .radio.radio-primary {
+    background-color: $primary-color;
+    border-color: $primary-color;
+}
+input:checked + .checkbox.checkbox-success,
+input:checked + .radio.radio-success {
+    background-color: $success-color;
+    border-color: $success-color;
+}
+input:checked + .checkbox.checkbox-danger,
+input:checked + .radio.radio-danger {
+    background-color: $danger-color;
+    border-color: $danger-color;
+}
+
+input:checked + .checkbox.checkbox-warning,
+input:checked + .radio.radio-warning {
+    background-color: $warning-color;
+    border-color: $warning-color;
+}
+input:checked + .checkbox.checkbox-inverse,
+input:checked + .radio.radio-inverse {
+    background-color: $inverse-color;
+    border-color: $inverse-color;
+}
+
+
+input:checked + .checkbox.checkbox-default:before,
+input:checked + .checkbox.checkbox-info:before,
+input:checked + .checkbox.checkbox-primary:before,
+input:checked + .checkbox.checkbox-success:before,
+input:checked + .checkbox.checkbox-danger:before,
+input:checked + .checkbox.checkbox-warning:before,
+input:checked + .checkbox.checkbox-inverse:before{
+    border-color: #FFFFFF;
+}
+input:checked + .radio.radio-default:before,
+input:checked + .radio.radio-info:before,
+input:checked + .radio.radio-primary:before,
+input:checked + .radio.radio-success:before,
+input:checked + .radio.radio-danger:before,
+input:checked + .radio.radio-warning:before,
+input:checked + .radio.radio-inverse:before{
+    background-color: #FFFFFF;
+}
+
+
+
+
+
+
+
+// Fontawesome checkboxes and radio buttons
+input[type="radio"].radio-fa,
+input[type="checkbox"].checkbox-fa {
+    display:none;
+}
+
+input[type="radio"].radio-fa + span:before,
+input[type="checkbox"].checkbox-fa + span:before {
+    font-family: 'FontAwesome';
+    padding-right: 5px;
+    font-size: 16px;
+}
+
+input[type="radio"].radio-fa + span:before {
+    content: $fa-circle-o; 
+}
+
+input[type="radio"].radio-fa:checked + span:before {
+    
+    content: $fa-circle; 
+}
+
+input[type="checkbox"].checkbox-fa + span:before {
+    content: $fa-square-o; 
+}
+
+input[type="checkbox"].checkbox-fa:checked + span:before {
+    content: $fa-check-square-o; 
+}
+
+input[type="radio"].radio-fa:disabled + span,
+input[type="checkbox"].checkbox-fa:disabled + span,
+input[type="radio"].radio-fa.disabled + span,
+input[type="checkbox"].checkbox-fa.disabled + span {
+    @include opacity(0.5);
+}
+
+
+// Fontawesome checkboxes and radio buttons sizes
+input[type="radio"].radio-fa.radio-fa-xs + span:before,
+input[type="checkbox"].checkbox-fa.checkbox-fa-xs + span:before{
+    font-size: 12px;
+}
+input[type="radio"].radio-fa.radio-fa-s + span:before,
+input[type="checkbox"].checkbox-fa.checkbox-fa-s + span:before{
+    font-size: 14px;
+}
+input[type="radio"].radio-fa.radio-fa-l + span:before,
+input[type="checkbox"].checkbox-fa.checkbox-fa-l + span:before{
+    font-size: 20px;
+}
+input[type="radio"].radio-fa.radio-fa-xl + span:before,
+input[type="checkbox"].checkbox-fa.checkbox-fa-xl + span:before{
+    font-size: 26px;
+}
+
+
+// Font Awesome checkboxes and radio colors
+input[type="radio"]:checked.radio-fa.radio-fa-default + span::before,
+input[type="checkbox"]:checked.checkbox-fa.checkbox-fa-default + span::before {
+    color: $default-color;
+}
+input[type="radio"]:checked.radio-fa.radio-fa-info + span::before,
+input[type="checkbox"]:checked.checkbox-fa.checkbox-fa-info + span::before {
+    color: $info-color;
+}
+input[type="radio"]:checked.radio-fa.radio-fa-primary + span::before,
+input[type="checkbox"]:checked.checkbox-fa.checkbox-fa-info + span::before {
+    color: $primary-color;
+}
+input[type="radio"]:checked.radio-fa.radio-fa-success + span::before,
+input[type="checkbox"]:checked.checkbox-fa.checkbox-fa-success + span::before {
+    color: $success-color;
+}
+input[type="radio"]:checked.radio-fa.radio-fa-danger + span::before,
+input[type="checkbox"]:checked.checkbox-fa.checkbox-fa-danger + span::before {
+    color: $danger-color;
+}
+input[type="radio"]:checked.radio-fa.radio-fa-warning + span::before,
+input[type="checkbox"]:checked.checkbox-fa.checkbox-fa-warning + span::before {
+    color: $warning-color;
+}
+input[type="radio"]:checked.radio-fa.radio-fa-inverse + span::before,
+input[type="checkbox"]:checked.checkbox-fa.checkbox-fa-inverse + span::before {
+    color: $inverse-color;
+}

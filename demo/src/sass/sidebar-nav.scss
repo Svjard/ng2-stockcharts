@@ -1,0 +1,331 @@
+@import 'variables.scss';
+@import 'mixins.scss';
+
+/* ***************** */
+/*      Sidebar      */ 
+/* ***************** */
+$box-shadow-2px: 2px 2px 2px rgba(0, 0, 0, 0.30), 0 1px 0 rgba(0, 0, 0, 0.05);
+
+.sidebar-nav {
+    @include box-shadow('0px 4px 3px rgba(0, 0, 0, 0.15)'); 
+    .sidebar-nav-logo {
+        padding: 10px;
+        min-height: $top-nav-height;
+        font-size: 16px;
+        @include box-shadow('2px 2px 2px rgba(0, 0, 0, 0.15), 0 1px 0 rgba(0, 0, 0, 0.05)'); 
+        img {
+            margin: 0px 10px;
+        }
+    }
+    .sidebar-nav-profile {
+        padding: 18px 10px 19px 10px;
+        font-size: 16px;
+        @include box-shadow('2px 2px 2px rgba(0, 0, 0, 0.15), 0 1px 0 rgba(0, 0, 0, 0.05)');
+        background: url("../img/sidebar-logo-skin.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
+        background: none repeat scroll 0 0 rgba(0, 0, 0, 0.25);
+        img {
+            width: 50px;
+            @include border-radius(50%);
+            border: 1px solid #BBBBBB;
+        }
+        .profile-left {
+            width: 60px;
+            display: inline-block;
+            vertical-align: top;
+            .actions {
+                top: -10px;
+            }
+        }
+        .profile-right {
+            width: 110px;
+            display: inline-block;
+            font-size: 14px;
+            .name {
+                padding-top: 6px; 
+                display: block;
+                cursor: pointer;
+            }
+            .info {
+                font-size: 12px;
+                display: block;
+                color: #E3E3E3;
+            }
+        }
+        a {
+            background: transparent;
+            border: none !important;
+            text-decoration: none !important;
+            margin: 0px !important;
+            padding: 0px !important;
+            color: #FFF !important;
+        }
+        a:hover, a.hover, a:focus, a.focus {
+            background: transparent;
+            border: 0px !important;
+            margin: 0px !important;
+            padding: 0px !important;
+            color: #FFF !important;
+        }
+        .dropdown-menu {
+            margin-left: $sidebar-width - 1px;
+            margin-top: -70px;
+        }
+        .name .fa {
+            opacity: 0.5;
+        }
+        &.mini {
+            text-align: center;
+            padding: 4px 10px 7px;
+        }
+    }
+    .side-nav {
+        li.active {
+            a {
+                font-weight: 600;
+                border-left: 5px solid $border-nav-active;
+                background: none repeat scroll 0 0 rgba(0, 0, 0, 0.20);
+            }
+            i[class*="fa"] {
+                opacity: 0.75;
+                color: #FFFFFF;
+            }
+            a:hover, a.hover {
+                background: none repeat scroll 0 0 rgba(0, 0, 0, 0.30);
+            }
+        }
+        li {
+            a {
+                font-weight: 200;
+                color: #FFFFFF;
+                @include box-shadow(0 1px 0 rgba(255, 255, 255, 0.05));
+                border-left: 5px solid transparent;
+            }
+            a:hover, a:focus, a.hover, a.focus {
+                background: none repeat scroll 0 0 rgba(0, 0, 0, 0.20);
+                border-left: 5px solid $border-nav-hover;
+            }
+            i[class*="fa"] {
+                font-size: 14px;
+                margin-right: 10px;
+                opacity: 0.5;
+                text-align: right;
+                width: 16px;
+            }
+            .nav-second-level li a {
+                padding: 7px 15px 7px 45px;
+                font-weight: 300;
+            }
+            .nav-third-level li a {
+                padding: 7px 15px 7px 65px;
+                font-weight: 300;
+            }
+            .nav-fourth-level li a {
+                padding: 7px 10px 7px 85px;
+                font-weight: 300;
+            }
+            .nav-second-level li.active > a,
+            .nav-third-level li.active > a,
+            .nav-fourth-level li.active > a {
+                font-weight: 600;
+            }
+        }
+    }
+    .expand {
+        float: right; 
+        font-weight: normal;
+        font-size: 8px;
+        line-height: 20px;
+        color: $expand-color;
+    }
+    .expand:before {
+        content: "\f054";
+    }
+    .active > a > .expand:before {
+        content: "\f078";
+    }
+    .side-nav-group {
+        display: block;
+        padding: 8px 10px;
+        position: relative;
+        text-align: center;
+        background-color: rgba(0,0,0, 0.1);
+    }
+    .side-nav-info {
+        padding: 6px 10px;
+        background: rgba(255,255,255, 0.2);
+    }
+    .side-nav-separator {
+        border-bottom: 1px solid rgba(255,255,255,0.3);
+        &.dashed {
+            border-bottom: 1px dashed rgba(255,255,255,0.3) !important;
+        }
+        &.dotted {
+            border-bottom: 1px dotted rgba(255,255,255,0.3) !important;
+        }
+        
+    }
+}
+
+// Collapsed sidebar
+.mini-sidebar {
+    li a > *:not(.fa) {
+        display: none;
+    }
+    .sidebar-wrapper {
+        width: $mini-sidebar-width !important;
+    }
+    .container-wrapper {
+        margin: 0 0 0 $mini-sidebar-width;
+    }
+    .sidebar-nav .sidebar-nav-logo {
+        padding: 10px 2px;
+    }
+    .sidebar-nav .sidebar-nav-profile {
+        padding: 8px;
+        img {
+            width: 40px;
+            @include transition(all 0.1s ease 0s);
+        }
+    }
+    .sidebar-nav .sidebar-nav-profile.mini {
+        display: none !important;
+    }
+    .sidebar-nav > ul > li.active:hover > ul {
+        display: block;
+    }
+    .sidebar-nav-logo .logo-text,
+    .sidebar-nav-profile .profile-right,
+    .sidebar-nav > ul > li > ul,
+    .sidebar-nav > ul > li > a > span.name,
+    .sidebar-nav > ul > li > a > span.name {
+        display: none; 
+    }
+    .side-nav-profile-settings {
+        padding: 8px 6px;
+        ul {
+            display: block !important; 
+        }
+    }
+    .sidebar-nav > ul > li.active.hover > a > span.name,
+    .sidebar-nav > ul > li.active:hover > a > span.name {
+        background: none repeat scroll 0 0 $mini-sidebar-title-color;
+        border-left: medium none;
+        @include box-shadow($box-shadow-2px);
+        left: ($mini-sidebar-width)-5px;
+        position: absolute;
+        top: 0px;
+        width: $sidebar-width;    
+        height: 40px;
+        display: block;
+        padding: 10px 0px 10px 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .sidebar-nav > ul > li.active.hover:after,
+    .sidebar-nav > ul > li.active:hover:after {
+          border-color: transparent transparent transparent rgba(255, 255, 255, 0.20);
+          border-style: solid;
+          border-width: 5px 0 5px 8px;
+          content: "";
+          display: block;
+          position: absolute;
+          top: 15px;
+          left: 100%;
+    }
+    .sidebar-nav {
+        .expand {
+            display: none;
+        }
+    }
+    .sidebar-logo img {
+        margin: 0px 0px 0px 3px;
+    }
+    .sidebar-nav .side-nav {
+        li.active i[class*="fa"] {
+            opacity: 0.85;
+            font-size: 16px;
+            margin-right: 2px;
+            color: #FFF;
+        }
+        li i[class*="fa"] {
+            opacity: 0.75;
+            font-size: 16px;
+            margin-left: 6px;
+            margin-right: 2px;
+        }
+        li a:hover i[class*="fa"] {
+            opacity: 1.0;
+        }
+        li > a {
+            padding: 10px;
+        }
+        .nav-second-level {
+            width: $sidebar-width;
+            background: none repeat scroll 0 0 rgba(74, 121, 147, 0.94);
+            position: absolute;
+            border-left: none;
+            top: 0px;
+            left: $mini-sidebar-width;
+            font-weight: 300;
+            box-shadow: $box-shadow-2px;
+        }
+        .nav-second-level li a {
+            padding: 7px 15px 7px 16px;
+            font-weight: normal;
+            font-weight: 300;
+        }
+        .nav-third-level li a {
+            padding: 7px 15px 7px 36px;
+            font-weight: normal;
+            font-weight: 300;
+        }
+        .nav-fourth-level li a {
+            padding: 7px 15px 7px 56px;
+            font-weight: normal;
+            font-weight: 300;
+        }
+    }
+    .sidebar-minimalizer {
+        i:before {
+            content: "\f03c";
+        }
+    }
+    .side-nav-group, 
+    .side-nav-profile-settings,
+    .side-nav-info,
+    .side-nav-separator {
+        display: none;
+    }
+}
+
+
+// Sidebar minimalizer button
+.sidebar-minimalizer, 
+.sidebar-minimalizer:hover, 
+.sidebar-minimalizer:focus {
+    background-color: #999A9A;
+    border: 1px solid #FFF;
+    padding: 6px 12px !important;
+    box-shadow:         1px 2px 1px rgba(0, 0, 0, 0.10);
+    -webkit-box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.10);
+    -moz-box-shadow:    1px 2px 1px rgba(0, 0, 0, 0.10);
+    border-radius: 0px;
+    margin-left: 0px !important;
+}
+.sidebar-minimalizer {
+    i:before {
+        content: "\f03b";
+    }
+}
+
+// Profile settings
+.side-nav-profile-settings {
+    padding: 8px 16px;
+    text-align: center;
+    min-height: 52px;
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.35);
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.15), 0 1px 0 rgba(0, 0, 0, 0.05);
+    a {
+        transition: all 0.2s ease 0s;
+    }
+}
+

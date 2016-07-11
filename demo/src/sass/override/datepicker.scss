@@ -1,0 +1,114 @@
+@import '../variables.scss';
+@import '../mixins.scss';
+
+/* Date Picker */
+.datepicker {
+    padding: 0 !important;
+    line-height: 16px !important;
+    table {
+        thead {
+            tr {
+                color: #FFFFFF;
+                    &:first-child th {
+                    border-bottom: medium none !important;
+                    border-bottom: 1px solid #FFF !important;
+                }
+                &:first-child:first-child th {
+                    border-top-left-radius: 3px !important;
+                }
+                &:first-child:last-child th {
+                    border-top-right-radius: 3px !important;
+                }
+                th {
+                    border-radius: 0 !important;
+                    border-style: solid;
+                    border-width: 1px 1px 7px;
+                    font-weight: 300;
+                    min-width: 40px;
+                    vertical-align: middle;
+                }
+                .prev, 
+                .switch, 
+                .next {
+                    border-radius: 0 !important;
+                }
+            }
+        }
+        tbody {
+            tr {
+                &:first-child td {
+                    border-top: medium none !important;
+                }
+                td {
+                    background-color: #eee !important;
+                    border-radius: 0 !important;
+                    min-width: 40px !important;
+                    padding: 9px !important;
+                    &.old, 
+                    &.new {
+                        background: #eee3e3 !important;
+                    }
+                    &.active, 
+                    &.active:hover, 
+                    &.active:disabled, 
+                    &.active.disabled:hover {
+                        text-shadow: none !important;
+                    }
+                    &.active.active {
+                        background-image: none !important;
+                        background-repeat: no-repeat !important;
+                        color: #fff !important;
+                        text-shadow: none !important;
+                    }
+                }
+            }
+        }
+        tfoot {
+            tr {
+                .clear {
+                    background-color: #e0d3d3 !important;
+                }
+                .today {
+                    background-color: #d1cbcb !important;
+                }
+                .clear,
+                .today {
+                    border-radius: 0 !important;
+                    font-weight: 600 !important;
+                    border-top: 1px solid #fff !important;
+                    color: #525252 !important;
+                }
+                .today:hover,
+                .clear:hover {
+                    background-color: #e1e1e1 !important;
+                    color: #fff !important;
+                }
+            }
+        }
+        tr {
+            td.today, 
+            td.today:hover, 
+            td.today.disabled, 
+            td.today.disabled:hover {
+                background: #fde19a !important;
+            }
+        }
+    }
+    div:not(.datepicker-months):not(.datepicker-years) {
+        td:first-child {
+            color: #da4c34 !important;
+        }
+    }
+    div.datepicker-months {
+        span.month.active,
+        span.year.active{
+            background: #e1e1e1 !important;
+        }
+    }
+}
+.datepicker.datepicker-dropdown {
+    border: none !important;
+    box-shadow: none !important;
+    @include border-radius(0px !important);
+    padding: 1px !important;
+}

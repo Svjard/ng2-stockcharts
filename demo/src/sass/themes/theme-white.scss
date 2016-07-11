@@ -1,0 +1,427 @@
+@import 'themes.scss';
+
+[data-theme='white'], span[data-theme='white'] {
+    .container-header, .sidebar-nav-logo,
+    .btn-theme,
+    // Spinner
+    .spinner .se {
+        background: $theme-white-background;
+        color: $theme-white-color !important;
+    }
+    // Buttons
+    .btn-theme {
+        border-color: $theme-white-background;
+    }
+    .btn-theme.btn-bordered {
+        color: $theme-white-color;
+    }
+    .btn-theme.btn-bordered:focus,
+    .btn-theme.btn-bordered.focus,
+    .btn-theme.btn-bordered:active,
+    .btn-theme.btn-bordered.active,
+    .btn-theme.btn-bordered:hover,
+    .btn-theme.btn-bordered.hover{
+        color: #FFFFFF;
+    }
+    .btn-theme.btn-shadow-right {
+        @include text-shadow-right-68px(darken($theme-white-background, $darken-percent));
+    }
+    .btn-theme.btn-shadow-left {
+        @include text-shadow-left-68px(darken($theme-white-background, $darken-percent));
+    }
+    .btn-theme.btn-bottom {
+      @include border-bottom(2px, darken($theme-white-background, $darken-percent));
+    }
+    .btn-theme.btn-3d {
+        @include btn-3d(darken($theme-white-background, $darken-percent));
+    }
+    .btn-theme.btn-3d:active, .btn-theme.btn-3d.is-active, .btn-theme.btn-3d.active {
+        @include btn-3d-active(darken($theme-white-background, $darken-percent));
+    }
+    .btn-theme:hover, .btn-theme.focus, 
+    .btn-theme:active, .btn-theme.active, .btn-theme.is-active, 
+    .btn-theme:focus, .btn-theme.focus {
+        background-color: darken($theme-white-background, 10%);
+    }
+    .btn.btn-theme .badge {
+        background: darken($theme-white-background, 20%);
+    }
+    // Panels
+    .panel.panel-theme .panel-heading,
+    .panel.panel-theme .panel-body.panel-body-color,
+    .panel.panel-theme .panel-footer.panel-footer-color {
+        background: $theme-white-background !important;
+        color: $theme-white-color;
+    }
+    .panel.panel-theme .panel-heading {
+        border-bottom: 1px solid darken($theme-white-background, 10%) !important;    
+    }
+    // Sidebar
+    .mini-sidebar {
+        .sidebar-nav > ul > li.active > a > span.name {
+            background: $theme-white-background;
+            color: $theme-white-color;
+        }
+    }
+    .sidebar-nav {
+        .side-nav {
+            li.active {
+                a {
+                    border-left: 5px solid $theme-white-background;
+                }
+            }
+        }
+    }
+    // Dropdowns
+    .dropdown-menu {
+        li > a:hover, li > a.hover {
+            background-color: darken($theme-white-background, 10%);
+            color: $theme-white-color;
+        }
+    }
+    // Widgets
+    .widget.widget-theme {
+        background-color: lighten($theme-white-background, 20%);
+        color: $theme-white-color;
+    }
+    .bg-theme {
+        @include bgcolor($theme-white-background);
+        color: $theme-white-color !important;
+    }
+    .bg-theme-light {
+        @include bgcolor(darken($theme-white-background , 5%));
+        color: #555 !important;
+    }
+    .bg-theme-dark {
+        background-color: darken($theme-white-background , 5%)!important;
+        color: #555 !important;
+    }
+    .right-notifier-tabs, .container-navbar .dropdown-menu {
+        ul.nav-tabs {
+            li {
+                a {
+                    background: darken($theme-white-background, 10%) !important;
+                    color: #FFFFFF;
+                }
+                a:hover, a:focus {
+                    background: darken($theme-white-background, 8%) !important;
+                }
+            }
+            li.active {
+                a {
+                    background: lighten($theme-white-background, 20%) !important;
+                    border-top: 4px solid darken($theme-white-background, 20%) !important;
+                    color: #555;
+                    padding: 14px 18px 0px 18px;
+                }
+            }
+        }
+    }
+    li.dropdown-footer {
+        background: lighten($theme-white-background, 10%) !important;
+        color: #555;
+        border-top: 3px solid $theme-white-background !important;
+    }
+    // Tabs 
+    .tab.tab-theme {
+        li > a {
+            background-color: darken($theme-white-background, 10%) !important;
+            color: #555;
+        }
+        li.active > a {
+            border-color: $theme-white-background !important;
+            background: #F6F6F6 none repeat scroll 0 0 !important;
+            color: #808080;
+        }
+        .nav-tabs {
+            .dropdown-menu > li > a {
+                color: #555;
+                background-color: darken($theme-white-background, 10%) !important;
+            }
+        }
+    }
+    // Checkbox and radio colors
+    input:checked + .checkbox.checkbox-theme,
+    input:checked + .radio.radio-theme {
+        background-color: $theme-white-background;
+        border-color: $theme-white-background;
+    }
+    input:checked + .checkbox.checkbox-theme:before {
+        border-color: darken($theme-white-background, 20%);
+    }
+    input:checked + .radio.radio-theme:before {
+        background-color: darken($theme-white-background, 20%);
+    }
+    
+    input[type="radio"]:checked.radio-fa.radio-fa-theme + span::before,
+    input[type="checkbox"]:checked.checkbox-fa.checkbox-fa-theme + span::before {
+        color: darken($theme-white-background, 20%);
+    }
+    // Switchers
+    .switch-label.switch-theme.checked > span.switch-inner:before {
+        background-color: darken($theme-white-background, 10%);
+    }
+    .switch-label.switch-theme:not(.checked) > span.switch-inner:after {
+        background-color: $theme-white-background;
+    }
+    // Modals
+    .modal .color-line {
+        background-color: darken($theme-white-background, 20%);
+    }
+    .modal.modal-background-color .modal-backdrop {
+        background-color: $theme-white-background;
+    }
+    .modal.modal-background-color .modal-backdrop {
+        @include opacity(0.5);
+    }
+    .modal.modal-header-color .modal-header,
+    .modal.modal-full-color .modal-header {
+        background-color: $theme-white-background;
+    }
+    .modal.modal-header-color .modal-title,
+    .modal.modal-header-color .modal-header small,
+    .modal.modal-full-color .modal-title,
+    .modal.modal-full-color .modal-header small,
+    .modal.modal-full-color .modal-body,
+    .modal.modal-full-color .modal-footer {
+        color: #555 !important;
+    }
+    .modal.modal-full-color .modal-body {
+        background-color: lighten($theme-white-background, 10%);
+    }
+    .modal.modal-full-color .modal-footer {
+        background-color: lighten($theme-white-background, 20%);
+    }
+    // Alerts
+    .sweet-alert {
+        border-top-color: darken($theme-white-background, 10%);
+    }
+    .sweet-alert button.confirm {
+        background-color: darken($theme-white-background, 10%) !important;
+    }
+    .sweet-alert button.confirm:hover {
+        background-color: darken($theme-white-background, 20%) !important;
+    }
+    .sweet-alert.swal-full {
+        background-color: darken($theme-white-background, 10%);
+        border: 1px solid #E1E1E1;
+        button.confirm {
+            background-color: darken($theme-white-background, 15%) !important;
+        }
+        button.confirm:hover {
+            background-color: darken($theme-white-background, 5%) !important;
+        }
+    }
+    // Labels
+    .label-theme {
+        background-color: $theme-white-background;
+        color: #555 !important;
+    }
+    // Badges
+    .badge-theme {
+        background-color: $theme-white-background;
+        color: #555 !important;
+    }
+    // Chosen
+    .chosen-container .chosen-results li.highlighted {
+        background-color: darken($theme-white-background, 5%);
+        color: #555;
+    }
+    // Datepicker
+    .datepicker {
+        table {
+            thead {
+                tr:first-child {
+                    background-color: darken($theme-white-background, 5%);
+                }
+                tr:last-child {
+                    background-color: $theme-white-background;
+                }
+                tr {
+                    th {
+                        background-color: darken($theme-white-background, 5%);
+                        border-color: $theme-white-background;
+                    }
+                    .prev:hover, 
+                    .switch:hover, 
+                    .next:hover {
+                        background-color: darken($theme-white-background, 10%) !important;
+                    }
+                }
+            }
+            tbody {
+                tr {
+                    td.active, 
+                    td.active:hover, 
+                    td.active:disabled, 
+                    td.active.disabled:hover,
+                    td.today.active {
+                        background-color: darken($theme-white-background, 10%) !important;
+                    }   
+                }
+                td.active.active {
+                    background-color: darken($theme-white-background, 5%);
+                    border: 0px;
+                }
+                td.active.active:hover {
+                    background-color: darken($theme-white-background, 5%);
+                }
+            }
+            thead tr:first-child th:hover, 
+            tfoot tr th:hover {
+                background-color: darken($theme-white-background, 10%);
+            }
+            tr {
+                td.day:hover, 
+                td.day.focused {
+                    background-color: darken(#EEEEEE, 5%);
+                }
+            }
+        }
+    }
+    // Clockpicker
+    .clockpicker-popover {
+        .btn-block {
+            background-color: darken($theme-white-background, 10%) !important;
+        }
+        .btn-block:hover {
+            background-color: darken($theme-white-background, 5%) !important;
+        }
+        .popover-title .text-primary {
+            color: $theme-white-background;
+        }
+    }
+    // Ribbons
+    .ribbon.ribbon-theme .ribbon-content-wrapper,
+    .ribbon.ribbon-theme .ribbon-lc,
+    .ribbon.ribbon-theme .ribbon-rc {
+        background: darken($theme-white-background, 5%);
+    }
+    // Dropzone
+    .dropzone.dropzone-theme {
+        .dropzone-dict {
+            .fa-stack-2x {
+                color: darken($theme-white-background, 20%);
+                @include opacity(0.65);
+            }
+            .fa-stack-1x {
+                color: darken($theme-white-background, 20%);
+                @include opacity(0.60);
+            }
+            span {
+                color: darken($theme-white-background, 20%);
+                @include opacity(0.55);
+            }
+        }
+        .dropzone-dict:hover {
+            .fa-stack-2x {
+                color: darken($theme-white-background, 20%);
+                @include opacity(0.70);
+            }
+            .fa-stack-1x {
+                color: darken($theme-white-background, 20%);
+                @include opacity(0.75);
+            }
+            span {
+                color: darken($theme-white-background, 20%);
+                @include opacity(0.80);
+            }
+        }
+    }
+    // Font awesome stack buttons
+    .btn.btn-theme.fa-stack {
+        background: transparent;
+    }
+    .btn.btn-theme.fa-stack {
+        .fa-stack-2x {
+            color: darken($theme-white-background, 10%);
+        }
+    }
+    .btn.btn-theme.fa-stack:hover {
+        .fa-stack-2x {
+            color: darken($theme-white-background, 20%);
+        }
+    }
+    .btn.btn-theme.fa-stack:active {
+        .fa-stack-2x {
+            color: darken($theme-white-background, 30%);
+        }
+    }
+    .btn.btn-theme.fa-stack {
+        .fa-stack-color {
+            color: darken($theme-white-background, 10%) !important;
+        }
+    }
+    // Touchspin
+    .bootstrap-touchspin {
+        .btn-default {
+            background: darken($theme-white-background, 10%) !important;
+        }
+        .btn-default:hover, 
+        .btn-default:focus {
+            background: darken($theme-white-background, 15%) !important;
+        }
+        .btn-default:active {
+            background: darken($theme-white-background, 20%)!important;
+        }
+    }
+    // Tables
+    .table.table-theme-hover > tbody > tr:hover {
+        background-color: $theme-white-background !important;
+    }
+    // Pagination
+    .pagination-theme li.active a {
+        background-color: darken($theme-white-background, 10%) !important;
+        border-color: darken($theme-white-background, 5%) !important;
+        color: #555 !important;
+    }
+    // Tooltips
+    .theme-tooltip + .tooltip > .tooltip-inner {
+        background-color: darken($theme-white-background, 10%);
+        color: #555 !important;
+    }
+    .theme-tooltip + .tooltip.bottom > .tooltip-arrow { 
+        border-bottom-color: darken($theme-white-background, 10%);
+    }
+    .theme-tooltip + .tooltip.top > .tooltip-arrow,
+    .theme-tooltip + .tooltip > .tooltip-arrow { 
+        border-top-color: darken($theme-white-background, 10%);
+    }
+    .theme-tooltip + .tooltip.left > .tooltip-arrow { 
+        border-left-color: darken($theme-white-background, 10%);
+    }
+    .theme-tooltip + .tooltip.right > .tooltip-arrow { 
+        border-right-color: darken($theme-white-background, 10%);
+    }
+   // Popovers
+    .theme-popover + .popover {
+        color: #555 !important;
+        background-color: darken($theme-white-background, 10%);
+    }
+    .theme-popover+ .popover.bottom > .arrow::after { 
+        border-bottom-color: darken($theme-white-background, 10%);
+    }
+    .theme-popover+ .popover.top > .arrow::after {
+        border-top-color: darken($theme-white-background, 10%);
+    }
+    .theme-popover+ .popover.left > .arrow::after { 
+        border-left-color: darken($theme-white-background, 10%);
+    }
+    .theme-popover+ .popover.right > .arrow::after { 
+        border-right-color: darken($theme-white-background, 10%);
+    }
+    // Fullcalendar.io
+    .fc-theme {
+        .fc-event, .fc-agenda .fc-event-time, .fc-event a {
+            background-color: darken($theme-white-background, 20%);
+            border-color: darken($theme-white-background, 20%);
+        }
+        .fc-state-active {
+            background-color: darken($theme-white-background, 20%);
+            border-color: darken($theme-white-background, 20%);
+        }
+        .fc-button.fc-state-active {
+            color: #555;
+        }
+    }
+}

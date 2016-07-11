@@ -1,6 +1,4 @@
 // Karma configuration
-// Generated on Thu Dec 03 2015 13:23:31 GMT+0100 (W. Europe Standard Time)
-
 module.exports = function(config) {
   config.set({
 
@@ -122,9 +120,9 @@ module.exports = function(config) {
     browsers: ['PhantomJS', 'Chrome_Desktop'],
 
     customLaunchers: {
-      Chrome_Desktop: {
+      Chrome_travis_ci: {
         base: 'Chrome',
-        flags: ['--window-size=1024,768']
+        flags: ['--no-sandbox']
       }
     },
 
@@ -132,6 +130,7 @@ module.exports = function(config) {
       dir: 'coverage/',
       reporters: [
         { type: 'text-summary' },
+        { type: 'lcov', subdir: 'report-lcov' },
         { type: 'json', subdir: '.', file: 'coverage-final.json' },
         { type: 'html' }
       ]
@@ -146,9 +145,7 @@ module.exports = function(config) {
     concurrency: 1
   });
 
-  if (process.env.TEAMCITY_VERSION) {
-    config.browsers = ['PhantomJS'];
-    config.singleRun = true;
-    config.reporters = ['teamcity', 'coverage'];
+  if (process.env.TRAVIS_CI) {
+    config.browsers = ['Chrome_travis_ci'];
   }
 };

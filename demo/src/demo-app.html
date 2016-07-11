@@ -1,0 +1,121 @@
+<div id="wrapper">
+  <nav id="sidebar-nav" class="sidebar-nav">
+    <div id="sidebar-wrapper" class="sidebar-wrapper">
+      <ul id="side-nav" class="side-nav nav" style="display: block;">
+        <li [ngClass]="{active: selectedTab === 'documentation'}" (click)="changeTab('documentation')">
+          <a href="dashboard.html">
+            <i class="fa fa-tachometer"></i> 
+            <span class="name">Documentation</span>
+          </a>
+        </li>
+        <li [ngClass]="{active: selectedTab.indexOf('charttype::') === 0}" (click)="changeTab('charttype::area')">
+          <a href="#">
+            <i class="fa fa-desktop"></i> 
+            <span class="name">Chart Types</span>
+            <span class="fa expand"></span>
+          </a>
+          <ul class="nav nav-second-level collapse">
+            <li [ngClass]="{active: selectedTab === 'charttype::area'}" (click)="changeTab('charttype::area')">
+              <a href="components.html">
+                Area Chart
+              </a>
+            </li>
+            <li [ngClass]="{active: selectedTab === 'charttype::linescatter'}" (click)="changeTab('charttype::linescatter')">
+              <a href="components.html">
+                Line &amp; Scatter
+              </a>
+            </li>
+            <li [ngClass]="{active: selectedTab === 'charttype::bubble'}" (click)="changeTab('charttype::bubble')">
+              <a href="components.html">
+                Bubble Chart
+              </a>
+            </li>
+            <li [ngClass]="{active: selectedTab === 'charttype::bar'}" (click)="changeTab('charttype::bar')">
+              <a href="components.html">
+                Bar Chart
+              </a>
+            </li>
+            <li [ngClass]="{active: selectedTab === 'charttype::groupedbar'}" (click)="changeTab('charttype::groupedbar')">
+              <a href="components.html">
+                Grouped Bar Chart
+              </a>
+            </li>
+            <li [ngClass]="{active: selectedTab === 'charttype::stackedbar'}" (click)="changeTab('charttype::stackedbar')">
+              <a href="components.html">
+                Stacked Bar Chart
+              </a>
+            </li>
+            <li [ngClass]="{active: selectedTab === 'charttype::horizbar'}" (click)="changeTab('charttype::horizbar')">
+              <a href="components.html">
+                Horizontal Bar Chart
+              </a>
+            </li>
+            <li [ngClass]="{active: selectedTab === 'charttype::horizstackedbar'}" (click)="changeTab('charttype::horizstackedbar')">
+              <a href="components.html">
+                Horizontal Stacked Bar
+              </a>
+            </li>
+            <li [ngClass]="{active: selectedTab === 'charttype::candlestick'}" (click)="changeTab('charttype::candlestick')">
+              <a href="components.html">
+                Candlestick Chart
+              </a>
+            </li>
+            <li [ngClass]="{active: selectedTab === 'charttype::volume'}" (click)="changeTab('charttype::volume')">
+              <a href="components.html">
+                Volume Bar
+              </a>
+            </li>
+            <li [ngClass]="{active: selectedTab === 'charttype::heikinashi'}" (click)="changeTab('charttype::heikinashi')">
+              <a href="components.html">
+                Heikin Ashi
+              </a>
+            </li>
+            <li [ngClass]="{active: selectedTab === 'charttype::kagi'}" (click)="changeTab('charttype::kagi')">
+              <a href="components.html">
+                Kagi
+              </a>
+            </li>
+            <li [ngClass]="{active: selectedTab === 'charttype::pointfigure'}" (click)="changeTab('charttype::pointfigure')">
+              <a href="components.html">
+                Point &amp; Figure
+              </a>
+            </li>
+            <li [ngClass]="{active: selectedTab === 'charttype::renko'}" (click)="changeTab('charttype::renko')">
+              <a href="components.html">
+                Renko
+              </a>
+            </li>
+            <li [ngClass]="{active: selectedTab === 'charttype::misc'}" (click)="changeTab('charttype::misc')">
+              <a href="components.html">
+                Misc Charts
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div id="container-wrapper" class="container-wrapper">
+    <div id="container-navbar" class="container-navbar navbar">
+      <div class="l-container-navbar">
+        <a href="#" class="sidebar-minimalizer btn btn-theme">
+          <i class="fa"></i> 
+        </a>
+        <span id="navbar-search" class="navbar-search-input-icon l-mar-10">
+            <i class="fa fa-search navbar-search-icon"></i>
+            <input class="navbar-search" type="text" placeholder="Search ...">
+        </span>
+      </div>
+    </div>
+    <div id="container-header" class="container-header">
+      <div class="row">
+        <div class="col-md-12">
+          <h2>Advanced controls</h2>
+        </div>
+      </div>
+    </div>
+    <div id="container-content" class="container-content">
+      
+    </div>
+  </div>
+</div>

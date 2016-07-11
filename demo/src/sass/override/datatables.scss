@@ -1,0 +1,69 @@
+@import '../variables.scss';
+@import '../mixins.scss';
+
+/* Datatables */
+table.dataTable thead th.sorting::after,
+table.dataTable thead th.sorting_desc::after,
+table.dataTable thead th.sorting_asc::after {
+    font-size: 14px !important;
+    color: #525252 !important;
+}
+
+// Datatables ColVis
+button.ColVis_Button, 
+ul.ColVis_collection li {
+    box-shadow: none !important;
+    @include border-radius(0px !important);
+}
+
+ul.ColVis_collection li {
+    border: 0px !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    margin-bottom: 0px !important;
+    padding: 0px 4px !important;
+    &:hover {
+        background: transparent !important;
+    }
+}
+    
+ul.ColVis_collection {
+    background-color: #FFF !important;
+    border: 1px solid $gray !important;
+    @include border-radius(0px !important);
+}
+
+ul.ColVis_collection li:hover {
+    background: transparent !important;
+    border: 0px !important;
+    box-shadow: none !important;
+}
+button.ColVis_Button {
+    background: #FFFFFF !important;
+    box-shadow: none !important;
+    border: 1px solid $gray !important;
+    &:hover, 
+    &:focus {
+        background: $super-soft-gray !important;
+        box-shadow: none !important;
+    }
+}
+ul.ColVis_collection li label input[type="checkbox"] {
+    margin-right: 5px !important;
+}
+
+div.ColVis {
+    margin-bottom: 0px !important;
+}
+
+
+// Datatables responsive
+
+
+table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child::before, table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child::before {
+    background-color: #9f9f9f !important;
+    border: 2px solid white !important;
+    border-radius: 0 !important;
+    box-shadow: 0 0 0 #444 !important;
+}
+    

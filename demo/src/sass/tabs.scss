@@ -1,0 +1,282 @@
+@import 'variables.scss';
+@import 'mixins.scss';
+
+$tabs-border: rgba(0,0,0,0.1);
+$tabs-border-light: rgba(0,0,0,0.03);
+
+/* ************************** */
+/*            Tabs            */
+/* ************************** */
+// Tabs basics
+.tab {
+    .nav-tabs {
+        & > li.active > a {
+            background: #F6F6F6 none repeat scroll 0 0 !important;
+            border-top: 4px solid #C9C9C9 !important;
+            color: #808080;
+            margin-bottom: 4px;
+            padding-top: 4px;
+        }
+        & > li {
+            float: left;
+            margin-bottom: -6px;
+            border: medium none;
+            & > a {
+                background: #C9C9C9 none repeat scroll 0 0 !important;
+                color: #FFF;
+                margin-right: 4px;
+                border: 0px;
+                border-radius: 0px;
+                padding: 8px 18px;
+            }
+        }
+        & > li:first-of-type {
+            margin-left: 4px;
+        }
+        .dropdown-menu {
+            margin-top: -1px;
+            margin-left: -1px;
+            border-top: medium none;
+            & > li {
+                margin-bottom: 0px !important;
+                & > a {
+                    background: #C9C9C9 none repeat scroll 0 0;
+                    color: #FFF;
+                }
+            }
+        }
+        .dropup > .dropdown-menu {
+            margin-bottom: -1px;
+            border-bottom: medium none;
+        }
+    }
+    .tab-content {
+        background-color: #F6F6F6;
+        padding: 16px 22px;
+        position: relative;
+        border: 1px solid $tabs-border;
+        border-top: 0px;
+    }
+    .nav-tabs > li > a:hover, 
+    .nav-tabs > li > a:focus {
+        border: 0px;
+    }
+}
+
+// Tabs bottom
+.tab.tabs-bottom {
+    .nav-tabs {
+        border: 0px;
+        border-top: 1px solid $tabs-border;
+        .dropdown-menu {
+            margin-bottom: 0px;
+            margin-left: -1px;
+        }
+    }
+    li.active > a {
+        border: 0 none !important;
+        border-bottom: 4px solid #C9C9C9 !important;
+    }
+    .tab-content {
+        border: 1px solid $tabs-border;
+        border-bottom: 0px;
+    }
+    .nav-tabs {
+        border: 0px;
+        border-top: 1px solid #C9C9C9;
+    }
+    .nav-tabs > li {
+        float: left;
+        margin-bottom: 0;
+        border: medium none;
+    }
+    .nav-tabs > li.active {
+        margin-top: -5px;
+        margin-bottom: 0;
+    }
+    .nav-tabs > li.active > a {
+        margin-bottom: 0;
+        margin-top: 4px;
+        padding-bottom: 4px;
+        padding-top: 8px;
+    }
+    .nav-tabs > li:first-of-type {
+        border-left: 1px solid $tabs-border-light;
+    }
+}
+
+// Tabs left
+.tab.tabs-left {
+    .nav-tabs {
+        float: left;
+        margin-bottom: 0;
+        top: auto;
+        border: 0px;
+        li {
+            margin-right: -1px;
+            float: none;
+            margin-bottom: 2px;
+        }
+        .dropdown-menu {
+            margin-left: 0px;
+        }
+        & > li:first-of-type {
+            margin-top: 4px;
+            margin-left: 0px;
+        }
+    }
+    .nav-tabs > li.active > a {
+        border: 0 none !important;        
+        border-left: 4px solid #C9C9C9 !important;
+        margin-bottom: 0;
+        padding: 8px 0px 8px 14px;
+    }
+    .nav-tabs > li > a {
+        margin-right: 0px;
+        padding: 8px 14px 8px 18px;
+    }
+    .tab-content {
+        overflow: hidden;
+        border: 1px solid $tabs-border;
+        padding: 8px 20px;
+        border-left: 0px;
+    }
+    .nav-tabs > li:first-of-type {
+        border: 0px;
+    }
+}
+
+// Tabs right
+.tab.tabs-right {
+    .nav-tabs {
+        float: right;
+        margin-bottom: 0;
+        top: auto;
+        border: 0px;
+        li {
+            margin-left: -1px;
+            float: none;
+            margin-bottom: 2px;
+            a {
+                margin-right: 0px;
+            }
+        }
+        .dropdown-menu {
+            margin-right: 4px;
+        }
+        & > li:first-of-type {
+            margin-top: 4px;
+        }
+    }
+    .nav-tabs > li.active > a {
+        border: 0 none !important;        
+        border-right: 4px solid #C9C9C9 !important;
+        margin-bottom: 0;
+        padding: 8px 14px 8px 0px;
+    }
+    .nav-tabs > li > a {
+        margin-left: 0px;
+        padding: 8px 18px 8px 14px;
+        text-align: right;
+    }
+    .tab-content {
+        overflow: hidden;
+        border: 1px solid $tabs-border;
+        padding: 8px 20px;
+        border-right: 0px;
+    }
+    .nav-tabs > li:first-of-type {
+        border: 0px;
+    }
+}
+
+// Tabs colors
+.tab.tab-default {
+    li > a {
+        background-color: $default-color !important;
+    }
+    li.active > a {
+        border-color: $default-color !important;
+    }
+}
+.tab.tab-inverse {
+    li > a {
+        background-color: $inverse-color !important;
+    }
+    li.active > a {
+        border-color: $inverse-color !important;
+    }
+}
+.tab.tab-primary {
+    li > a {
+        background-color: $primary-color !important;
+    }
+    li.active > a {
+        border-color: $primary-color !important;
+    }
+}
+.tab.tab-success {
+    li > a {
+        background-color: $success-color !important;
+    }
+    li.active > a {
+        border-color: $success-color !important;
+    }
+}
+.tab.tab-info {
+    li > a {
+        background-color: $info-color !important;
+    }
+    li.active > a {
+        border-color: $info-color !important;
+    }
+}
+.tab.tab-warning {
+    li > a {
+        background-color: $warning-color !important;
+    }
+    li.active > a {
+        border-color: $warning-color !important;
+    }
+}
+.tab.tab-danger {
+    li > a {
+        background-color: $danger-color !important;
+    }
+    li.active > a {
+        border-color: $danger-color !important;
+    }
+}
+
+
+// Tabs separation
+.tab.tab-1p {
+    .nav-tabs > li > a {
+        margin-right: 1px;
+    }
+}
+
+.tab.tab-2p {
+    .nav-tabs > li > a {
+        margin-right: 2px;
+    }
+}
+
+tab.tab-4p {
+    .nav-tabs > li > a {
+        margin-right: 4px;
+    }
+}
+
+.tab.tab-8p {
+    .nav-tabs > li > a {
+        margin-right: 8px;
+    }
+}
+
+
+
+
+
+
+

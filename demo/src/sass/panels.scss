@@ -1,0 +1,242 @@
+@import 'variables.scss';
+@import 'mixins.scss';
+
+/* **************** */
+/*      Panels      */ 
+/* **************** */
+
+@mixin panel-color-mixin($color) {
+    .panel-heading,
+    .panel-body.panel-body-color {
+        background-color: $color;
+    }
+    .panel-footer.panel-footer-color {
+        background-color: $color;
+        color: #FFF;
+    }
+}
+
+.panel {
+    border-radius: 0px !important;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 0px rgba(0, 0, 0, 0.1);
+    .panel-body {
+        padding: 16px 24px;
+    }
+    .panel-body.panel-full,
+    .panel-footer.panel-full {
+        padding: 0px;
+    }
+    .panel-heading {
+        background: #F5F5F5;
+        border-radius: 0px !important;
+        min-height: 46px;
+        padding: 12px 20px;
+        .panel-control {
+            display: inline-block;
+            float: right;
+            margin-top: 0;
+            padding: 0;
+            position: relative;
+            right: 0px;
+            top: 0;
+            width: auto;
+            font-weight: 300;
+            vertical-align: middle;
+            text-align: right;
+        }
+        .progress {
+            margin-bottom: 0px;
+            height: 16px;
+            margin-top: 4px;
+        }
+        .panel-title {
+            display: inline-block;
+            font-size: 16px;
+            font-weight: 300;
+            margin-right: 10px;
+            color: inherit;
+            margin-bottom: 0;
+            margin-top: 0;
+            vertical-align: middle;
+        }
+    }
+    .panel-alert {
+        border-color: none;
+        border-color: #e4e5e7 #e4e5e7 -moz-use-text-color;
+        border-image: none;
+        border-radius: 0;
+        border-style: solid solid none;
+        border-width: 1px 1px medium;
+        margin-bottom: 0;
+        padding: 10px 20px;
+    }
+    .panel-footer {
+        background-color: #fcfcfc;
+        padding: 6px 24px;
+        border-radius: 0px;
+    }
+    .panel-body.panel-loading {
+        position: relative;
+    }
+    .panel-body.panel-loading .panel-refreshing {
+        background: none repeat scroll 0 0 #fff;
+        bottom: 0;
+        left: 0;
+        opacity: 0.8;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        right: 0;
+        top: 0;
+        z-index: 9999;
+    }
+    &.panel-transparent-header, 
+    &.panel-transparent {
+        background: none transparent;
+        border: none;
+        box-shadow: none;
+        .panel-heading {
+            background: none transparent;
+            border: none;
+        }
+
+    }
+    &.panel-transparent-header {
+        .panel-body {
+            background: #FFFFFF;
+        }
+    }
+    &.panel-plain .panel-heading {
+        background: #FFFFFF;
+    }
+    &.panel-danger {
+        @include panel-color-mixin($danger-color);
+    }
+    &.panel-warning {
+        @include panel-color-mixin($warning-color);
+    }
+    &.panel-info { 
+        @include panel-color-mixin($info-color);
+    }
+    &.panel-success {
+        @include panel-color-mixin($success-color);
+    }
+    &.panel-primary {
+        @include panel-color-mixin($primary-color);
+    }
+    &.panel-default {
+        @include panel-color-mixin($default-color);
+    }
+    &.panel-inverse {
+        @include panel-color-mixin($inverse-color);
+    }
+}
+
+
+
+
+
+.panel.panel-danger,
+.panel.panel-warning,
+.panel.panel-info,
+.panel.panel-success,
+.panel.panel-primary,
+.panel.panel-default,
+.panel.panel-inverse {
+    .panel-heading,
+    .panel-body.panel-body-color {
+        color: #FFFFFF;
+    }
+    .panel-heading {
+        border-bottom: 1px solid #FFFFFF !important;
+    }
+}
+
+
+/* Panel UI Elements */
+.panel .panel-control {
+    /* Tabs */
+    .nav-tabs {
+        border-bottom: none;
+        li > a {
+            border-radius: 0px;
+            background-color: transparent;
+            border: none;
+            height: 35px;
+            color: rgb(85,85,85);
+            color: #FFFFFF;
+            background-color: rgba(0,0,0, 0.2);
+        }
+        li.active > a {
+            background-color: #FFFFFF;
+            border-color: #DDDDDD #DDDDDD transparent;
+            border-image: none;
+            border-style: solid;
+            border-width: 1px;
+            color: #555555;
+            cursor: default;
+            height: 38px;
+        }
+        li > a:hover {
+            background-color: rgba(0,0,0, 0.07);
+        }
+        li.active > a:hover {
+            background-color: #FFFFFF;
+        }
+    }
+    /* Pagination */
+    .pagination {
+        margin: 0px;
+        a, li {
+            border-radius: 0px;
+            color: #555;
+        }
+        li > span, li > a {
+            padding: 2px 10px;
+        }
+        li > a:hover {
+            background-color: rgba(0,0,0, 0.07);
+        }
+        li.active > a {
+            color: #555555;
+            background-color: #FFFFFF;
+            border-color: #555555;
+        }
+    }
+    /* Inputs */ 
+    .form-control {
+        height: 26px;
+        font-size: 12px;
+    }
+    .input-group-addon {
+        padding: 5px 12px;
+    }
+    /* Pager */
+    .pager {
+        margin: 0;
+        li > a, li > span {
+            padding: 4px 14px;
+            font-size: 12px;
+            color: #555 !important;
+        }
+    }
+}
+
+
+/* List groups */
+.panel-body {
+    /* List groups */
+    .list-group {
+        margin-bottom: 0px;
+    }
+    .list-group-item {
+        border-radius: 0px;
+        border-left: 0px;
+        border-right: 0px;
+    }
+}
+
+    
+    
+

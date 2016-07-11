@@ -1,0 +1,5 @@
+@import 'themes.scss';
+
+[data-theme='dust'], span[data-theme='dust'] {
+    @include theme-mixin($theme-dust-background, #FFFFFF);
+}

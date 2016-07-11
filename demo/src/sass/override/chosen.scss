@@ -1,0 +1,17 @@
+@import '../variables.scss';
+@import '../mixins.scss';
+
+/* Chosen override */
+.chosen-container .chosen-results li.group-result {
+    background-color: $soft-gray !important;
+}
+
+.chosen-container-single .chosen-single {
+    box-shadow: none !important;
+    @include border-radius(0px);
+    background: #FFF !important;
+}
+
+.chosen-container .chosen-results li.highlighted {
+    background-image: none !important;
+}

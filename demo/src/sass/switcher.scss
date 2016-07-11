@@ -1,0 +1,313 @@
+@import 'variables.scss';
+@import 'mixins.scss';
+
+/* **************** */
+/*    Switchers     */
+/* **************** */
+.switch {
+    position: relative; 
+    width: 55px;
+    display: inline-block;
+    @include user-select(none);
+    .switch-checkbox {
+        display: none;
+    }
+    .switch-label {
+        display: block; 
+        overflow: hidden; 
+        cursor: pointer;
+        border: none;
+        text-align: left;
+        &.switch-disabled {
+            @include opacity(0.5);
+            cursor: default;
+        }
+        &.checked {
+            .switch-inner {
+                margin-left: 0;
+            }
+            .switch-switcher {
+                right: 0px;
+            }
+        }
+    }
+    .switch-inner {
+        display: block; 
+        width: 200%; 
+        margin-left: -100%;
+        @include transition(0.3s ease-in 0s);
+        &:before, 
+        &:after {
+            display: block; 
+            float: left; 
+            width: 50%; 
+            height: 22px; 
+            padding: 0; 
+            line-height: 22px;
+            font-size: 10px; 
+            color: white; 
+            font-family: $default-font-family; 
+            @include box-sizing(border-box);
+        }
+        &:before {
+            content: $switcher-on-text;
+            padding-left: 8px;
+            background-color: $switcher-color-on; 
+            color: #FFF;
+        }
+        &:after {
+            content: $switcher-off-text;
+            padding-right: 8px;
+            background-color: $switcher-color-off; 
+            color: #888;
+            text-align: right;
+        }
+    }
+    .switch-switcher {
+        display: block; 
+        width: 20px;
+        height: 18px;
+        margin: 2px;
+        background: #FFF;
+        border: 2px solid #FFF; 
+        position: absolute; 
+        top: 0; 
+        bottom: 0; 
+        @include transition(0.3s ease-in 0s);
+        &:after {
+            color: $switcher-color-on;
+            font-size: 12px;
+            left: 3px;
+            position: relative;
+            top: -3px;
+        }
+    }
+    .switch-inner.switch-icon:before,
+    .switch-round-inner.switch-icon:before {
+        font-family: $font-family-icon; 
+        content: $switcher-on-icon;
+    }
+    .switch-inner.switch-icon:after,
+    .switch-round-inner.switch-icon:after {
+        font-family: $font-family-icon;
+        content: $switcher-off-icon;
+    }
+
+}
+
+// Switchers round
+.switch.switch-round {
+    .switch-label {
+        border-radius: 6px;
+    }
+    .switch-switcher {
+        margin: 5px;
+        border-radius: 3px;
+        height: 12px;
+        &:after {
+            color: $switcher-color-on;
+            font-size: 10px;
+            left: 4px;
+            position: relative;
+            top: -7px;
+        }
+    }
+    
+}
+
+// Switchers circle 
+.switch.switch-circle {
+    .switch-label {
+        border-radius: 12px;
+    }
+    .switch-switcher {
+        border-radius: 10px;
+        margin: 3px;
+        width: 16px;
+        height: 16px;
+        &:after {
+            color: $switcher-color-on;
+            font-size: 11px;
+            left: 1px;
+            position: relative;
+            top: -5px;
+        }
+    }
+    .switch-inner {
+        &:before {
+            padding-left: 10px;
+        }
+        &:after {
+            padding-right: 10px;
+        }
+    }
+}
+
+/* Switchers sizes */
+// Switch L
+.switch-l {
+    width: 70px;
+    .switch-inner {
+        &:before, 
+        &:after {
+            font-size: 12px;
+            height: 30px;
+            line-height: 30px;
+        }
+         &:after {
+            padding-right: 8px;
+        }
+        &:before {
+            padding-left: 8px;
+        }
+    }
+    .switch-switcher {
+        width: 28px;
+        margin: 3px;
+        height: 24px;
+        &:after {
+            color: #1abc9c;
+            font-size: 16px !important;
+            left: 24% !important;
+            top: -4% !important;
+        }
+    }
+    &.switch-round {
+        .switch-switcher {
+            height: 20px;
+        }
+    }
+    &.switch-circle {
+        .switch-label {
+            border-radius: 16px;
+        }
+        .switch-switcher {
+            border-radius: 12px;
+            margin: 4px;
+            width: 22px;
+            height: 22px;
+            &:after {
+                font-size: 14px !important;
+                left: 19% !important;
+                top: -7% !important;
+            }
+        }
+    }
+}
+
+// Switch XL
+.switch-xl {
+    width: 84px;
+    .switch-inner {
+        &:before, 
+        &:after { 
+            font-size: 14px;
+            height: 38px;
+            line-height: 38px;
+        }
+        &:after {
+            padding-right: 10px;
+        }
+        &:before {
+            padding-left: 10px;
+        }
+    }
+    .switch-switcher {
+        width: 32px;
+        margin: 4px;
+        height: 30px;
+        &:after {
+            color: #1abc9c;
+            font-size: 20px !important;
+            left: 24% !important;
+            margin: auto !important;
+            top: 0 !important;
+        }
+    }
+    &.switch-round {
+        .switch-switcher {
+            height: 28px;
+        }
+    }
+    &.switch-circle {
+        .switch-inner {
+             &:after {
+                padding-right: 12px;
+            }
+            &:before {
+                padding-left: 12px;
+            }
+        }
+        .switch-label {
+            border-radius: 24px;
+        }
+        .switch-switcher {
+            border-radius: 14px;
+            margin: 5px;
+            width: 28px;
+            height: 28px;
+            &:after {
+                font-size: 17px !important;
+                left: 20% !important;
+            }
+            &:after {
+                font-size: 17px !important;
+                left: 20% !important;
+            }
+        }
+        
+    }
+}
+
+// Switch colors
+.switch-label.switch-default.checked > span.switch-inner:before {
+    background-color: $default-color !important;
+}
+.switch-label.switch-primary.checked > span.switch-inner:before {
+    background-color: $primary-color !important;
+}
+.switch-label.switch-info.checked > span.switch-inner:before {
+    background-color: $info-color !important;
+}
+.switch-label.switch-warning.checked > span.switch-inner:before {
+    background-color: $warning-color !important;
+}
+.switch-label.switch-danger.checked > span.switch-inner:before {
+    background-color: $danger-color !important;
+}
+.switch-label.switch-success.checked > span.switch-inner:before {
+    background-color: $success-color !important;
+}
+.switch-label.switch-inverse.checked > span.switch-inner:before {
+    background-color: $inverse-color !important;
+}
+.switch-label.switch-default:not(.checked) > span.switch-inner:after {
+    background-color: $default-light-color !important;
+}
+.switch-label.switch-primary:not(.checked) > span.switch-inner:after {
+    background-color: $primary-light-color !important;
+}
+.switch-label.switch-info:not(.checked) > span.switch-inner:after {
+    background-color: $info-light-color !important;
+}
+.switch-label.switch-warning:not(.checked) > span.switch-inner:after {
+    background-color: $warning-light-color !important;
+}
+.switch-label.switch-danger:not(.checked) > span.switch-inner:after {
+    background-color: $danger-light-color !important;
+}
+.switch-label.switch-success:not(.checked) > span.switch-inner:after {
+    background-color: $success-light-color !important;
+}
+.switch-label.switch-inverse:not(.checked) > span.switch-inner:after {
+    background-color: $inverse-light-color !important;
+}
+.switch-label.switch-default:not(.checked) > span.switch-inner:after,
+.switch-label.switch-primary:not(.checked) > span.switch-inner:after,
+.switch-label.switch-info:not(.checked) > span.switch-inner:after,
+.switch-label.switch-warning:not(.checked) > span.switch-inner:after,
+.switch-label.switch-danger:not(.checked) > span.switch-inner:after,
+.switch-label.switch-success:not(.checked) > span.switch-inner:after,
+.switch-label.switch-inverse:not(.checked) > span.switch-inner:after {
+    color: #FFF !important;    
+}

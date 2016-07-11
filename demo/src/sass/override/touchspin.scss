@@ -1,0 +1,11 @@
+@import '../variables.scss';
+@import '../mixins.scss';
+
+/* Touchspin */
+.bootstrap-touchspin .input-group-btn-vertical .bootstrap-touchspin-up,
+.bootstrap-touchspin .input-group-btn-vertical .bootstrap-touchspin-down {
+    @include border-radius(0px !important); 
+}
+.bootstrap-touchspin .input-group-btn-vertical i {
+    left: 6px !important;
+}

@@ -1,0 +1,91 @@
+@import 'variables.scss';
+@import 'mixins.scss';
+
+/* **************** */
+/*     Pricing      */ 
+/* **************** */
+.pricing-table {
+    margin: 30px auto 0;
+    max-width: 1024px;
+}
+.pricing-element {
+    background: #fff none repeat scroll 0 0;
+    @include box-shadow(0 1px 1px rgba(0, 0, 0, 0.15));
+    margin-bottom: 30px;
+    position: relative;
+}
+.pricing-header {
+    color: #fff;
+    padding: 40px 10px 65px;
+    margin-bottom: 20px;
+    position: relative;
+    & > h1 {
+        color: #fff;
+        font-size: 46px;
+        font-weight: 100;
+        line-height: 100%;
+        margin: 0;
+    }
+}
+.pricing-inheader {
+    background-color: rgba(0, 0, 0, 0.15);
+    bottom: 0;
+    margin: 0 -10px;
+    padding: 8px 10px 9px;
+    position: absolute;
+    text-transform: uppercase;
+    width: 100%;
+}
+.pricing-body {
+    padding: 0 28px;
+}
+.pricing-footer {
+    border-top: 1px solid #EAEAEA;
+    padding: 20px;
+}
+.pricing-component {
+    font-weight: 400;
+    padding: 15px 0;
+    &:not(:last-child) {
+        border-bottom: 1px solid #EAEAEA;
+    }
+}
+                    
+// Pricing ribbons
+.corner-ribbon {
+    width: 85px;
+    height: 88px;
+    overflow: hidden;
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    z-index: 999;
+}
+.corner-ribbon-text {
+    color: #333;
+    text-align: center;
+    @include transform(rotate(45deg)); 
+    position: relative;
+    padding: 7px 0;
+    left: -5px;
+    top: 15px;
+    width: 120px;
+    background-color: #96b450;
+    color: #FFF;
+    @include box-shadow(0px 0px 3px rgba(0,0,0,0.3)); 
+    &:before, 
+    &:after {
+        border-top: 2px solid #6e8900;   
+        border-left: 3px solid transparent;
+        border-right: 3px solid transparent;
+        position:absolute;
+        bottom: -2px;
+    }
+
+    &:before {
+        left: 0;
+    }
+    &:after {
+        right: 0;
+    }
+}

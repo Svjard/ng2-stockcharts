@@ -1,0 +1,29 @@
+@import 'variables.scss';
+@import 'mixins.scss';
+
+/* ************* */
+/*      FAQ      */ 
+/* ************* */
+.faq-questions {
+    display: block;
+    margin-bottom: 10px;
+    .faq-question {
+        margin-top: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px dashed $gray;
+    }
+    .faq-title {
+        display: block;
+        font-size: 16px;
+        font-weight: 600;
+    }
+    .faq-detail {
+        font-size: 11px;
+    }
+    .faq-text {
+        margin-top: 10px;
+        .well {
+            margin-bottom: 5px;
+        }
+    }
+}

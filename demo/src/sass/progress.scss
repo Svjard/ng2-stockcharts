@@ -1,0 +1,21 @@
+@import 'variables.scss';
+@import 'mixins.scss';
+
+/* ****************** */
+/*      Progress      */ 
+/* ****************** */
+.progress.progress-xs {
+    height: 8px;
+}
+.progress.progress-s {
+    height: 10px;
+}
+.progress.progress-m {
+    height: 12px;
+}
+.progress.progress-l {
+    height: 20px;
+}
+.progress.progress-xl {
+    height: 24px;
+}

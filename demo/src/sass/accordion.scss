@@ -1,0 +1,42 @@
+@import 'variables.scss';
+@import 'mixins.scss';
+
+/* ******************** */
+/*      Accordions      */
+/* ******************** */
+.accordion.panel-group {
+    .panel-heading .accordion-toggler {
+        &.collapsed::before {
+            content: $fa-caret-right;
+        }
+        &::before {
+            content: $fa-caret-down;
+            font-family: "FontAwesome";
+            font-size: 17px;
+            font-weight: bold;
+            transition: all 0.15 ease 0s;
+            float: right;
+            position: relative;
+        }
+    }
+    .panel {
+        margin-top: 0px;
+        border: 0 none;
+        @include border-radius(0px);
+    }
+    .panel-heading, 
+    .panel-title {
+        width: 100%;
+    }
+    .panel-heading {
+        min-height: 20px;
+        padding: 0px;
+        .accordion-toggler {
+            display: block;
+        }
+    }
+    .panel-title {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+}

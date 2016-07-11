@@ -1,0 +1,89 @@
+@import 'commons/search-bar.scss';
+@import 'variables.scss';
+@import 'mixins.scss';
+
+/* **************** */
+/*      Errors      */ 
+/* **************** */
+
+$widget-width: 500px;
+$top-height: 60px;
+
+body {
+    background-image: url("../img/background.png");
+    color: #f8f8f8;
+    font-family: $default-font-family;
+    font-size: 14px;
+    line-height: 1.42857;
+    padding-bottom: 100px;
+    text-align: center;
+}
+
+.error-404 {
+    .error-bottom {
+        background: rgba(222, 149, 54, 0.8);
+    }
+}
+.error-500 {
+    .error-bottom {
+        background: rgba(152, 8, 20, 0.8);
+    }
+}
+
+span {
+    display: block;
+}
+
+.error-top {
+    left: 0;
+    position: absolute;
+    right: 0;
+    bottom: 50%;
+    color: #333;
+    .error-code {
+        font-size: 160px;
+        font-weight: 400;
+        text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.6), 0 0 1px rgba(0, 0, 0, 0.3);
+        margin: -30px 0px -40px 0px;
+    }
+    .pre-error-code {
+        font-size: 30px;
+        font-weight: 100;
+    }
+}
+
+form {
+    display: inline-block;
+}
+
+.error-bottom {
+    bottom: 0;
+    top: 50%;
+    text-align: center;
+    box-shadow: 0px -2px 3px rgba(0, 0, 0, 0.2);
+    left: 0;
+    position: absolute;
+    right: 0;
+    font-weight: 100;
+    .post-error-code {
+        margin-top: 10px;
+        font-size: 38px;
+        font-weight: 400;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3), 0 0 1px rgba(255, 255, 255, 0.3);
+    }
+    .help {
+        p {
+            padding: 10px;
+        }
+        a {
+            color: #FFF;
+            text-decoration: underline;
+            font-weight: 600;
+        }
+        .btn {
+            font-size: 13px;
+        }
+    }
+}
+
+

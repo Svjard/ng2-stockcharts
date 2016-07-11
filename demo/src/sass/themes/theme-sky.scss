@@ -1,0 +1,5 @@
+@import 'themes.scss';
+
+[data-theme='sky'], span[data-theme='sky'] {
+    @include theme-mixin($theme-sky-background, #FFFFFF);
+}

@@ -1,0 +1,24 @@
+@import 'variables.scss';
+@import 'mixins.scss';
+
+/* ***************** */
+/*      Profile      */ 
+/* ***************** */
+ul.contact {
+    list-style: outside none none;
+    margin: 0;
+    padding: 0;
+    li {
+        padding: 8px 0 0 28px;
+        position: relative;
+        i {
+            font-size: 16px;
+            left: 0;
+            line-height: 18px;
+            position: absolute;
+            text-align: center;
+            vertical-align: top;
+            width: 16px;
+        }
+    }
+}

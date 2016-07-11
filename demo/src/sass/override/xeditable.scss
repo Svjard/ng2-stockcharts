@@ -1,0 +1,14 @@
+@import '../variables.scss';
+@import '../mixins.scss';
+
+/* X-Editable */
+.editable-bg-transition {
+    transition: none !important;
+}
+.editable-unsaved {
+    font-weight: 600 !important;
+}
+.btn.editable-submit,
+.btn.editable-cancel {
+    padding: 7px 16px !important;
+}

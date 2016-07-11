@@ -1,0 +1,70 @@
+@import '../variables.scss';
+@import '../mixins.scss';
+
+/* Toastr */
+#toast-container  {
+    & > .toast {
+        background-image: none !important;
+    }
+    & > .toast::before {
+        color: #FFF !important;
+        float: left !important;
+        position: fixed !important;
+        font-family: $font-family-icon !important;
+        font-size: 28px !important;
+        line-height: 28px !important;
+        margin: -5px 30px auto -1.6em !important;
+        padding-right: 30px !important;
+        opacity: 0.75 !important;
+        text-shadow: 0 1px 0 #fff !important;
+    }
+    & > .toast-warning::before {
+        content: $fa-exclamation-circle !important;
+    }
+    & > .toast-error::before {
+        content: $fa-ban !important;
+    }
+    & > .toast-info::before {
+        content: $fa-info-circle !important;
+    }
+    & > .toast-success::before {
+        content: $fa-check !important;
+    }
+    & > div {
+        box-shadow: 0 0 2px #999 !important;
+        opacity: 0.9 !important;
+        width: 310px !important;
+        padding: 15px 15px 15px 65px !important;
+        @include border-radius(0px !important);
+    }
+    & > *:hover {
+        box-shadow: 0 0 3px #999 !important;
+        opacity: 1;
+    }
+    .toast-top-full-width {
+        top: 12px !important;
+    }
+    .toast-bottom-full-width {
+        bottom: 12px !important;
+    } 
+    .toast {
+        background-color: $success-color !important;
+    }
+    .toast-success {
+        background-color: $success-color !important;
+    }
+    .toast-error {
+        background-color: $danger-color !important;
+    }
+    .toast-info {
+        background-color: $info-color !important;
+    }
+    .toast-warning {
+        background-color: $warning-color !important;
+    }
+    .toast-close-button {
+        right: 0em !important;
+    }
+}
+
+

@@ -1,0 +1,1023 @@
+@import 'variables.scss';
+@import 'mixins.scss';
+
+$button-font-size: 14px;
+
+/* ***************** */
+/*      Buttons      */ 
+/* ***************** */
+
+// Buttons margins
+.btn-margins .btn {
+    margin-bottom: 5px;
+    margin-left: 2px;
+}
+
+// Buttons styles
+.btn {
+    font-size: $button-font-size;
+    font-weight: 300;
+    transition: all 0.1s;
+    padding: 4px 16px;
+    @include border-radius(0px);
+}
+
+.btn.btn-mw {
+    min-width: 124px;
+}
+
+.btn:not(.btn-link):not(.btn-white):focus, 
+.btn:not(.btn-link):not(.btn-white):hover, {
+    color: #FFF !important;
+}
+.btn.active.focus, 
+.btn.active:focus, 
+.btn.focus, 
+.btn.focus:active, 
+.btn:active:focus, 
+.btn:focus {
+    outline: none !important;
+}
+
+.btn.btn-rounded {
+    @include border-radius(4px);
+}
+
+.btn.btn-pill {
+    @include border-radius(333px);
+}
+
+.btn.btn-bordered {
+    background: none transparent;
+}
+
+.btn.btn-bottom:active, 
+.btn.btn-bottom.active{
+    border-bottom: 1px !important;
+    margin-top: 1px;
+    transition: none;
+}
+.btn.btn-block.btn-bottom:active, 
+.btn.btn-block.btn-bottom.active {
+    margin-top: 6px;
+}
+.btn.btn-bottom:hover, 
+.btn.btn-bottom.hover, 
+.btn.btn-bottom:focus, 
+.btn.btn-bottom.focus {
+    transition: none !important;
+}
+
+.btn:disabled, .btn.disabled {
+    @include opacity(0.5);
+}
+
+/* Primary */
+.btn-primary {
+  background-color: $primary-color;
+  border-color: $primary-color;
+  color: #FFFFFF;
+}
+.btn-primary.btn-bottom {
+  @include border-bottom(2px, darken($primary-color, $darken-percent));
+}
+.btn-primary.active, .btn-primary.focus, .btn-primary:active, .btn-primary:focus, .btn-primary:hover, .open > .dropdown-toggle.btn-primary {
+  border-color: darken($primary-color, 5%);
+  color: #FFFFFF;
+  background-color: darken($primary-color, 5%);
+}
+.btn-primary.disabled, .btn-primary.disabled.active, .btn-primary.disabled.focus, .btn-primary.disabled:active, .btn-primary.disabled:focus, .btn-primary.disabled:hover, .btn-primary[disabled], .btn-primary.active[disabled], .btn-primary.focus[disabled], .btn-primary[disabled]:active, .btn-primary[disabled]:focus, .btn-primary[disabled]:hover, fieldset[disabled] .btn-primary, fieldset[disabled] .btn-primary.active, fieldset[disabled] .btn-primary.focus, fieldset[disabled] .btn-primary:active, fieldset[disabled] .btn-primary:focus, fieldset[disabled] .btn-primary:hover, .btn-primary.btn-lighten:hover, .btn-primary.btn-lighten:focus, .btn-primary.btn-darken:hover, .btn-primary.btn-darken:focus, .btn-primary.btn-bordered:hover, .btn-primary.btn-bordered:focus {
+  background-color: lighten($primary-color, 0%);
+  border-color: lighten($primary-color, 0%);
+}
+/* Default */
+.btn-default {
+  background-color: $default-color;
+  border-color: $default-color;
+  color: #FFFFFF;
+}
+.btn-default.btn-bottom {
+  @include border-bottom(2px, darken($default-color,$darken-percent));
+}
+.btn-default.active, .btn-default.focus, .btn-default:active, .btn-default:focus, .btn-default:hover, .open > .dropdown-toggle.btn-default {
+  border-color: darken($default-color, 5%);
+  color: #FFFFFF;
+  background-color: darken($default-color, 5%);
+}
+.btn-default.disabled, .btn-default.disabled.active, .btn-default.disabled.focus, .btn-default.disabled:active, .btn-default.disabled:focus, .btn-default.disabled:hover, .btn-default[disabled], .btn-default.active[disabled], .btn-default.focus[disabled], .btn-default[disabled]:active, .btn-default[disabled]:focus, .btn-default[disabled]:hover, fieldset[disabled] .btn-default, fieldset[disabled] .btn-default.active, fieldset[disabled] .btn-default.focus, fieldset[disabled] .btn-default:active, fieldset[disabled] .btn-default:focus, fieldset[disabled] .btn-default:hover, .btn-default.btn-lighten:hover, .btn-default.btn-lighten:focus, .btn-default.btn-darken:hover, .btn-default.btn-darken:focus, .btn-default.btn-bordered:hover, .btn-default.btn-bordered:focus {
+  background-color: lighten($default-color, 0%);
+  border-color: lighten($default-color, 0%);
+}
+/* Success */
+.btn-success {
+  background-color: $success-color;
+  border-color: $success-color;
+  color: #FFFFFF;
+}
+.btn-success.btn-bottom {
+  @include border-bottom(2px, darken($success-color,$darken-percent));
+}
+.btn-success.active, .btn-success.focus, .btn-success:active, .btn-success:focus, .btn-success:hover, .open > .dropdown-toggle.btn-success {
+  border-color: darken($success-color, 5%);
+  color: #FFFFFF;
+  background-color: darken($success-color, 5%);
+}
+.btn-success.disabled, .btn-success.disabled.active, .btn-success.disabled.focus, .btn-success.disabled:active, .btn-success.disabled:focus, .btn-success.disabled:hover, .btn-success[disabled], .btn-success.active[disabled], .btn-success.focus[disabled], .btn-success[disabled]:active, .btn-success[disabled]:focus, .btn-success[disabled]:hover, fieldset[disabled] .btn-success, fieldset[disabled] .btn-success.active, fieldset[disabled] .btn-success.focus, fieldset[disabled] .btn-success:active, fieldset[disabled] .btn-success:focus, fieldset[disabled] .btn-success:hover, .btn-success.btn-lighten:hover, .btn-success.btn-lighten:focus, .btn-success.btn-darken:hover, .btn-success.btn-darken:focus, .btn-success.btn-bordered:hover, .btn-success.btn-bordered:focus {
+  background-color: lighten($success-color, 0%);
+  border-color: lighten($success-color, 0%);
+}
+/* Info */
+.btn-info {
+  background-color: $info-color;
+  border-color: $info-color;
+  color: #FFFFFF;
+}
+.btn-info.btn-bottom {
+  @include border-bottom(2px, darken($info-color,$darken-percent));
+}
+.btn-info.active, .btn-info.focus, .btn-info:active, .btn-info:focus, .btn-info:hover, .open > .dropdown-toggle.btn-info {
+  border-color: darken($info-color, 5%);
+  color: #FFFFFF;
+  background-color: darken($info-color, 5%);
+}
+.btn-info.disabled, .btn-info.disabled.active, .btn-info.disabled.focus, .btn-info.disabled:active, .btn-info.disabled:focus, .btn-info.disabled:hover, .btn-info[disabled], .btn-info.active[disabled], .btn-info.focus[disabled], .btn-info[disabled]:active, .btn-info[disabled]:focus, .btn-info[disabled]:hover, fieldset[disabled] .btn-info, fieldset[disabled] .btn-info.active, fieldset[disabled] .btn-info.focus, fieldset[disabled] .btn-info:active, fieldset[disabled] .btn-info:focus, fieldset[disabled] .btn-info:hover, .btn-info.btn-lighten:hover, .btn-info.btn-lighten:focus, .btn-info.btn-darken:hover, .btn-info.btn-darken:focus, .btn-info.btn-bordered:hover, .btn-info.btn-bordered:focus {
+  background-color: lighten($info-color, 0%);
+  border-color: lighten($info-color, 0%);
+}
+/* Warning */
+.btn-warning {
+  background-color: $warning-color;
+  border-color: $warning-color;
+  color: #FFFFFF;
+}
+.btn-warning.btn-bottom {
+  @include border-bottom(2px, darken($warning-color,$darken-percent));
+}
+.btn-warning.active, .btn-warning.focus, .btn-warning:active, .btn-warning:focus, .btn-warning:hover, .open > .dropdown-toggle.btn-warning {
+  border-color: darken($warning-color, 5%);
+  color: #FFFFFF;
+  background-color: darken($warning-color, 5%);
+}
+.btn-warning.disabled, .btn-warning.disabled.active, .btn-warning.disabled.focus, .btn-warning.disabled:active, .btn-warning.disabled:focus, .btn-warning.disabled:hover, .btn-warning[disabled], .btn-warning.active[disabled], .btn-warning.focus[disabled], .btn-warning[disabled]:active, .btn-warning[disabled]:focus, .btn-warning[disabled]:hover, fieldset[disabled] .btn-warning, fieldset[disabled] .btn-warning.active, fieldset[disabled] .btn-warning.focus, fieldset[disabled] .btn-warning:active, fieldset[disabled] .btn-warning:focus, fieldset[disabled] .btn-warning:hover, .btn-warning.btn-lighten:hover, .btn-warning.btn-lighten:focus, .btn-warning.btn-darken:hover, .btn-warning.btn-darken:focus, .btn-warning.btn-bordered:hover, .btn-warning.btn-bordered:focus {
+  background-color: lighten($warning-color, 0%);
+  border-color: lighten($warning-color, 0%);
+}
+/* Danger */
+.btn-danger {
+  background-color: $danger-color;
+  border-color: $danger-color;
+  color: #FFFFFF;
+}
+.btn-danger.btn-bottom {
+  @include border-bottom(2px, darken($danger-color,$darken-percent));
+}
+.btn-danger.active, .btn-danger.focus, .btn-danger:active, .btn-danger:focus, .btn-danger:hover, .open > .dropdown-toggle.btn-danger {
+  border-color: darken($danger-color, 5%);
+  color: #FFFFFF;
+  background-color: darken($danger-color, 5%);
+}
+.btn-danger.disabled, .btn-danger.disabled.active, .btn-danger.disabled.focus, .btn-danger.disabled:active, .btn-danger.disabled:focus, .btn-danger.disabled:hover, .btn-danger[disabled], .btn-danger.active[disabled], .btn-danger.focus[disabled], .btn-danger[disabled]:active, .btn-danger[disabled]:focus, .btn-danger[disabled]:hover, fieldset[disabled] .btn-danger, fieldset[disabled] .btn-danger.active, fieldset[disabled] .btn-danger.focus, fieldset[disabled] .btn-danger:active, fieldset[disabled] .btn-danger:focus, fieldset[disabled] .btn-danger:hover, .btn-danger.btn-lighten:hover, .btn-danger.btn-lighten:focus, .btn-danger.btn-darken:hover, .btn-danger.btn-darken:focus, .btn-danger.btn-bordered:hover, .btn-danger.btn-bordered:focus {
+  background-color: darken($danger-color, 0%);
+  border-color: darken($danger-color, 0%);
+}
+
+/* Inverse */
+.btn-inverse {
+  background-color: $inverse-color;
+  border-color: $inverse-color;
+  color: #FFFFFF;
+}
+.btn-inverse.btn-bottom {
+  @include border-bottom(2px, darken($inverse-color,$darken-percent));
+}
+.btn-inverse.active, .btn-inverse.focus, .btn-inverse:active, .btn-inverse:focus, .btn-inverse:hover, .open > .dropdown-toggle.btn-inverse {
+  border-color: darken($inverse-color, 5%);
+  color: #FFFFFF;
+  background-color: darken($inverse-color, 5%);
+}
+.btn-inverse.disabled, .btn-inverse.disabled.active, .btn-inverse.disabled.focus, .btn-inverse.disabled:active, .btn-inverse.disabled:focus, .btn-inverse.disabled:hover, .btn-inverse[disabled], .btn-inverse.active[disabled], .btn-inverse.focus[disabled], .btn-inverse[disabled]:active, .btn-inverse[disabled]:focus, .btn-inverse[disabled]:hover, fieldset[disabled] .btn-inverse, fieldset[disabled] .btn-inverse.active, fieldset[disabled] .btn-inverse.focus, fieldset[disabled] .btn-inverse:active, fieldset[disabled] .btn-inverse:focus, fieldset[disabled] .btn-inverse:hover, .btn-inverse.btn-lighten:hover, .btn-inverse.btn-lighten:focus, .btn-inverse.btn-darken:hover, .btn-inverse.btn-darken:focus, .btn-inverse.btn-bordered:hover, .btn-inverse.btn-bordered:focus {
+  background-color: darken($inverse-color, 0%);
+  border-color: darken($inverse-color, 0%);
+}
+
+/* White */
+.btn-white {
+    background-color: #FFF;
+    border-color: $default-color;
+    color: rgb(103, 106, 108);
+}
+.btn-white.btn-bottom {
+    @include border-bottom(2px, darken($default-color,$darken-percent));
+}
+.btn-white.active, .btn-white.focus, .btn-white:active, .btn-white:focus, .btn-white:hover, .open > .dropdown-toggle.btn-white {
+    border-color: darken($default-color, 5%);
+    background-color: darken(#FFF, 5%);
+    color: rgb(103, 106, 108);
+}
+.btn-white.disabled, .btn-white.disabled.active, .btn-white.disabled.focus, .btn-white.disabled:active, .btn-white.disabled:focus, .btn-white.disabled:hover, .btn-white[disabled], .btn-white.active[disabled], .btn-white.focus[disabled], .btn-white[disabled]:active, .btn-white[disabled]:focus, .btn-white[disabled]:hover, fieldset[disabled] .btn-white, fieldset[disabled] .btn-white.active, fieldset[disabled] .btn-white.focus, fieldset[disabled] .btn-white:active, fieldset[disabled] .btn-white:focus, fieldset[disabled] .btn-white:hover, .btn-white.btn-lighten:hover, .btn-white.btn-lighten:focus, .btn-white.btn-darken:hover, .btn-white.btn-darken:focus, .btn-white.btn-bordered:hover, .btn-white.btn-bordered:focus {
+    background-color: darken(#FFF, 0%);
+    border-color: darken($default-color, 0%);
+}
+
+/* Lighten buttons */
+.btn-primary.btn-lighten:hover,
+.btn-success.btn-lighten:hover,
+.btn-info.btn-lighten:hover,
+.btn-warning.btn-lighten:hover,
+.btn-danger.btn-lighten:hover,
+.btn-inverse.btn-lighten:hover{
+    color: #FFFFFF;
+}
+.btn-default.btn-lighten:hover {
+    color: inherit;
+}
+.btn-default.btn-lighten {
+    background-color: lighten($default-color, $lighten-percent); 
+    border-color: lighten($default-color, $lighten-percent);
+    color: $default-color;
+}
+.btn-primary.btn-lighten {
+    background-color: lighten($primary-color, $lighten-percent); 
+    border-color: lighten($primary-color, $lighten-percent);
+    color: $primary-color;
+}
+.btn-success.btn-lighten {
+    background-color: lighten($success-color, $lighten-percent); 
+    border-color: lighten($success-color, $lighten-percent);
+    color: $success-color;
+}
+.btn-info.btn-lighten {
+    background-color: lighten($info-color, $lighten-percent); 
+    border-color: lighten($info-color, $lighten-percent);
+    color: $info-color;
+}
+.btn-warning.btn-lighten {
+    background-color: lighten($warning-color, $lighten-percent); 
+    border-color: lighten($warning-color, $lighten-percent);
+    color: $warning-color;
+}
+.btn-danger.btn-lighten {
+    background-color: lighten($danger-color, $lighten-percent); 
+    border-color: lighten($danger-color, $lighten-percent);
+    color: $danger-color;
+}
+.btn-inverse.btn-lighten {
+    background-color: lighten($inverse-color, $lighten-percent); 
+    border-color: lighten($inverse-color, $lighten-percent);
+    color: $inverse-color;
+}
+.btn-primary.btn-lighten,
+.btn-success.btn-lighten,
+.btn-info.btn-lighten,
+.btn-warning.btn-lighten,
+.btn-danger.btn-lighten,
+.btn-inverse.btn-lighten{
+    color: #FFFFFF;
+}
+.btn-default.btn-lighten {
+    color: inherit;
+}
+
+/* Darken buttons */
+.btn-default.btn-darken:hover,
+.btn-primary.btn-darken:hover,
+.btn-success.btn-darken:hover,
+.btn-info.btn-darken:hover,
+.btn-warning.btn-darken:hover,
+.btn-danger.btn-darken:hover,
+.btn-inverse.btn-darken:hover{
+    color: #FFFFFF;
+}
+.btn-default.btn-darken:hover {
+    color: inherit;
+}
+.btn-default.btn-darken {
+    background-color: darken($default-color, $darken-percent); 
+    border-color: darken($default-color, $darken-percent);
+}
+.btn-primary.btn-darken {
+    background-color: darken($primary-color, $darken-percent); 
+    border-color: darken($primary-color, $darken-percent);
+}
+.btn-success.btn-darken {
+    background-color: darken($success-color, $darken-percent); 
+    border-color: darken($success-color, $darken-percent);
+}
+.btn-info.btn-darken {
+    background-color: darken($info-color, $darken-percent); 
+    border-color: darken($info-color, $darken-percent);
+}
+.btn-warning.btn-darken {
+    background-color: darken($warning-color, $darken-percent); 
+    border-color: darken($warning-color, $darken-percent);
+}
+.btn-danger.btn-darken {
+    background-color: darken($danger-color, $darken-percent); 
+    border-color: darken($danger-color, $darken-percent);
+}
+.btn-inverse.btn-darken {
+    background-color: darken($inverse-color, $darken-percent); 
+    border-color: darken($inverse-color, $darken-percent);
+}
+.btn-default.btn-darken,
+.btn-primary.btn-darken,
+.btn-success.btn-darken,
+.btn-info.btn-darken,
+.btn-warning.btn-darken,
+.btn-danger.btn-darken,
+.btn-inverse.btn-darken{
+    color: #FFFFFF;
+}
+
+.btn-danger.btn-bordered:active,
+.btn-danger.btn-bordered.active
+.btn-danger.btn-bordered:hover, 
+.btn-danger.btn-bordered:focus,
+.btn-danger.btn-bordered.hover, 
+.btn-danger.btn-bordered.focus{
+  color: #FFF;
+}
+
+.btn-inverse.btn-bordered:active,
+.btn-inverse.btn-bordered.active
+.btn-inverse.btn-bordered:hover, 
+.btn-inverse.btn-bordered:focus,
+.btn-inverse.btn-bordered.hover, 
+.btn-inverse.btn-bordered.focus{
+  color: #FFF;
+}
+
+
+/* Bordered buttons */
+.btn-primary.btn-bordered:hover,
+.btn-success.btn-bordered:hover,
+.btn-info.btn-bordered:hover,
+.btn-warning.btn-bordered:hover,
+.btn-danger.btn-bordered:hover,
+.btn-default.btn-bordered:hover,
+.btn-primary.btn-bordered.hover,
+.btn-success.btn-bordered.hover,
+.btn-info.btn-bordered.hover,
+.btn-warning.btn-bordered.hover,
+.btn-danger.btn-bordered.hover,
+.btn-default.btn-bordered.hover
+.btn-primary.btn-bordered:active,
+.btn-success.btn-bordered:active,
+.btn-info.btn-bordered:active,
+.btn-warning.btn-bordered:active,
+.btn-danger.btn-bordered:active,
+.btn-default.btn-bordered:active,
+.btn-primary.btn-bordered.active,
+.btn-success.btn-bordered.active,
+.btn-info.btn-bordered.active,
+.btn-warning.btn-bordered.active,
+.btn-danger.btn-bordered.active,
+.btn-default.btn-bordered.active,
+.btn-primary.btn-bordered:focus,
+.btn-success.btn-bordered:focus,
+.btn-info.btn-bordered:focus,
+.btn-warning.btn-bordered:focus,
+.btn-danger.btn-bordered:focus,
+.btn-default.btn-bordered:focus,
+.btn-primary.btn-bordered.focus,
+.btn-success.btn-bordered.focus,
+.btn-info.btn-bordered.focus,
+.btn-warning.btn-bordered.focus,
+.btn-danger.btn-bordered.focus,
+.btn-default.btn-bordered.focus,
+.btn-inverse.btn-bordered:hover,
+.btn-inverse.btn-bordered.hover,
+.btn-inverse.btn-bordered:active,
+.btn-inverse.btn-bordered.active,
+.btn-inverse.btn-bordered:focus,
+.btn-inverse.btn-bordered.focus {
+    color: #FFFFFF;
+}
+.btn-default.btn-bordered {
+    border-color: $default-color;
+    color: inherit;
+}
+.btn-primary.btn-bordered {
+    border-color: $primary-color;
+    color: $primary-color;
+}
+.btn-success.btn-bordered {
+    border-color: $success-color;
+    color: $success-color;
+}
+.btn-info.btn-bordered {
+    border-color: $info-color;
+    color: $info-color;
+}
+.btn-warning.btn-bordered {
+    border-color: $warning-color;
+    color: $warning-color;
+}
+.btn-danger.btn-bordered {
+    border-color: $danger-color;
+    color: $danger-color;
+}
+.btn-inverse.btn-bordered {
+    border-color: $inverse-color;
+    color: $inverse-color;
+}
+.btn-default.btn-bordered,
+.btn-primary.btn-bordered,
+.btn-success.btn-bordered,
+.btn-info.btn-bordered,
+.btn-warning.btn-bordered,
+.btn-danger.btn-bordered,
+.btn-inverse.btn-bordered{
+    background-color: transparent; 
+}
+
+/* Block buttons */
+.btn-block {
+    display: block;
+    width: 100%; 
+}
+
+/* Icon buttons */
+.btn-circle, 
+.btn.btn-circle {
+    @include border-radius(50%);
+    color: #FFFFFF;
+    font-size: 13px !important;
+    height: 38px;
+    line-height: 20px;
+    width: 38px;
+    font-size: 14px !important;
+}
+.btn.btn-icon {
+    padding: 5px 10px !important;
+}
+.btn-icon,
+.btn-icon:focus,
+.btn-icon.focus,
+.btn-icon:hover,
+.btn-icon.hover,
+.btn-icon.active,
+.btn-icon:active
+.btn-icon.is-active {
+    color: #FFFFFF;
+}
+.btn-icon.btn-xl {
+    height: 68px;
+    width: 68px;
+    font-size: 28px !important;
+    padding: 5px 18px !important;
+}
+.btn-icon.btn-l,
+.btn-icon.btn-lg {
+    height: 52px;
+    width: 52px;
+    font-size: 22px !important;
+    padding: 5px 14px !important;
+}
+.btn-icon.btn-s,
+.btn-icon.btn-sm {
+    height: 26px;
+    width: 26px;
+    padding: 0px 6px !important;
+    font-size: 12px !important;
+}
+.btn-icon.btn-xs,
+.btn-icon.btn-xsm {
+    height: 20px;
+    width: 20px;
+    padding: 0 5px !important;
+    font-size: 10px !important;
+}
+.btn-circle.btn-bordered {
+    color: inherit;
+}
+
+/* Iconed buttons */
+.btn-iconed {
+    i[class*="fa"] {
+        margin: 0 10px 0 0;
+    }
+}
+
+
+/* 3D Buttons */
+.btn-3d {
+    position: relative;
+    text-shadow: none;
+    top: 0;
+    transition-duration: 0.2s;
+    transition-property: all;
+    @include btn-3d(#CCCCCC);
+    margin-top: 5px;
+}
+.btn-3d:active, .btn-3d.is-active, .btn-3d.active {
+    top: 5px;
+    @include btn-3d-active(#EEEEEE);
+}
+
+.btn-primary.btn-3d {
+    @include btn-3d(darken($primary-color, $darken-percent));
+}
+.btn-primary.btn-3d:active, .btn-primary.btn-3d.is-active, .btn-primary.btn-3d.active {
+    @include btn-3d-active(darken($primary-color, $darken-percent));
+}
+.btn-info.btn-3d {
+    @include btn-3d(darken($primary-color, $darken-percent));
+}
+.btn-info.btn-3d:active, .btn-info.btn-3d.is-active, .btn-info.btn-3d.active {
+    @include btn-3d-active(darken($info-color, $darken-percent));
+}
+.btn-success.btn-3d {
+    @include btn-3d(darken($success-color, $darken-percent));
+}
+.btn-success.btn-3d:active, .btn-success.btn-3d.is-active, .btn-success.btn-3d.active {
+    @include btn-3d-active(darken($success-color, $darken-percent));
+}
+.btn-warning.btn-3d {
+    @include btn-3d(darken($warning-color, $darken-percent));
+}
+.btn-warning.btn-3d:active, .btn-warning.btn-3d.is-active, .btn-warning.btn-3d.active {
+    @include btn-3d-active(darken($warning-color, $darken-percent));
+}
+.btn-danger.btn-3d {
+    @include btn-3d(darken($danger-color, $darken-percent));
+}
+.btn-danger.btn-3d:active, .btn-danger.btn-3d.is-active, .btn-danger.btn-3d.active {
+    @include btn-3d-active(darken($danger-color, $darken-percent));
+}
+.btn-default.btn-3d {
+    @include btn-3d(darken($default-color, $darken-percent));
+}
+.btn-default.btn-3d:active, .btn-default.btn-3d.is-active, .btn-default.btn-3d.active {
+    @include btn-3d-active(darken($default-color, $darken-percent));
+}
+
+
+/* Button wrapper */
+.btn-wrapper {
+    background: linear-gradient(to bottom, #e3e3e3, #f2f2f2) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    @include border-radius(200px);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) inset;
+    display: inline-block;
+    padding: 10px;
+    border: 1px solid #e3e3e3;
+    .btn {
+        border: 1px solid #bcbcbc !important;
+        margin-bottom: 0px !important;
+    }
+}
+
+
+/* Button sizes */
+.btn.btn-xl {
+    font-size: 18px;
+    line-height: 1.6;
+    padding: 6px 20px;
+}
+.btn.btn-l,
+.btn.btn-lg {
+    font-size: 16px;
+    line-height: 1.4;
+    padding: 5px 18px;
+}
+.btn.btn-m {
+    font-size: 14px;
+    line-height: 1.2;
+}
+.btn.btn-s,
+.btn.btn-sm {
+    font-size: 12px;
+    line-height: 1.0;
+}
+.btn.btn-xs,
+.btn.btn-xsm {
+    font-size: 10px;
+    line-height: 0.8;
+}
+
+/* Shadow Buttons */
+.btn-default.btn-shadow-right {
+    @include text-shadow-right-68px(darken($default-color, $darken-percent));
+}
+.btn-primary.btn-shadow-right {
+    @include text-shadow-right-68px(darken($primary-color, $darken-percent));
+}
+.btn-info.btn-shadow-right {
+    @include text-shadow-right-68px(darken($info-color, $darken-percent));
+}
+.btn-success.btn-shadow-right {
+    @include text-shadow-right-68px(darken($success-color, $darken-percent));
+}
+.btn-warning.btn-shadow-right {
+    @include text-shadow-right-68px(darken($warning-color, $darken-percent));
+}
+.btn-danger.btn-shadow-right {
+    @include text-shadow-right-68px(darken($danger-color, $darken-percent));
+}
+.btn-inverse.btn-shadow-right {
+    @include text-shadow-right-68px(darken($inverse-color, $darken-percent));
+}
+.btn-default.btn-shadow-left {
+    @include text-shadow-left-68px(darken($default-color, $darken-percent));
+}
+.btn-primary.btn-shadow-left {
+    @include text-shadow-left-68px(darken($primary-color, $darken-percent));
+}
+.btn-info.btn-shadow-left {
+    @include text-shadow-left-68px(darken($info-color, $darken-percent));
+}
+.btn-success.btn-shadow-left {
+    @include text-shadow-left-68px(darken($success-color, $darken-percent));
+}
+.btn-warning.btn-shadow-left {
+    @include text-shadow-left-68px(darken($warning-color, $darken-percent));
+}
+.btn-danger.btn-shadow-left {
+    @include text-shadow-left-68px(darken($danger-color, $darken-percent)); 
+}
+.btn-inverse.btn-shadow-left {
+    @include text-shadow-left-68px(darken($inverse-color, $darken-percent)); 
+}
+.btn-shadow-right,
+.btn-shadow-left {
+    overflow: hidden;
+}
+
+/* Badge buttons */
+.btn .badge {
+    background: #CCC;
+    color: #FFF;
+    margin: 0px 2px;
+}
+.btn.btn-default .badge {
+    background: darken($default-dark-color, $darken-percent);
+}
+.btn.btn-primary .badge {
+    background: darken($primary-dark-color, $darken-percent);
+}
+.btn.btn-success .badge {
+    background: darken($success-dark-color, $darken-percent);
+}
+.btn.btn-info .badge {
+    background: darken($info-dark-color, $darken-percent);
+}
+.btn.btn-warning .badge {
+    background: darken($warning-dark-color, $darken-percent);
+}
+.btn.btn-danger .badge {
+    background: darken($danger-dark-color, $darken-percent);
+}
+.btn.btn-inverse .badge {
+    background: darken($inverse-dark-color, $darken-percent);
+}
+
+
+
+/* Dropdown buttons */
+.dropdown-right {
+    left: auto;
+    right: 0;
+}
+.dropdown-menu {
+    font-size: $default-font-size;
+    @include border-radius(0px);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    @include box-shadow(0 2px 0 rgba(0, 0, 0, 0.05));
+    margin: 0px;
+}
+.dropup .dropdown-menu {
+    @include box-shadow(0 -2px 0 rgba(0, 0, 0, 0.05));
+}
+.dropdown-toggle .dropdown-caret,
+.dropdown-toggle .dropup-caret{
+    padding-left: 6px;
+}
+
+.btn.dropdown-toggle {
+    padding-left: 12px;
+    padding-right: 12px;
+}
+/*
+.btn.btn-default.dropdown-toggle {
+    @include bgcolor(darken($default-dark-color, 2%));
+}
+.btn.btn-primary.dropdown-toggle {
+    @include bgcolor(darken($primary-dark-color, 2%));
+}
+.btn.btn-success.dropdown-toggle {
+    @include bgcolor(darken($success-dark-color, 2%));
+}
+.btn.btn-info.dropdown-toggle {
+    @include bgcolor(darken($info-dark-color, 2%));
+}
+.btn.btn-warning.dropdown-toggle {
+    @include bgcolor(darken($warning-dark-color, 2%));
+}
+.btn.btn-danger.dropdown-toggle {
+    @include bgcolor(darken($danger-dark-color, 2%));
+}
+.btn.btn-inverse.dropdown-toggle {
+    @include bgcolor(darken($inverse-dark-color, 2%));
+}
+*/
+
+
+
+/* Labeled buttons */
+.btn-labeled {
+    float: left;
+}
+.btn-labeled::before {
+    background-color: rgba(0, 0, 0, 0.10);
+    display: inline-block;
+    margin: -11px 10px -7px -16px;
+    padding: 12px 14px;
+    float: left;
+}
+.btn-labeled:not(.btn-block):not(.form-icon) {
+    font-family: inherit;
+}
+.btn-labeled, .btn-labeled.fa {
+    overflow: hidden;
+}
+.btn-labeled {
+    padding-top: 10px;
+    margin-left: 10px;
+}
+
+.btn-labeled.fa::before, .btn-labeled .fa::before {
+    font-family: 'fontAwesome';
+}
+
+/* White hover button */
+.btn.btn-white-hover {
+    background: transparent;
+    border: 0px;
+    color: #FFFFFF !important;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.20) inset;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 7px 0 !important;
+    vertical-align: middle !important;
+    width: 42px !important;
+    .fa {
+        font-size: 14px !important;
+    }
+}
+.btn.btn-white-hover:focus,
+.btn.btn-white-hover.focus,
+.btn.btn-white-hover:hover,
+.btn.btn-white-hover.hover {
+    background: none repeat scroll 0 0 rgba(255, 255, 255, 0.2) !important;
+}
+
+
+
+
+/* Button/input group */
+.btn-group .btn {
+    @include border-radius(0px);
+}
+.btn-group-vertical > .btn:first-child:not(:last-child),
+.btn-group-vertical > .btn:last-child:not(:first-child) {
+    @include border-radius(0px);
+}
+.input-group-sm > .form-control, 
+.input-group-sm > .input-group-addon, 
+.input-group-sm > .input-group-btn > .btn {
+    @include border-radius(0px);
+}
+.input-group-btn > .btn { 
+    height: 34px;
+}
+
+
+/* Font awesome stack buttons */
+.btn.fa-stack { 
+    font-size: 1.3em !important;
+    background-color: transparent;
+    border: 0px;
+    .fa-stack-1x {
+        color: #FFFFFF;
+    }
+    .fa-stack-2x {
+        @include transition(color 250ms);
+    }
+    &:active, &.active,
+    &:hover, &.hover,
+    &:focus, &.focus {
+        background-color: transparent;
+    }
+}
+
+// Sizes
+.btn.fa-stack.fa-2x { 
+    font-size: 1.6em !important;
+}
+.btn.fa-stack.fa-3x {
+    font-size: 1.9em !important;
+}
+.btn.fa-stack.fa-4x { 
+    font-size: 2.2em !important;
+}
+.btn.fa-stack.fa-5x {
+    font-size: 2.5em !important;
+}
+.btn.fa-stack.fa-6x { 
+    font-size: 2.8em !important;
+}
+
+// Focus
+.btn.fa-stack:focus,
+.btn.fa-stack:active,
+.btn.fa-stack:hover,
+.btn.fa-stack.focus,
+.btn.fa-stack.active,
+.btn.fa-stack.hover { 
+    box-shadow: none;
+}
+
+// Colors
+.btn.btn-primary.fa-stack {
+    .fa-stack-2x {
+        color: $primary-color;
+    }
+}
+.btn.btn-primary.fa-stack:hover {
+    .fa-stack-2x {
+        color: darken($primary-color, 10%);
+    }
+}
+.btn.btn-primary.fa-stack:active {
+    .fa-stack-2x {
+        color: darken($primary-color, 20%);
+    }
+}
+.btn.btn-primary.fa-stack {
+    .fa-stack-color {
+        color: $primary-color !important;
+    }
+}
+.btn.btn-default.fa-stack {
+    .fa-stack-2x {
+        color: $default-color;
+    }
+}
+.btn.btn-default.fa-stack:hover {
+    .fa-stack-2x {
+        color: darken($default-color, 10%);
+    }
+}
+.btn.btn-default.fa-stack:active {
+    .fa-stack-2x {
+        color: darken($default-color, 20%);
+    }
+}
+.btn.btn-default.fa-stack {
+    .fa-stack-color {
+        color: $default-color !important;
+    }
+}
+.btn.btn-info.fa-stack {
+    .fa-stack-2x {
+        color: $info-color;
+    }
+}
+.btn.btn-info.fa-stack:hover {
+    .fa-stack-2x {
+        color: darken($info-color, 10%);
+    }
+}
+.btn.btn-info.fa-stack:active {
+    .fa-stack-2x {
+        color: darken($info-color, 20%);
+    }
+}
+.btn.btn-info.fa-stack {
+    .fa-stack-color {
+        color: $info-color !important;
+    }
+}
+.btn.btn-success.fa-stack {
+    .fa-stack-2x {
+        color: $success-color;
+    }
+}
+.btn.btn-success.fa-stack:hover {
+    .fa-stack-2x {
+        color: darken($success-color, 10%);
+    }
+}
+.btn.btn-success.fa-stack:active {
+    .fa-stack-2x {
+        color: darken($success-color, 20%);
+    }
+}
+.btn.btn-success.fa-stack {
+    .fa-stack-color {
+        color: $success-color !important;
+    }
+}
+.btn.btn-warning.fa-stack {
+    .fa-stack-2x {
+        color: $warning-color;
+    }
+}
+.btn.btn-warning.fa-stack:hover {
+    .fa-stack-2x {
+        color: darken($warning-color, 10%);
+    }
+}
+.btn.btn-warning.fa-stack:active {
+    .fa-stack-2x {
+        color: darken($warning-color, 20%);
+    }
+}
+.btn.btn-warning.fa-stack {
+    .fa-stack-color {
+        color: $warning-color !important;
+    }
+}
+.btn.btn-danger.fa-stack {
+    .fa-stack-2x {
+        color: $danger-color;
+    }
+}
+.btn.btn-danger.fa-stack:hover {
+    .fa-stack-2x {
+        color: darken($danger-color, 10%);
+    }
+}
+.btn.btn-danger.fa-stack:active {
+    .fa-stack-2x {
+        color: darken($danger-color, 20%);
+    }
+}
+.btn.btn-danger.fa-stack {
+    .fa-stack-color {
+        color: $danger-color !important;
+    }
+}
+.btn.btn-inverse.fa-stack {
+    .fa-stack-2x {
+        color: $inverse-color;
+    }
+}
+.btn.btn-inverse.fa-stack:hover {
+    .fa-stack-2x {
+        color: darken($inverse-color, 10%);
+    }
+}
+.btn.btn-inverse.fa-stack:active {
+    .fa-stack-2x {
+        color: darken($inverse-color, 20%);
+    }
+}
+.btn.btn-inverse.fa-stack {
+    .fa-stack-color {
+        color: $inverse-color !important;
+    }
+}
+
+
+// Transparent buttons
+.btn.btn-transparent {
+    background: rgba(255, 255, 255, 0.25);
+    border: 1px solid #FFFFFF;
+    border-color: #FFFFFF rgba(255, 255, 255, 0.45) rgba(255, 255, 255, 0.55);
+    color: #FFFFFF;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.35);
+}
+.btn.btn-transparent:hover {
+    background: rgba(255, 255, 255, 0.35) none repeat scroll 0 0;
+}
+
+
+// Theme buttons commons
+.btn-theme.btn-bordered {
+    background: none transparent !important;
+}
+.btn-theme.btn-bordered:focus, 
+.btn-theme.btn-bordered:hover, 
+.btn-theme.btn-bordered:active, 
+.btn-theme.btn-bordered.focus, 
+.btn-theme.btn-bordered.hover, 
+.btn-theme.btn-bordered.active {
+    color: #FFFFFF !important;
+}
+.btn-theme.btn-bottom:active, 
+.btn-theme.btn-bottom.active {
+    border-bottom: 1px !important;
+    margin-top: 1px !important;
+    transition: none !important;
+}
+.btn-theme.btn-bottom:hover, 
+.btn-theme.btn-bottom.hover, 
+.btn-theme.btn-bottom:focus, 
+.btn-theme.btn-bottom.focus {
+    transition: none !important;
+}
+
+.btn-theme.btn-block.btn-bottom:active,
+.btn-theme.btn-block.btn-bottom.active{
+    margin-top: 7px !important;
+}

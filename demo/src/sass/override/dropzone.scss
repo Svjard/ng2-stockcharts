@@ -1,0 +1,34 @@
+@import '../variables.scss';
+@import '../mixins.scss';
+
+/* Dropzone */
+.dropzone {
+    border: 1px dashed $soft-gray !important;
+    .dz-preview .dz-image {
+        background: $soft-gray !important;
+        border-radius: 0px !important;
+        border: 1px solid $dark-gray !important;
+    }
+    .dropzone-dict {
+        .fa-stack-2x {
+            color: $soft-gray !important;
+        }
+        .fa-stack-1x {
+            color: $gray !important;
+        }
+        span {
+            color: $gray !important;
+        }
+    }
+    .dropzone-dict:hover {
+        .fa-stack-2x {
+            color: $gray !important;
+        }
+        .fa-stack-1x {
+            color: $dark-gray !important;
+        }
+        span {
+            color: $dark-gray !important;
+        }
+    }
+}

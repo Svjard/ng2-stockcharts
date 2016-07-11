@@ -1,0 +1,21 @@
+@import '../variables.scss';
+@import '../mixins.scss';
+
+/* Bootstrap select */
+.bootstrap-select {
+    .btn.btn-default {
+        background: #FFFFFF !important;
+        .filter-option {
+            color: $default-font-color !important;
+        }
+        .caret {
+            color: #bac2c7 !important;
+        }
+    }
+    .btn.btn-default:hover {
+        background: #FFF !important;
+    }
+    .btn.btn-default:focus {
+        background: #ECECEC !important;
+    }
+}

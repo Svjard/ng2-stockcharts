@@ -1,0 +1,207 @@
+// Margin mixins
+@mixin margin($margin) {
+    margin: $margin !important;
+}
+@mixin v-margin($margin) {
+    margin-top: $margin !important;
+    margin-bottom: $margin !important;
+}
+@mixin h-margin($margin) {
+    margin-left: $margin !important;
+    margin-right: $margin !important;
+}
+@mixin l-margin($margin) {
+    margin-left: $margin !important;
+}
+@mixin r-margin($margin) {
+    margin-right: $margin !important;
+}
+@mixin t-margin($margin) {
+    margin-top: $margin !important;
+}
+@mixin b-margin($margin) {
+    margin-botom: $margin !important;
+}
+
+// Padding mixins
+@mixin padding($padding) {
+    padding: $padding !important;
+}
+@mixin v-padding($padding) {
+    padding-top: $padding !important;
+    padding-bottom: $padding !important;
+}
+@mixin h-padding($padding) {
+    padding-left: $padding !important;
+    padding-right: $padding !important;
+}
+@mixin l-padding($padding) {
+    padding-left: $padding !important;
+}
+@mixin r-padding($padding) {
+    padding-right: $padding !important;
+}
+@mixin t-padding($padding) {
+    padding-top: $padding !important;
+}
+@mixin b-padding($padding) {
+    padding-botom: $padding !important;
+}
+
+// Nav list mixin
+@mixin nav-list {
+    list-style-type:none;
+    padding:0;
+    margin:0;
+    overflow:hidden;
+    > li {
+        display:block;
+        float:left;
+        &:last-child{
+            margin-right:0px;
+        }
+    }
+}
+
+// Background/border 
+@mixin bgcolor($color) {
+    background-color: $color !important;
+}
+
+
+// Border Radius
+@mixin border-radius($radius) {
+    -webkit-border-radius: $radius;
+    border-radius: $radius;
+    background-clip: padding-box;
+}
+@mixin border-top-radius($radius) {
+    -webkit-border-top-right-radius: $radius;
+    border-top-right-radius: $radius;
+    -webkit-border-top-left-radius: $radius;
+    border-top-left-radius: $radius;
+}
+@mixin border-right-radius($radius) {
+    -webkit-border-bottom-right-radius: $radius;
+    border-bottom-right-radius: $radius;
+    -webkit-border-top-right-radius: $radius;
+    border-top-right-radius: $radius;
+}
+@mixin border-bottom-radius($radius) {
+    -webkit-border-bottom-right-radius: $radius;
+    border-bottom-right-radius: $radius;
+    -webkit-border-bottom-left-radius: $radius;
+    border-bottom-left-radius: $radius;
+}
+@mixin border-left-radius($radius) {
+    -webkit-border-bottom-left-radius: $radius;
+    border-bottom-left-radius: $radius;
+    -webkit-border-bottom-top-radius: $radius;
+    border-bottom-top-radius: $radius;
+}
+
+// Box Shadows
+@mixin box-shadow($shadow) {
+    -webkit-box-shadow: $shadow;
+    box-shadow: $shadow;
+}
+
+// Box Sizing
+@mixin box-sizing($size) {
+    -webkit-box-sizing: $size;
+    -moz-box-sizing: $size;
+    box-sizing: $size;
+}
+
+// Animation
+@mixin animation-iteration-count($count) {
+    -webkit-animation-iteration-count: $count;
+    -moz-animation-iteration-count: $count;
+    -ms-animation-iteration-count: $count;
+    -o-animation-iteration-count: $count;
+    animation-iteration-count: $count;
+}
+@mixin animation-iteration-duration($duration) {
+    -webkit-animation-iteration-duration: $duration;
+    -moz-animation-iteration-duration: $duration;
+    -ms-animation-iteration-duration: $duration;
+    -o-animation-iteration-duration: $duration;
+    animation-iteration-duration: $duration;
+}
+
+// Transform
+@mixin transform($transform) {
+    -webkit-transform: $transform;
+    -moz-transform: $transform;
+    -ms-transform: $transform;
+    -o-transform: $transform;
+    transform: $transform;
+}
+
+// Transition
+@mixin transition($args) {
+    -webkit-transition: $args;
+    -moz-transition: $args;
+    -o-transition: $args;
+    -ms-transition: $args;
+    transition: $args;
+}
+
+// Opacity
+@mixin opacity($factor) {
+    $mfactor: $factor*100;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=${mfactor})";
+    filter: "alpha(opacity=(${mfactor}))";
+    -moz-opacity: $factor;
+    -khtml-opacity: $factor;
+    opacity: $factor;
+}
+
+// Borders
+@mixin border($color, $px: 1px) {
+    border: $px solid $color !important;
+}
+@mixin border-bottom($color, $px: 1px) {
+    border-bottom: $px solid $color !important;
+}
+@mixin border-top($color, $px: 1px) {
+    border-top: $px solid $color !important;
+}
+@mixin border-right($color, $px: 1px) {
+    border-right: $px solid $color !important;
+}
+@mixin border-left($color, $px: 1px) {
+    border-left: $px solid $color !important;
+}
+
+
+// Buttons
+@mixin btn-3d($box-shadow) {
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset, 
+        0 -1px 1px rgba(255, 255, 255, 0.15) inset, 
+        0px 5px 0 $box-shadow, 
+        0 6px 3px rgba(0, 0, 0, 0.3);
+}
+@mixin btn-3d-active($box-shadow) {
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset, 
+        0 -1px 1px rgba(255, 255, 255, 0.15) inset, 
+        0px 2px 0 $box-shadow, 
+        0 3px 3px rgba(0, 0, 0, 0.3) !important;
+}
+
+// Texts
+@mixin text-shadow-right-68px($color) {
+    text-shadow: 0px 0px $color, 1px 1px $color, 2px 2px $color, 3px 3px $color, 4px 4px $color, 5px 5px $color, 6px 6px $color, 7px 7px $color, 8px 8px $color, 9px 9px $color, 10px 10px $color, 11px 11px $color, 12px 12px $color, 13px 13px $color, 14px 14px $color, 15px 15px $color, 16px 16px $color, 17px 17px $color, 18px 18px $color, 19px 19px $color, 20px 20px $color, 21px 21px $color, 22px 22px $color, 23px 23px $color, 24px 24px $color, 25px 25px $color, 26px 26px $color, 27px 27px $color, 28px 28px $color, 29px 29px $color, 30px 30px $color, 31px 31px $color, 32px 32px $color, 33px 33px $color, 34px 34px $color, 35px 35px $color, 36px 36px $color, 37px 37px $color, 38px 38px $color, 39px 39px $color, 40px 40px $color, 41px 41px $color, 42px 42px $color, 43px 43px $color, 44px 44px $color, 45px 45px $color, 46px 46px $color, 47px 47px $color, 48px 48px $color, 49px 49px $color, 50px 50px $color, 51px 51px $color, 52px 52px $color, 53px 53px $color, 54px 54px $color, 55px 55px $color, 56px 56px $color, 57px 57px $color, 58px 58px $color, 59px 59px $color, 60px 60px $color, 61px 61px $color, 62px 62px $color, 63px 63px $color, 64px 64px $color, 65px 65px $color, 66px 66px $color, 67px 67px $color, 68px 68px $color;
+}
+
+@mixin text-shadow-left-68px($color) {
+    text-shadow: 0px 0px $color, -1px 1px $color, -2px 2px $color, -3px 3px $color, -4px 4px $color, -5px 5px $color, -6px 6px $color, -7px 7px $color, -8px 8px $color, -9px 9px $color, -10px 10px $color, -11px 11px $color, -12px 12px $color, -13px 13px $color, -14px 14px $color, -15px 15px $color, -16px 16px $color, -17px 17px $color, -18px 18px $color, -19px 19px $color, -20px 20px $color, -21px 21px $color, -22px 22px $color, -23px 23px $color, -24px 24px $color, -25px 25px $color, -26px 26px $color, -27px 27px $color, -28px 28px $color, -29px 29px $color, -30px 30px $color, -31px 31px $color, -32px 32px $color, -33px 33px $color, -34px 34px $color, -35px 35px $color, -36px 36px $color, -37px 37px $color, -38px 38px $color, -39px 39px $color, -40px 40px $color, -41px 41px $color, -42px 42px $color, -43px 43px $color, -44px 44px $color, -45px 45px $color, -46px 46px $color, -47px 47px $color, -48px 48px $color, -49px 49px $color, -50px 50px $color, -51px 51px $color, -52px 52px $color, -53px 53px $color, -54px 54px $color, -55px 55px $color, -56px 56px $color, -57px 57px $color, -58px 58px $color, -59px 59px $color, -60px 60px $color, -61px 61px $color, -62px 62px $color, -63px 63px $color, -64px 64px $color, -65px 65px $color, -66px 66px $color, -67px 67px $color, -68px 68px $color, -69px 69px $color, -70px 70px $color, -71px 71px $color, -72px 72px $color, -73px 73px $color, -74px 74px $color, -75px 75px $color, -76px 76px $color, -77px 77px $color, -78px 78px $color, -79px 79px $color, -80px 80px $color, -81px 81px $color, -82px 82px $color, -83px 83px $color, -84px 84px $color, -85px 85px $color;
+}
+
+// User select
+@mixin user-select($args) {
+  -webkit-user-select: $args;
+  -khtml-user-select: $args;
+  -moz-user-select: $args;
+  user-select: $args; 
+}

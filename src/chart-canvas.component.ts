@@ -1,4 +1,9 @@
-import { Component, Input, Output, EventEmitter, ElementRef, OnInit, OnChanges, ViewChild } from '@angular/core';
+import {
+  Component, Input, Output, EventEmitter,
+  ElementRef, OnInit, OnChanges, onDestroy, ViewChild,
+  ChangeDetectionStrategy, ChangeDetectorRef, NgZone,
+  SimpleChange
+} from '@angular/core';
 import { ChartType, identity, shallowEqual, isDefined, isNotDefined } from './utils';
 //import evaluator from './scale/evaluator';
 import * as d3 from 'd3';
@@ -12,19 +17,15 @@ const HOUR = 60 * MINUTE;
 const DAILY = 24 * HOUR;
 
 const CANDIDATES_FOR_RESET = [
-  'seriesName',
-  'xScaleProvider',
-  'map',
+  'data',
+  'calculator',
   'indexAccessor',
-  'indexMutator'
- ];
-
-function shouldResetChart(component: ChartCanvasComponent) {
-  return !CANDIDATES_FOR_RESET.every(key => {
-    let result = shallowEqual(component[key], component['previous' + key.charAt(0).toUpperCase() + key.slice(1)]);
-    return result;
-  });
-}
+  'indexMutator',
+  'map',
+  'seriesName',
+  'xExtents',
+  'xScaleProvider',
+];
 
 function getDimensions(component: ChartCanvasComponent) {
   return {
@@ -79,14 +80,16 @@ const tooltipStyle = `
         </g>
       </svg>
     </div>
-  `
+  `,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ChartCanvasComponent implements OnInit, OnChanges {
+export class ChartCanvasComponent implements OnInit, OnChanges, OnDestroy {
   @Input() public width: number;
   @Input() public height: number;
   @Input() public margin: { left: number, top: number, bottom: number, right: number } = { top: 20, right: 30, bottom: 30, left: 80 };
   @Input() public type: ChartType = ChartType.HYBRID;
   @Input() public data: Array<any>;
+  @Input() public responsive: boolean = true;
   @Input() public calculator: any = [];
   @Input() public xAccessor: (d: any) => any = identity;
   @Input() public xExtents: any = [d3.min, d3.max];
@@ -122,24 +125,45 @@ export class ChartCanvasComponent implements OnInit, OnChanges {
     };
   }
 
+  constructor(private elRef: ElementRef, private cdr: ChangeDetectorRef, private zone: NgZone) {}
+
   ngOnInit() {
     this.dimensions = getDimensions(this);
     this.calculateState();
-  }
 
-  /*ngDoCheck() {
-    let reset = shouldResetChart(this);
-
-    if (reset || !shallowEqual(this.xExtents, this.previousXExtents) || this.data !== this.previousData || !shallowEqual(this.calculator, this.previousCalculator)) {
-      this.changeDetected = true;
+    if (this.responsive) {
+      window.addEventListener('resize', this.handleWindowResize);
+      this.handleWindowResize();
     }
-
-    this.changeDetected = false;
   }
-*/
-  ngOnChanges() {
+
+  ngOnDestroy() {
+    if (this.responsive) {
+      window.removeEventListener('resize', this.handleWindowResize);
+    }
+  }
+
+  ngOnChanges(changes: { [propName: string]: SimpleChange }) {
     this.dimensions = getDimensions(this);
     this.calculateState();
+
+    for (let k in changes) {
+      if (CANDIDATES_FOR_RESET.indexOf(k) !== -1 && !changes[k].isFirstChange() && !shallowEqual(changes[k].currentValue, changes[k].previousValue)) {
+         this.forceUpdate();
+         break;
+      }
+    }
+  }
+
+  handleWindowResize() {
+    this.width = this.elRef.nativeElement.parentNode.clientWidth;
+    this.forceUpdate();
+  }
+
+  forceUpdate() {
+    this.zone.run(() => {
+      this.cdr.markForCheck();
+    });
   }
 
   private setContainerStyles(): any {

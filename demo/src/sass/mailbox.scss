@@ -1,0 +1,81 @@
+@import 'variables.scss';
+@import 'mixins.scss';
+
+/* **************** */
+/*      Mailbox     */ 
+/* **************** */
+.mailbox {
+    .mb-menu {
+        ul.mb-mailboxes {
+            li {
+                a {
+                     color: $default-font-color;
+                     display: block;
+                     padding: 4px 6px;
+                     border-bottom: 1px solid #e0e5e8;
+                     border-left: 4px solid transparent;
+                     .fa {
+                        margin-right: 12px;
+                     }
+                }
+                a:hover {
+                    background-color: lighten(#e0e5e8, 5%);
+                }
+            }
+            li:active, li.active {
+                a {
+                    background-color: lighten(#e0e5e8, 5%);
+                }
+            }
+        }
+    }
+    .mb-content {
+        table.mb-emails {
+            width: 100%;
+            tr.mb-row {
+                border-top: 1px solid #DCDCDC;
+                padding: 5px 0px;
+                td.mb-icons {
+                    width: 40px;
+                    text-align: center;
+                    padding-right: 10px;
+                }
+                td.mb-check {
+                    width: 55px;
+                    text-align: center;
+                    padding: 0px 10px 0px 20px;
+                }
+                td.mb-sender {
+                    min-width: 175px;
+                }
+                td.mb-subject {
+                }
+                td.mb-attach {
+                    width: 50px;
+                    text-align: center;
+                }
+                td.mb-date {
+                    width: 150px;
+                    text-align: right;
+                    padding: 0px 20px;
+                }
+                td.mb-sender,
+                td.mb-subject,
+                td.mb-attach,
+                td.mb-date {
+                    cursor: pointer;
+                }
+            }
+            tr.mb-row:hover {
+                background-color: #ebebeb !important;
+            }
+            tr.mb-row.mb-row-read {
+                font-weight: 300;
+            }
+            tr.mb-row.mb-row-unread {
+                background-color: #F6F6F6;
+                font-weight: 400;
+            }
+        }
+    }
+}

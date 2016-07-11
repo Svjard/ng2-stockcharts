@@ -1,0 +1,24 @@
+@import 'variables.scss';
+@import 'mixins.scss';
+
+/* ****************** */
+/*      Activity      */ 
+/* ****************** */
+.feed-element {
+    border-bottom: 1px solid $soft-gray;
+    padding-bottom: 12px;
+    margin-top: 12px;
+    &:last-child, &.nbb {
+        border-bottom: 0px;
+    } 
+}
+.feed-element-body {
+    display: block;
+    width: auto;
+    vertical-align: top;
+    overflow: hidden;
+    margin-left: 10px;
+}
+.feed-element-time {
+    color: $dark-gray;
+}

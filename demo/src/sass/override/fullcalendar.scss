@@ -1,0 +1,70 @@
+@import '../variables.scss';
+@import '../mixins.scss';
+
+/* Fullcalendar.io */
+.fc-event, .fc-agenda .fc-event-time, .fc-event a {
+    background-color: $super-dark-gray !important;
+    border-color: $super-dark-gray !important;
+    padding: 4px 6px !important;
+}
+.fc-state-active {
+    background-color: $super-dark-gray !important;
+    border-color: $super-dark-gray !important;
+    color: #fff !important;
+}
+.fc-event, 
+.fc-button {
+    @include border-radius(0px !important);
+}
+.external-event {
+    border-radius: 2px !important;
+    cursor: pointer !important;
+    margin-bottom: 5px !important;
+    padding: 5px 10px !important;
+}
+.fc-state-default {
+    background-color: #fff !important;
+    background-image: none !important;
+    background-repeat: repeat-x !important;
+    box-shadow: none !important;
+    color: #333 !important;
+    text-shadow: none !important;
+}
+.fc-event-time, .fc-event-title {
+    color: #777 !important;
+    padding: 0 1px !important;
+}
+.fc-ltr .fc-event-hori.fc-event-end, .fc-rtl .fc-event-hori.fc-event-start {
+    border-radius: 2px !important;
+}
+.fc-header-title h2 {
+    color: inherit !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+}
+.fc-content .fc-widget-header, .fc-content .fc-widget-content {
+    border-color: #e7eaec !important;
+    font-weight: normal !important;
+}
+.fc-border-separate tbody {
+    background-color: #f8f8f8 !important;
+}
+.fc-state-highlight {
+    background: #fcf8e3 none repeat scroll 0 0 !important;
+}
+
+.fc-state-default {
+    border: 1px solid !important;
+}
+.fc-button {
+    border: 1px solid #e7eaec !important;
+    color: inherit !important;
+    cursor: pointer !important;
+    display: inline-block !important;
+    height: 1.9em !important;
+    line-height: 1.9em !important;
+    overflow: hidden !important;
+    padding: 0 0.6em !important;
+    position: relative !important;
+    white-space: nowrap !important;
+}
