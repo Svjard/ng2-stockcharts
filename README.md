@@ -1,4 +1,5 @@
-# Angular2 Stockcharts
+# Angular2 Stockcharts [![Build Status](https://travis-ci.org/Svjard/ng2-stockcharts.svg?branch=master)](https://travis-ci.org/Svjard/ng2-stockcharts) [![Coverage Status](https://coveralls.io/repos/github/Svjard/ng2-stockcharts/badge.svg?branch=master)](https://coveralls.io/github/Svjard/ng2-stockcharts?branch=master) [![dependency Status](https://david-dm.org/Svjard/ng2-stockcharts/status.svg?branch=master)](https://david-dm.org/Svjard/ng2-stockcharts#info=dependencies) [![devDependency Status](https://david-dm.org/Svjard/ng2-stockcharts/dev-status.svg?branch=master)](https://david-dm.org/Svjard/ng2-stockcharts#info=devDependencies)
+
 
 This is an adaptation of [React Stockcharts](https://github.com/rrag/react-stockcharts) for Angular2. It follows closely the latest development branch and is intended to go beyond the current capabilities of the React Stockcharts library.
 
