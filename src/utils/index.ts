@@ -88,7 +88,7 @@ export function rebind(target: any, source: any, mappings: any): any {
   return target;
 }
 
-export function head(array: Array<number>, accessor: any) : number {
+export function head(array: Array<any>, accessor?: any): any {
   if (accessor && array) {
     let value;
     for (let i = 0; i < array.length; i++) {
@@ -104,7 +104,7 @@ export function head(array: Array<number>, accessor: any) : number {
 
 export const first = head;
 
-export function last(array: Array<number>, accessor: any): any {
+export function last(array: Array<any>, accessor?: any): any {
   if (accessor && array) {
     let value;
     for (let i = array.length - 1; i >= 0; i--) {
@@ -244,6 +244,13 @@ export enum ChartType {
   SVG = 1,
   HYBRID
 };
+
+export interface BoxModel {
+  left?: number;
+  top?: number;
+  bottom?: number;
+  right?: number;
+}
 
 export function identity<T>(arg: T): T {
   return arg;

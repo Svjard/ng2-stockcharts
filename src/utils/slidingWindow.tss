@@ -1,0 +1,72 @@
+import * as d3 from 'd3';
+import noop from './noop';
+import identity from './identity';
+
+export default class slidingWindow {
+  static public undefinedValue = undefined;
+  static public windowSize: number = 10;
+  static public accumulator = noop;
+  static public source = identity;
+  static public skipInitial: number = 0;
+
+  static public slide(data): any {
+    let size: number = d3.functor(this.windowSize).apply(this, arguments);
+    let windowData = data.slice(this.skipInitial, size + this.skipInitial).map(this.source);
+    let accumulatorIdx: number = 0;
+    let undef = d3.functor(this.undefinedValue);
+    
+    return data.map((d, i) => {
+      if (i < (this.skipInitial + size - 1)) {
+        return undef(this.source(d), i);
+      }
+      
+      if (i >= (this.skipInitial + size)) {
+        // Treat windowData as FIFO rolling buffer
+        windowData.shift();
+        windowData.push(source(d, i));
+      }
+
+      return accumulator(windowData, i, accumulatorIdx++);
+    });
+  }
+
+  static undefinedValue(x: any): slidingWindow {
+    if (!arguments.length) {
+      return this.undefinedValue;
+    }
+    this.undefinedValue = x;
+    return this;
+  }
+
+  static windowSize(x: number): slidingWindow {
+    if (!arguments.length) {
+      return this.windowSize;
+    }
+    this.windowSize = x;
+    return this;
+  }
+
+  static accumulator(x): slidingWindow {
+    if (!arguments.length) {
+      return this.accumulator;
+    }
+    this.accumulator = x;
+    return this;
+  }
+
+  static skipInitial(x: number): slidingWindow {
+    if (!arguments.length) {
+      return this.skipInitial;
+    }
+    this.skipInitial = x;
+    return this;
+  }
+
+  static source(x): slidingWindow {
+    if (!arguments.length) {
+      return this.source;
+    }
+    this.source = x;
+    return this;
+  }
+};

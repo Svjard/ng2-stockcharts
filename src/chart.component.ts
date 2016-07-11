@@ -1,7 +1,11 @@
-import { Component, Input, Output, EventEmitter, ElementRef, OnInit, OnChanges, Host } from '@angular/core';
-import { ChartsContainerComponent } from './charts-container.component';
+import { Component, Input, Output, EventEmitter, ElementRef, OnChanges, Host } from '@angular/core';
+import { ChartCanvasComponent } from './chart-canvas.component';
 import * as d3 from 'd3';
-import { YMousePointerDisplayLocation } from './utils';
+import { YMousePointerDisplayLocation, BoxModel } from './utils';
+
+interface OriginFunc {
+  (): [number, number]
+}
 
 @Component({
   selector: 'ng-chart',
@@ -12,19 +16,17 @@ import { YMousePointerDisplayLocation } from './utils';
   `,
   styleUrls: ['./chart.component.css']
 })
-export class ChartComponent implements OnInit, OnChanges {
+export class ChartComponent implements OnChanges {
   @Input() public height: number | string;
   @Input() public width: number | string;
-  @Input() public origin: [number, number] | () => [number, number] = [0, 0];
+  @Input() public origin: [number, number] | OriginFunc;
   @Input() public id: string | number = 0;
   @Input() public yExtents: any;
   @Input() public yScale: any = d3.scale.linear();
   @Input() public yMousePointerDisplayLocation: YMousePointerDisplayLocation;
   @Input() public yMousePointerDisplayFormat: any;
   @Input() public flipYScale: boolean = false;
-  @Input() public padding: number | { top: number, left: number, right: number, bottom: number } = 0;
-  @Input() public margin: number | { top: number, left: number, right: number, bottom: number } = 0;
-  @Input() public show: boolean = true;
+  @Input() public padding: (number | BoxModel) = 0;
 
   private yMousePointerRectWidth: number = 60;
   private yMousePointerRectHeight: number = 20;
@@ -35,11 +37,11 @@ export class ChartComponent implements OnInit, OnChanges {
   private mouseXY: [number, number];
   private transform: string = '';
 
-  public constructor(@Host() chartsContainer: ChartsContainerComponent) {
-    this.container = chartsContainer;
+  public constructor(@Host() public chartCanvas: ChartCanvasComponent) {
+    this.origin = [0, 0];
   }
 
-  public yScale() {
+  public getYScale() {
     return this.yScale.copy();
   }
 
@@ -47,24 +49,13 @@ export class ChartComponent implements OnInit, OnChanges {
     let chartId = this.id;
 
     let { width, height } = this;
-    let canvasOriginX = 0.5 + chartConfig.origin[0] + this.context.margin.left;
-    let canvasOriginY = 0.5 + chartConfig.origin[1] + this.context.margin.top;
+    let canvasOriginX = 0.5 + this.origin[0] + this.chartCanvas.margin.left;
+    let canvasOriginY = 0.5 + this.origin[1] + this.chartCanvas.margin.top;
 
     return { chartId, canvasOriginX, canvasOriginY, width, height };
   }
 
-  public ngOnInit() {
-    window.addEventListener('resize', this.handleWindowResize);
-    //let w = this.el.parentNode.clientWidth;
-
-    //this.width = w;
-  }
-
-  public handleWindowResize() {
-
-  }
-
   public ngOnChanges() {
-    this.transform = `translate(${ this.origin.x }, ${ this.origin.y })`;
+    this.transform = `translate(${ this.origin[0] }, ${ this.origin[1] })`;
   }
 }

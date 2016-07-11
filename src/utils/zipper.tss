@@ -1,0 +1,39 @@
+import * as d3 from 'd3';
+import identity from './identity';
+
+function d3_zipLength(d: Array): number {
+  return d.length;
+}
+
+export default class zipper {
+  static public _combine = d => d;
+
+  static public zip(): Array {
+    let n: number = arguments.length;
+     if(!n) {
+      return [];
+    }
+
+    let i: number;
+    let m: any = d3.min(arguments, d3_zipLength);
+    let zips: Array = new Array(m);
+    for (i = -1; ++i < m;) {
+      for (let j: number = -1, zip = zips[i] = new Array(n); ++j < n;) {
+        zip[j] = arguments[j][i];
+      }
+
+      zips[i] = this._combine.apply(this, zips[i]);
+    }
+
+    return zips;
+  }
+
+  static public combine(x: any): zipper {
+    if (!arguments.length) {
+      return this._combine;
+    }
+
+    this._combine = x;
+    return this;
+  }
+};

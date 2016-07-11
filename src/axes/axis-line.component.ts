@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { first, last, hexToRGBA, Orientation } from '../utils';
+import { AxisComponent } from './axis.component';
 
 @Component({
   selector: 'ng-axis-line',
@@ -16,7 +17,7 @@ import { first, last, hexToRGBA, Orientation } from '../utils';
   `
 })
 export class AxisLineComponent {
-  @Input() public className: string = 'stockcharts-axis-line';
+  @Input() public className: string = 'ng2-stockcharts-axis-line';
   @Input() public shapeRendering: string = 'crispEdges';
   @Input() public orient: Orientation;
   @Input() public outerTickSize: number = 0;
@@ -39,14 +40,14 @@ export class AxisLineComponent {
     }
   }
 
-  static drawOnCanvasStatic(component: AxisLineComponent, ctx: CanvasRenderingContext2D) {
+  static drawOnCanvasStatic(component: AxisComponent, ctx: CanvasRenderingContext2D) {
     let { orient, outerTickSize, stroke, strokeWidth, opacity, range } = component;
 
-    let sign = component.orient === Orientation.TOP || component.orient === Orientation.LEFT ? -1 : 1;
-    let xAxis = (component.orient === Orientation.BOTTOM || component.orient === Orientation.TOP);
+    let sign = orient === Orientation.TOP || orient === Orientation.LEFT ? -1 : 1;
+    let xAxis = (orient === Orientation.BOTTOM || orient === Orientation.TOP);
 
-    ctx.lineWidth = component.strokeWidth;
-    ctx.strokeStyle = hexToRGBA(component.stroke, component.opacity);
+    ctx.lineWidth = strokeWidth;
+    ctx.strokeStyle = hexToRGBA(stroke, opacity);
 
     ctx.beginPath();
 
@@ -56,10 +57,10 @@ export class AxisLineComponent {
       ctx.lineTo(component.range[1], 0);
       ctx.lineTo(component.range[1], component.sign * component.outerTickSize);
     } else {
-      ctx.moveTo(component.sign * component.outerTickSize, component.range[0]);
+      ctx.moveTo(component.sign * outerTickSize, component.range[0]);
       ctx.lineTo(0, component.range[0]);
       ctx.lineTo(0, component.range[1]);
-      ctx.lineTo(component.sign * component.outerTickSize, component.range[1]);
+      ctx.lineTo(component.sign * outerTickSize, component.range[1]);
     }
     ctx.stroke();
   }

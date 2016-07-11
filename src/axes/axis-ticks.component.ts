@@ -28,7 +28,7 @@ function tickTransform_svg_axisY(scale, tick) {
 })
 export class AxisTickComponent implements OnChanges {
   @Input() public className: string;
-  @Input() public defaultClassName: string = 'stockcharts-axis-tick ';
+  @Input() public defaultClassName: string = 'ng2-stockcharts-axis-tick ';
   @Input() public transform: Array<number>;
   @Input() public tickStroke: string;
   @Input() public tickStrokeOpacity: number;
@@ -41,13 +41,10 @@ export class AxisTickComponent implements OnChanges {
   @Input() public y2: number;
   @Input() public dy: string;
 
-  public finalTransform: string;
-
-  public constructor() {
-    this.className = this.defaultClassName.concat(this.className);
-  }
+  private finalTransform: string;
 
   ngOnChanges() {
+    this.className = this.defaultClassName.concat(this.className);
     this.finalTransform = `translate(${this.transform[0]}, ${this.transform[1]})`;
   }
 

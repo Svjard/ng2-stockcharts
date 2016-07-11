@@ -1,7 +1,7 @@
 import {Component, AfterViewInit} from '@angular/core';
 import {NgClass} from '@angular/common';
 import {bootstrap} from '@angular/platform-browser-dynamic';
-import {BasicExampleComponent} from './basic-example-component';
+// import {BasicExampleComponent} from './basic-example-component';
 
 const hljs = require('highlight.js');
 require('highlight.js/styles/github-gist.css');
@@ -10,7 +10,7 @@ require('./style.scss');
 @Component({
   selector: 'demo-app',
   template: require('./demo-app.html'),
-  directives: [NgClass, BasicExampleComponent]
+  directives: [NgClass]
 })
 class DemoAppComponent implements AfterViewInit {
 

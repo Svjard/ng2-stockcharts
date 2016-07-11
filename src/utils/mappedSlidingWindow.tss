@@ -1,0 +1,87 @@
+import * as d3 from 'd3';
+import noop from './noop';
+import identity from './identity';
+
+export default class mappedSlidingWindow {
+  static public undefinedValue: any = undefined;
+  static public windowSize: number = 10;
+  static public accumulator: any = noop;
+  static public source: any = identity;
+  static public skipInitial: number = 0;
+
+  static public init(data): any {
+    let size = d3.functor(this.windowSize).apply(this, arguments);
+    let windowData = [];
+    let accumulatorIdx = 0;
+    let undef = d3.functor(this.undefinedValue);
+    let result = [];
+    data.forEach((d, i) => {
+      let mapped;
+      if (i < (this.skipInitial + size - 1)) {
+        mapped = undef(d, i);
+        result.push(mapped);
+        windowData.push(mapped);
+        return;
+      }
+
+      if (i >= (this.skipInitial + size)) {
+        // Treat windowData as FIFO rolling buffer
+        windowData.shift();
+      }
+
+      windowData.push(this.source(d, i));
+      mapped = this.accumulator(windowData, i, accumulatorIdx++);
+      result.push(mapped);
+      windowData.pop();
+      windowData.push(mapped);
+      return;
+    });
+
+    return result;
+  }
+
+  static public undefinedValue(x?: any): mappedSlidingWindow {
+    if (!x) {
+      return this.undefinedValue;
+    }
+
+    this.undefinedValue = x;
+    return mappedSlidingWindow;
+  }
+
+  static public windowSize(x?: number): mappedSlidingWindow {
+    if (!x) {
+      return this.windowSize;
+    }
+
+    this.windowSize = x;
+    return mappedSlidingWindow;
+  }
+
+  static public accumulator(x?: any): mappedSlidingWindow {
+    if (!x) {
+      return this.accumulator;
+    }
+
+    this.accumulator = x;
+    return mappedSlidingWindow;
+  }
+
+  static public skipInitial(x?: number): mappedSlidingWindow {
+    if (!x) {
+      return this.skipInitial;
+    }
+
+    this.skipInitial = x;
+    return mappedSlidingWindow;
+  }
+
+  static public source(x?: any): mappedSlidingWindow {
+    if (!x) {
+      return this.source;
+    }
+
+    this.source = x;
+    return this;
+  }
+};

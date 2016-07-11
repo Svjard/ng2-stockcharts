@@ -1,4 +1,5 @@
-import { Component, Input, ElementRef, ViewChild } from '@angular/core';
+import { Component, Input, ElementRef, ViewChild, Host } from '@angular/core';
+import { ChartCanvasComponent } from './chart-canvas.component';
 import { ChartType } from './utils';
 
 export interface ICanvasContext {
@@ -11,15 +12,15 @@ export interface ICanvasContext {
 @Component({
   selector: 'ng-canvas-container',
   template: `
-    <div *ngIf="isChartHybrid()">
-      <canvas #bg class="stockcharts-canvas" width="{{width}}" height="{{height}}"></canvas>
-      <canvas #canvas_axes class="stockcharts-canvas" width="{{width}}" height="{{height}}"></canvas>
-      <canvas #canvas_mouse_coordinates class="stockcharts-canvas" width="{{width}}" height="{{height}}"></canvas>
-      <canvas #canvas_interactive class="stockcharts-canvas" width="{{width}}" height="{{height}}"></canvas>
+    <div *ngIf="chartCanvas.isChartHybrid()">
+      <canvas #bg class="ng2-stockcharts-canvas" [attr.width]="{{width}}" [attr.height]="{{height}}"></canvas>
+      <canvas #canvas_axes class="ng2-stockcharts-canvas" [attr.width]="{{width}}" [attr.height]="{{height}}"></canvas>
+      <canvas #canvas_mouse_coordinates class="ng2-stockcharts-canvas" [attr.width]="{{width}}" [attr.height]="{{height}}"></canvas>
+      <canvas #canvas_interactive class="ng2-stockcharts-canvas" [attr.width]="{{width}}" [attr.height]="{{height}}"></canvas>
     </div>
   `,
   styles: [`
-    .stockcharts-canvas {
+    .ng2-stockcharts-canvas {
       position: absolute;
       top: 0;
       left: 0;
@@ -44,12 +45,10 @@ export class CanvasContainerComponent {
   @ViewChild('canvas_interactive')
   canvas_interactive: ElementRef;
 
-  public isChartHybrid(): boolean {
-    return this.type !== ChartType.SVG;
-  }
+  constructor(@Host() private chartCanvas: ChartCanvasComponent) {}
 
   public getCanvasContexts(): ICanvasContext  {
-    if (this.type === ChartType.SVG) {
+    if (!this.chartCanvas.isChartHybrid()) {
       return;
     }
 

@@ -5,57 +5,61 @@ import {
   isDefined,
   isNotDefined,
   isArray,
-  identity,
+  identity
 } from '../utils';
 
-export default class Evaluator {
-  public xAccessor: d3.functor;
-  public useWholeData: boolean = true;
-  public width: number;
-  public xScale: any;
-  public map: d3.functor;
-  public calculator: Array<d3.functor> = [];
-  public scaleProvider: d3.functor;
-  public indexAccessor: d3.functor;
-  public indexMutator: any;
+export interface EvaluatorConfig {
+  xAccessor: any;
+  useWholeData: boolean;
+  width: number;
+  xScale: any;
+  map: any;
+  calculator: Array<any>;
+  scaleProvider?: any;
+  indexAccessor: any;
+  indexMutator: any;
+};
 
-  evaluate() {
-    let mappedData = data.map(this.map);
-    let composedCalculator = compose(this.calculator);
+export class Evaluator {
+  private config: EvaluatorConfig;
+
+  static evaluate(data: any, config: EvaluatorConfig) {
+    let mappedData = data.map(config.map);
+    let composedCalculator = Evaluator.compose(config.calculator);
     let calculatedData = composedCalculator(mappedData);
 
-    if (isDefined(this.scaleProvider)) {
+    if (config.scaleProvider) {
       let {
         data: finalData,
         xScale: modifiedXScale,
         xAccessor: realXAccessor,
         displayXAccessor
-      } = scaleProvider(calculatedData, xAccessor, indexAccessor, indexMutator);
+      } = config.scaleProvider(calculatedData, config.xAccessor, config.indexAccessor, config.indexMutator);
 
       return {
-        filterData: extentsWrapper(finalData, xAccessor, realXAccessor, width, useWholeData),
+        filterData: Evaluator.extentsWrapper(finalData, config.xAccessor, realXAccessor, config.width, config.useWholeData),
         xScale: modifiedXScale,
         xAccessor: realXAccessor,
         displayXAccessor,
-        lastItem: last(finalData),
+        lastItem: last(finalData)
       };
     }
 
     return {
-      filterData: extentsWrapper(calculatedData, xAccessor, xAccessor, width, useWholeData),
-      xScale,
-      xAccessor,
-      displayXAccessor: xAccessor,
-      lastItem: last(calculatedData),
+      filterData: Evaluator.extentsWrapper(calculatedData, config.xAccessor, config.xAccessor, config.width, config.useWholeData),
+      xScale: config.xScale,
+      xAccessor: config.xAccessor,
+      displayXAccessor: config.xAccessor,
+      lastItem: last(calculatedData)
     };
   }
 
-  canShowTheseManyPeriods(width: number, arrayLength: number): boolean {
+  static canShowTheseManyPeriods(width: number, arrayLength: number): boolean {
     let threshold = 0.75; // number of datapoints per 1 px
     return arrayLength < width * threshold && arrayLength > 1;
   }
 
-  getDomain(inputDomain, width, filteredData, predicate, currentDomain, canShowTheseMany, realXAccessor) {
+  static getDomain(inputDomain, width, filteredData, predicate, currentDomain, canShowTheseMany, realXAccessor) {
     if (canShowTheseMany(width, filteredData.length)) {
       let domain = predicate
         ? inputDomain
@@ -66,7 +70,7 @@ export default class Evaluator {
     return currentDomain;
   }
 
-  extentsWrapper(data, inputXAccessor, realXAccessor, width, useWholeData) {
+  static extentsWrapper(data, inputXAccessor, realXAccessor, width, useWholeData) {
     function domain(inputDomain, xAccessor, currentPlotData, currentDomain) {
       if (useWholeData) {
         return { plotData: data, domain: inputDomain };
@@ -75,14 +79,14 @@ export default class Evaluator {
       let left = first(inputDomain);
       let right = last(inputDomain);
 
-      let filteredData = getFilteredResponse(data, left, right, xAccessor);
+      let filteredData = Evaluator.getFilteredResponse(data, left, right, xAccessor);
 
       let plotData, domain
-      if (canShowTheseManyPeriods(width, filteredData.length)) {
+      if (Evaluator.canShowTheseManyPeriods(width, filteredData.length)) {
         plotData = filteredData;
         domain = realXAccessor === xAccessor ? inputDomain : [realXAccessor(first(plotData)), realXAccessor(last(plotData))];
       } else {
-        plotData = currentPlotData || filteredData.slice(filteredData.length - showMax(width));
+        plotData = currentPlotData || filteredData.slice(filteredData.length - this.showMax(width));
         domain = currentDomain || [realXAccessor(first(plotData)), realXAccessor(last(plotData))];
       }
 
@@ -94,12 +98,12 @@ export default class Evaluator {
     return domain;
   }
 
-  showMax(width: number) {
+  static showMax(width: number): number {
     let threshold = 0.75; // number of datapoints per 1 px
     return Math.floor(width * threshold);
   }
 
-  private getFilteredResponse(data, left, right, xAccessor) {
+  private static getFilteredResponse(data, left, right, xAccessor) {
     let newLeftIndex = getClosestItemIndexes(data, left, xAccessor).right;
     let newRightIndex = getClosestItemIndexes(data, right, xAccessor).left;
 
@@ -108,7 +112,7 @@ export default class Evaluator {
     return filteredData;
   }
 
-  private compose(funcs) {
+  private static compose(funcs: any): any {
     if (funcs.length === 0) {
       return identity;
     }

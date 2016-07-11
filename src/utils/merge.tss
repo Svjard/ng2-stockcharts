@@ -1,0 +1,49 @@
+import identity from './identity';
+import zipper from './zipper';
+import noop from './noop';
+
+import { isNotDefined } from './index';
+
+// applies an algorithm to an array, merging the result back into
+// the source array using the given merge function.
+export default class mergeCompute {
+  static public algorithm: any = identity;
+  static public skipUndefined: boolean = true;
+  static public merge: any = noop;
+
+  static public init(data) {
+    let zip = zipper
+      .combine((datum, indicator) => {
+        let result = (this.skipUndefined && isNotDefined(indicator))
+          ? datum
+          : merge(datum, indicator);
+        return isNotDefined(result) ? datum : result;
+      });
+
+    return zip(data, this.algorithm(data));
+  }
+
+  static public algorithm(x: any): mergeCompute {
+    if (!arguments.length) {
+      return this.algorithm;
+    }
+    this.algorithm = x;
+    return this;
+  }
+
+  static public merge(x: any): mergeCompute {
+    if (!arguments.length) {
+      return this.merge;
+    }
+    this.merge = x;
+    return this;
+  }
+
+  static public skipUndefined(x: boolean): mergeCompute {
+    if (!arguments.length) {
+      return this.skipUndefined;
+    }
+    this.skipUndefined = x;
+    return this;
+  }
+}

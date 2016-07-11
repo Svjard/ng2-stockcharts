@@ -2,33 +2,33 @@
   display: block;
 }
 
-.epcharts-grabbing-cursor {
+.ng2-stockcharts-grabbing-cursor {
   cursor: grabbing;
   cursor: -moz-grabbing;
   cursor: -webkit-grabbing;
 }
 
-.epcharts-crosshair-cursor {
+.ng2-stockcharts-crosshair-cursor {
   cursor: crosshair;
 }
 
-.epcharts-tooltip-hover {
+.ng2-stockcharts-tooltip-hover {
   pointer-events: all;
   cursor: pointer;
 }
 
-.epcharts-default-cursor {
+.ng2-stockcharts-default-cursor {
   cursor: default;
 }
 
-.epcharts-move-cursor {
+.ng2-stockcharts-move-cursor {
   cursor: move;
 }
 
-.epcharts-ns-resize-cursor {
+.ng2-stockcharts-ns-resize-cursor {
   cursor: ns-resize;
 }
 
-.epcharts-ew-resize-cursor {
+.ng2-stockcharts-ew-resize-cursor {
   cursor: ew-resize;
 }

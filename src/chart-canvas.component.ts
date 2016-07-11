@@ -1,11 +1,11 @@
 import {
   Component, Input, Output, EventEmitter,
-  ElementRef, OnInit, OnChanges, onDestroy, ViewChild,
+  ElementRef, OnInit, OnChanges, OnDestroy, ViewChild,
   ChangeDetectionStrategy, ChangeDetectorRef, NgZone,
   SimpleChange
 } from '@angular/core';
 import { ChartType, identity, shallowEqual, isDefined, isNotDefined } from './utils';
-//import evaluator from './scale/evaluator';
+import { EvaluatorConfig, Evaluator } from './scale/evaluator';
 import * as d3 from 'd3';
 import {
   CanvasContainerComponent
@@ -81,6 +81,7 @@ const tooltipStyle = `
       </svg>
     </div>
   `,
+  directives: [CanvasContainerComponent],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChartCanvasComponent implements OnInit, OnChanges, OnDestroy {
@@ -203,6 +204,10 @@ export class ChartCanvasComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
+  public isChartHybrid(): boolean {
+    return this.type == ChartType.HYBRID;
+  }
+
   private calculateState(): any {
     let extent = typeof this.xExtents === 'function'
       ? this.xExtents(this.data)
@@ -227,18 +232,19 @@ export class ChartCanvasComponent implements OnInit, OnChanges, OnDestroy {
     let wholeData = isDefined(this.plotFull) ? this.plotFull : this.xAccessor === identity;
 
     const dimensions = getDimensions(this);
-    let evaluate = evaluator()
-      .xAccessor(this.xAccessor)
-      .indexAccessor(this.indexAccessor)
-      //.indexMutator(this.indexMutator)
-      .map(this.map)
-      .useWholeData(wholeData)
-      .width(dimensions.width)
-      .scaleProvider(this.xScaleProvider)
-      .xScale(this.xScale)
-      .calculator(this.calculator);
-
-    let { xAccessor, displayXAccessor, xScale, filterData, lastItem } = evaluate(this.data);
+    
+    let { xAccessor, displayXAccessor, xScale, filterData, lastItem } = Evaluator.evaluate(this.data,
+      {
+        xAccessor: this.xAccessor,
+        indexAccessor: this.indexAccessor,
+        indexMutator: this.indexMutator,
+        map: this.map,
+        useWholeData: wholeData,
+        width: dimensions.width,
+        scaleProvider: this.xScaleProvider,
+        xScale: this.xScale,
+        calculator: this.calculator
+      } as EvaluatorConfig);
 
     return { xAccessor, displayXAccessor, xScale, filterData, lastItem };
   }

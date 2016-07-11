@@ -1,0 +1,50 @@
+import { Component, Input, OnInit } from '@angular/core';
+import Line from "./Line";
+import Area from "./Area";
+
+@Component({
+  selector: 'ng-area-series',
+  template: `
+    <g className={{className}}>
+      <Line
+        [xScale]={{xScale}} [yScale]={{yScale}}
+        [xAccessor]={{xAccessor}} [yAccessor]={{yAccessor}}
+        [plotData]={{plotData}}
+        stroke={{stroke}} fill="none"
+        type={{type}} />
+      <Area
+        [xScale]={{xScale} [yScale]={{yScale}}
+        [xAccessor]={{xAccessor}} [yAccessor]={{yAccessor}}
+        [plotData]={{plotData}}
+        [base]={{baseAt}}
+        stroke="none" fill={{fill} [opacity]={{opacity}}
+        type={{type}} />
+    </g>
+  `
+})
+export class AreaSeries {
+  @Input() public className: string = 'epc-area';
+  @Input() public stroke: string = '#4682B4';
+  @Input() public fill: string = '#4682B4';
+  @Input() public opacity: number = 0.5;
+
+  public yAccessor = (d) => d.close;
+
+  ngOnInit() {
+    let callback = AreaSeries.drawOnCanvas;
+    if (callback) {
+      var { chartCanvasType, getCanvasContexts } = this.props;
+
+      if (chartCanvasType !== 'svg' && isDefined(getCanvasContexts)) {
+        let contexts = getCanvasContexts();
+        var props = { ...WrappedSeries.defaultProps, ...this.props };
+
+        if (contexts) {
+          BaseCanvasSeries.baseReStockDrawOnCanvasHelper(contexts.axes, props, callback);
+        }
+      }
+    }
+  }
+}
+
+//export default wrap(AreaSeries);
