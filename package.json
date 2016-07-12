@@ -7,7 +7,7 @@
     "build:system": "node node_modules/typescript/bin/tsc -sourcemap -p tsconfig.system.json",
     "build:cjs": "node node_modules/typescript/bin/tsc -sourcemap",
     "build": "npm run sass && npm run build:cjs && npm run build:system",
-    "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "coveralls": "cat ./coverage/report-lcov/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "demo:watch": "./node_modules/.bin/webpack --progress --colors --watch",
     "demo:dist": "./node_modules/.bin/webpack --progress --colors --dist",
     "lint": "npm run sass && npm run lint:src && npm run lint:docs",
