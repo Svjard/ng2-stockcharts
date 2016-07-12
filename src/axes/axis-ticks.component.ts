@@ -48,10 +48,10 @@ export class AxisTickComponent implements OnChanges {
     this.finalTransform = `translate(${this.transform[0]}, ${this.transform[1]})`;
   }
 
-  static drawOnCanvasStatic(tick, ctx, result) {
+  drawOnCanvasStatic(ctx, result) {
     let { scale, tickTransform, canvas_dy, x, y, x2, y2, format } = result;
 
-    let origin = tickTransform(scale, tick);
+    let origin = tickTransform(scale, this);
 
     ctx.beginPath();
 
@@ -59,7 +59,7 @@ export class AxisTickComponent implements OnChanges {
     ctx.lineTo(origin[0] + x2, origin[1] + y2);
     ctx.stroke();
 
-    ctx.fillText(format(tick), origin[0] + x, origin[1] + y + canvas_dy);
+    ctx.fillText(format(this), origin[0] + x, origin[1] + y + canvas_dy);
   }
 }
 
@@ -92,28 +92,46 @@ export class AxisTicksComponent implements OnChanges {
   public format: any;
 
   ngOnChanges() {
-    this.result = AxisTicksComponent._helper(this);
+    this.result = this.process();
   }
 
-  static _helper(component: AxisTicksComponent, _scale?: any) {
-    let scale = _scale ? _scale : component.scale;
+  drawOnCanvasStatic(ctx: CanvasRenderingContext2D, xScale: any, yScale: any) {
+    let xAxis = (this.orient === Orientation.BOTTOM || this.orient === Orientation.TOP);
 
-    let ticks = isNotDefined(component.tickValues)
+    let result = this.process(xAxis ? xScale : yScale);
+
+    let { tickStroke, tickStrokeOpacity, textAnchor, fontSize, fontFamily } = result;
+
+    ctx.strokeStyle = hexToRGBA(this.tickStroke, this.tickStrokeOpacity);
+
+    ctx.font = `${this.fontSize}px ${this.fontFamily}`;
+    ctx.fillStyle = this.tickStroke;
+    ctx.textAlign = result.textAnchor === 'middle' ? 'center' : result.textAnchor;
+
+    result.ticks.forEach((tick) => {
+      tick.drawOnCanvasStatic(ctx, result);
+    });
+  }
+
+  private process(_scale?: any) {
+    let scale = _scale ? _scale : this.scale;
+
+    let ticks = isNotDefined(this.tickValues)
       ? (scale.ticks
-        ? scale.ticks.apply(scale, component.ticks)
+        ? scale.ticks.apply(scale, this.ticks)
         : scale.domain())
-      : component.tickValues;
+      : this.tickValues;
 
     let baseFormat = scale.tickFormat
-      ? scale.tickFormat.apply(scale, component.ticks)
+      ? scale.tickFormat.apply(scale, this.ticks)
       : identity;
 
-    let format = isNotDefined(component.tickFormat)
+    let format = isNotDefined(this.tickFormat)
       ? baseFormat
-      : d => baseFormat(d) ? component.tickFormat(d) : '';
+      : d => baseFormat(d) ? this.tickFormat(d) : '';
 
-    let sign = component.orient === Orientation.TOP || component.orient === Orientation.LEFT ? -1 : 1;
-    let tickSpacing = Math.max(component.innerTickSize, 0) + component.tickPadding;
+    let sign = this.orient === Orientation.TOP || this.orient === Orientation.LEFT ? -1 : 1;
+    let tickSpacing = Math.max(this.innerTickSize, 0) + this.tickPadding;
 
     let tickTransform;
     let x;
@@ -124,45 +142,27 @@ export class AxisTicksComponent implements OnChanges {
     let canvas_dy;
     let textAnchor;
 
-    if (component.orient === Orientation.BOTTOM || component.orient === Orientation.TOP) {
+    if (this.orient === Orientation.BOTTOM || this.orient === Orientation.TOP) {
       tickTransform = tickTransform_svg_axisX;
       x2 = 0;
-      y2 = sign * component.innerTickSize;
+      y2 = sign * this.innerTickSize;
       x = 0;
       y = sign * tickSpacing;
       dy = sign < 0 ? '0em' : '.71em';
-      canvas_dy = sign < 0 ? 0 : (component.fontSize * .71);
+      canvas_dy = sign < 0 ? 0 : (this.fontSize * .71);
       textAnchor = 'middle';
     }
     else {
       tickTransform = tickTransform_svg_axisY;
-      x2 = sign * component.innerTickSize;
+      x2 = sign * this.innerTickSize;
       y2 = 0;
       x = sign * tickSpacing;
       y = 0;
       dy = '.32em';
-      canvas_dy = (component.fontSize * .32);
+      canvas_dy = (this.fontSize * .32);
       textAnchor = sign < 0 ? 'end' : 'start';
     }
 
-    return { ticks, scale: scale, tickTransform, tickStroke: component.tickStroke, tickStrokeOpacity: component.tickStrokeOpacity, dy, canvas_dy, x, y, x2, y2, textAnchor, fontSize: component.fontSize, fontFamily: component.fontFamily, format };
-  }
-
-  static drawOnCanvasStatic(component: AxisTicksComponent, ctx: CanvasRenderingContext2D, xScale: any, yScale: any) {
-    let xAxis = (component.orient === Orientation.BOTTOM || component.orient === Orientation.TOP);
-
-    let result = AxisTicksComponent._helper(component, xAxis ? xScale : yScale);
-
-    let { tickStroke, tickStrokeOpacity, textAnchor, fontSize, fontFamily } = result;
-
-    ctx.strokeStyle = hexToRGBA(component.tickStroke, component.tickStrokeOpacity);
-
-    ctx.font = `${component.fontSize}px ${component.fontFamily}`;
-    ctx.fillStyle = component.tickStroke;
-    ctx.textAlign = result.textAnchor === 'middle' ? 'center' : result.textAnchor;
-
-    result.ticks.forEach((tick) => {
-      AxisTickComponent.drawOnCanvasStatic(tick, ctx, result);
-    });
+    return { ticks, scale: scale, tickTransform, tickStroke: this.tickStroke, tickStrokeOpacity: this.tickStrokeOpacity, dy, canvas_dy, x, y, x2, y2, textAnchor, fontSize: this.fontSize, fontFamily: this.fontFamily, format };
   }
 };

@@ -84,8 +84,7 @@ module.exports = function(config) {
       'karma-coverage',
       'karma-spec-reporter',
       'karma-teamcity-reporter',
-      'karma-chrome-launcher',
-      'karma-phantomjs-launcher'
+      'karma-chrome-launcher'
     ],
 
     // test results reporter to use
@@ -117,7 +116,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['PhantomJS', 'Chrome'],
+    browsers: ['Chrome'],
 
     customLaunchers: {
       Chrome_travis_ci: {

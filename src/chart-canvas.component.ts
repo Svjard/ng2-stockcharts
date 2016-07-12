@@ -2,7 +2,7 @@ import {
   Component, Input, Output, EventEmitter,
   ElementRef, OnInit, OnChanges, OnDestroy, ViewChild,
   ChangeDetectionStrategy, ChangeDetectorRef, NgZone,
-  SimpleChange
+  SimpleChange, forwardRef
 } from '@angular/core';
 import { ChartType, identity, shallowEqual, isDefined, isNotDefined } from './utils';
 import { EvaluatorConfig, Evaluator } from './scale/evaluator';
@@ -68,7 +68,7 @@ const tooltipStyle = `
   selector: 'ng-chart-canvas',
   template: `
     <div [ngStyle]="setContainerStyles()" class="{{className}}" >
-      <ng-canvas-container [width]="width" [height]="height" [type]="type" [zIndex]="zIndex" />
+      <ng-canvas-container [width]="width" [height]="height" [type]="type" [zIndex]="zIndex"></ng-canvas-container>
       <svg class="{{className}}" [attr.width]="width" [attr.height]="height" [ngStyle]="setSvgStyles()">
         <style>{{getCursorStyle()}}</style>
         <defs>
@@ -76,12 +76,12 @@ const tooltipStyle = `
             <rect x="0" y="0" [attr.width]="dimensions.width" [attr.height]="dimensions.height" />
           </clipPath>
         </defs>
-        <g transform="translate({{margin.left + 0.5}}, {{margin.top + 0.5}})"}>
+        <g [attr.transform]="finalTransform">
         </g>
       </svg>
     </div>
   `,
-  directives: [CanvasContainerComponent],
+  directives: [forwardRef(() => CanvasContainerComponent)],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChartCanvasComponent implements OnInit, OnChanges, OnDestroy {
@@ -105,15 +105,16 @@ export class ChartCanvasComponent implements OnInit, OnChanges, OnDestroy {
 
   //@ViewChild(EventHandlerComponent)
   //eventHandler: EventHandlerComponent
-  @ViewChild(CanvasContainerComponent)
+  @ViewChild(forwardRef(() => CanvasContainerComponent))
   canvases: CanvasContainerComponent;
 
   public indexAccessor: any = d => d.idx;
-  //public indexMutator: any = (d, idx) => ({ ...d, idx });
+  public indexMutator: any = (d, idx) => { return Object.assign({}, d, {idx: idx}); };
   public map: any = identity;
   public dimensions: { width: number, height: number };
 
   private plotFull: boolean;
+  private finalTransform: string;
 
   static ohlcv(d: any) {
     return {
@@ -147,6 +148,7 @@ export class ChartCanvasComponent implements OnInit, OnChanges, OnDestroy {
   ngOnChanges(changes: { [propName: string]: SimpleChange }) {
     this.dimensions = getDimensions(this);
     this.calculateState();
+    this.finalTransform = `translate(${this.margin.left + 0.5}, ${this.margin.top + 0.5})`;
 
     for (let k in changes) {
       if (CANDIDATES_FOR_RESET.indexOf(k) !== -1 && !changes[k].isFirstChange() && !shallowEqual(changes[k].currentValue, changes[k].previousValue)) {

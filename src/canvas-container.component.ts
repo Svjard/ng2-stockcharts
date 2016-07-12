@@ -1,8 +1,8 @@
-import { Component, Input, ElementRef, ViewChild, Host } from '@angular/core';
+import { Component, Input, ElementRef, ViewChild, Host, Inject, forwardRef } from '@angular/core';
 import { ChartCanvasComponent } from './chart-canvas.component';
 import { ChartType } from './utils';
 
-export interface ICanvasContext {
+export interface CanvasContext {
   axes: CanvasRenderingContext2D;
   mouseCoord: CanvasRenderingContext2D;
   interactive: CanvasRenderingContext2D;
@@ -13,10 +13,10 @@ export interface ICanvasContext {
   selector: 'ng-canvas-container',
   template: `
     <div *ngIf="chartCanvas.isChartHybrid()">
-      <canvas #bg class="ng2-stockcharts-canvas" [attr.width]="{{width}}" [attr.height]="{{height}}"></canvas>
-      <canvas #canvas_axes class="ng2-stockcharts-canvas" [attr.width]="{{width}}" [attr.height]="{{height}}"></canvas>
-      <canvas #canvas_mouse_coordinates class="ng2-stockcharts-canvas" [attr.width]="{{width}}" [attr.height]="{{height}}"></canvas>
-      <canvas #canvas_interactive class="ng2-stockcharts-canvas" [attr.width]="{{width}}" [attr.height]="{{height}}"></canvas>
+      <canvas #bg class="ng2-stockcharts-canvas" [attr.width]="width" [attr.height]="height"></canvas>
+      <canvas #canvas_axes class="ng2-stockcharts-canvas" [attr.width]="width" [attr.height]="height"></canvas>
+      <canvas #canvas_mouse_coordinates class="ng2-stockcharts-canvas" [attr.width]="width" [attr.height]="height"></canvas>
+      <canvas #canvas_interactive class="ng2-stockcharts-canvas" [attr.width]="width" [attr.height]="height"></canvas>
     </div>
   `,
   styles: [`
@@ -45,9 +45,9 @@ export class CanvasContainerComponent {
   @ViewChild('canvas_interactive')
   canvas_interactive: ElementRef;
 
-  constructor(@Host() private chartCanvas: ChartCanvasComponent) {}
+  constructor(@Host() @Inject(forwardRef(() => ChartCanvasComponent)) private chartCanvas: ChartCanvasComponent) {}
 
-  public getCanvasContexts(): ICanvasContext  {
+  public getCanvasContexts(): CanvasContext  {
     if (!this.chartCanvas.isChartHybrid()) {
       return;
     }

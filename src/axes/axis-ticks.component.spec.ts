@@ -8,9 +8,6 @@ import {
   it
 } from '@angular/core/testing';
 import {
-  dispatchEvent
-} from '@angular/platform-browser/testing';
-import {
   ComponentFixture,
   TestComponentBuilder
 } from '@angular/compiler/testing';

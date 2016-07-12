@@ -40,8 +40,8 @@ export class AxisLineComponent {
     }
   }
 
-  static drawOnCanvasStatic(component: AxisComponent, ctx: CanvasRenderingContext2D) {
-    let { orient, outerTickSize, stroke, strokeWidth, opacity, range } = component;
+  drawOnCanvasStatic(ctx: CanvasRenderingContext2D) {
+    let { orient, outerTickSize, stroke, strokeWidth, opacity, range } = this;
 
     let sign = orient === Orientation.TOP || orient === Orientation.LEFT ? -1 : 1;
     let xAxis = (orient === Orientation.BOTTOM || orient === Orientation.TOP);
@@ -52,16 +52,17 @@ export class AxisLineComponent {
     ctx.beginPath();
 
     if (xAxis) {
-      ctx.moveTo(component.range[0], component.sign * component.outerTickSize);
-      ctx.lineTo(component.range[0], 0);
-      ctx.lineTo(component.range[1], 0);
-      ctx.lineTo(component.range[1], component.sign * component.outerTickSize);
+      ctx.moveTo(range[0], sign * outerTickSize);
+      ctx.lineTo(range[0], 0);
+      ctx.lineTo(range[1], 0);
+      ctx.lineTo(range[1], sign * outerTickSize);
     } else {
-      ctx.moveTo(component.sign * outerTickSize, component.range[0]);
-      ctx.lineTo(0, component.range[0]);
-      ctx.lineTo(0, component.range[1]);
-      ctx.lineTo(component.sign * outerTickSize, component.range[1]);
+      ctx.moveTo(sign * outerTickSize, range[0]);
+      ctx.lineTo(0, range[0]);
+      ctx.lineTo(0, range[1]);
+      ctx.lineTo(sign * outerTickSize, range[1]);
     }
+
     ctx.stroke();
   }
 };

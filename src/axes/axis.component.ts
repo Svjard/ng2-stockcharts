@@ -54,24 +54,24 @@ export class AxisComponent implements OnChanges {
   public drawOnCanvas(component: AxisComponent) {
     let contexts = component.chart.chartCanvas.getCanvases();
     if (contexts) {
-      let { margin, canvasOriginX, canvasOriginY } = component.chart.getContext();
-      this.drawOnCanvasStatic(margin, component, [canvasOriginX, canvasOriginY], component.chart.chartCanvas.getCanvases(), component.scale, component.scale);  
+      let { canvasOriginX, canvasOriginY } = component.chart.getContext();
+      this.drawOnCanvasStatic(component.chart.chartCanvas.margin, [canvasOriginX, canvasOriginY], component.chart.chartCanvas.getCanvases(), component.scale, component.scale);  
     }
   }
 
-  private drawOnCanvasStatic(margin: { left: number, top: number, bottom: number, right: number }, canvasOrigin: [number, number], ctx, xScale: any, yScale: any) {
-    let { transform, showDomain, showTicks } = component;
+  private drawOnCanvasStatic(margin, canvasOrigin, ctx, xScale, yScale) {
+    let { transform, showDomain, showTicks } = this;
     ctx.save();
 
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.translate(canvasOrigin[0] + transform[0], canvasOrigin[1] + transform[1]);
 
     if (showDomain) {
-      AxisLine.drawOnCanvasStatic(component.axisLine, component, ctx, xScale, yScale);
+      this.axisLine.drawOnCanvasStatic(ctx);
     }
 
     if (showTicks) {
-      AxisTicks.drawOnCanvasStatic(component.axisTicks, ctx, xScale, yScale);
+      this.axisTicks.drawOnCanvasStatic(ctx, xScale, yScale);
     }
 
     ctx.restore();

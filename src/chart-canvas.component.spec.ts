@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, provide } from '@angular/core';
 import {
   describe,
   expect,
@@ -8,18 +8,15 @@ import {
   it
 } from '@angular/core/testing';
 import {
-  dispatchEvent
-} from '@angular/platform-browser/testing';
-import {
   ComponentFixture,
   TestComponentBuilder
 } from '@angular/compiler/testing';
 import {
-  ChartCanvasComponent
-} from './chart-canvas.component';
-import {
   CanvasContainerComponent
 } from './canvas-container.component';
+import {
+  ChartCanvasComponent
+} from './chart-canvas.component';
 import { ChartType, identity, noop } from './utils';
 import * as d3 from 'd3';
 
@@ -75,18 +72,19 @@ describe('ChartCanvasComponent:', () => {
   }));
 
   it('should display the correct default canvas', done => {
-    done();
-    /*tcb.createAsync(TestComponent)
+    tcb.createAsync(TestComponent)
       .then((fixture: ComponentFixture<TestComponent>) => {
         let element: any = fixture.nativeElement;
 
-        fixture.detectChanges();
+        console.log('el', element);
 
-        expect(element.querySelectorAll('svg').length).toBe(1);
-        expect(element.querySelectorAll('div.ng2-stockcharts').length).toBe(1);
-        expect(element.querySelectorAll('svg.ng2-stockcharts').length).toBe(1);
+        //fixture.detectChanges();
 
-        let container = element.querySelectorAll('div:first');
+        //expect(element.querySelectorAll('svg').length).toBe(1);
+        //expect(element.querySelectorAll('div.ng2-stockcharts').length).toBe(1);
+        //expect(element.querySelectorAll('svg.ng2-stockcharts').length).toBe(1);
+
+        /*let container = element.querySelectorAll('div:first');
         expect(container.css('position')).toBe('relative');
         expect(container.css('height')).toBe(fixture.componentInstance.height);
         expect(container.css('width')).toBe(fixture.componentInstance.width);
@@ -95,9 +93,9 @@ describe('ChartCanvasComponent:', () => {
         expect(fixture.componentInstance.canvasContainer.width).toBe(fixture.componentInstance.width);
         expect(fixture.componentInstance.canvasContainer.height).toBe(fixture.componentInstance.height);
         expect(fixture.componentInstance.canvasContainer.type).toBe(fixture.componentInstance.type);
-        expect(fixture.componentInstance.canvasContainer.zIndex).toBe(fixture.componentInstance.zIndex);
+        expect(fixture.componentInstance.canvasContainer.zIndex).toBe(fixture.componentInstance.zIndex);*/
 
         done();
-      });*/
+      });
   });
 });
