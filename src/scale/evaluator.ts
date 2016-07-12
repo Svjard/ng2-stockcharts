@@ -20,6 +20,8 @@ export interface EvaluatorConfig {
   indexMutator: any;
 };
 
+
+
 export class Evaluator {
   private config: EvaluatorConfig;
 
@@ -86,7 +88,7 @@ export class Evaluator {
         plotData = filteredData;
         domain = realXAccessor === xAccessor ? inputDomain : [realXAccessor(first(plotData)), realXAccessor(last(plotData))];
       } else {
-        plotData = currentPlotData || filteredData.slice(filteredData.length - this.showMax(width));
+        plotData = currentPlotData || filteredData.slice(filteredData.length - Evaluator.showMax(width));
         domain = currentDomain || [realXAccessor(first(plotData)), realXAccessor(last(plotData))];
       }
 

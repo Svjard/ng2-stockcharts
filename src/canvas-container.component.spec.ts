@@ -12,29 +12,52 @@ import {
   TestComponentBuilder
 } from '@angular/compiler/testing';
 import {
-  CanvasContainerComponent
-} from './canvas-container.component';
+  ChartCanvasComponent
+} from './chart-canvas.component';
 import {
-  ChartType
+  ChartType, noop
 } from './utils';
+import * as d3 from 'd3';
 
 @Component({
   template: `
-  <ng-canvas-container
+  <ng-chart-canvas
     [width]="width"
     [height]="height"
+    [margin]="margin"
     [type]="type"
-    [zindex]="zindex">
-  </ng-canvas-container>`,
-  directives: [CanvasContainerComponent]
+    [data]="data"
+    [calculator]="calculator"
+    [xAccessor]="xAccessor"
+    [xExtents]="xExtents"
+    [className]="className"
+    [seriesName]="seriesName"
+    [zIndex]="zIndex"
+    [flipXScale]="flipXScale"
+    [padding]="padding"
+    [responsive]="responsive"
+    [xScale]="xScale">
+  </ng-chart-canvas>`,
+  directives: [ChartCanvasComponent]
 })
 export class TestComponent {
   width: number = 320;
   height: number = 320;
+  margin: { left: number, top: number, bottom: number, right: number } = { left: 0, top: 0, bottom: 0, right: 0 };
   type: ChartType = ChartType.SVG;
-  zindex: number = 3;
-
-  @ViewChild(CanvasContainerComponent) canvasContainer: CanvasContainerComponent;
+  // @TODO -- This is a hack for now, need to have real data loaded from file via d3 methods
+  data: any = [{x: '2016-07-08', open: 37.529999, high: 37.84, low: 37.060001, close: 37.740002, volume: 8782900, adjClose: 37.740002}];
+  calculator: any = noop;
+  xAccessor: any = d => d.x;
+  xScale: any = d3.scale.ordinal();
+  padding: number = 1;
+  zIndex: number = 2;
+  xExtents: any = [0, 100];
+  seriesName: string = "price";
+  flipXScale: boolean = false;
+  responsive: boolean = false;
+  
+  @ViewChild(ChartCanvasComponent) chartCanvas: ChartCanvasComponent;
 }
 
 describe('CanvasContainerComponent:', () => {
@@ -50,21 +73,22 @@ describe('CanvasContainerComponent:', () => {
   }));
 
   it('should display the correct default view', done => {
-    done();
-    /*tcb.createAsync(TestComponent)
+    tcb.createAsync(TestComponent)
       .then((fixture: ComponentFixture<TestComponent>) => {
         let element: any = fixture.nativeElement;
 
         fixture.detectChanges();
 
         expect(element.querySelectorAll('canvas').length).toBe(0);
-        let contextObj = fixture.componentInstance.canvasContainer.getCanvasContexts();
-        console.log('f', fixture.componentInstance);
+        let contextObj = fixture.componentInstance.chartCanvas.canvases.getCanvasContexts();
         expect(contextObj).toEqual(undefined);
+
+        fixture.componentInstance.type = ChartType.HYBRID;
 
         fixture.detectChanges();
 
         let canvases = element.querySelectorAll('canvas');
+        console.log('canvases', canvases);
         expect(canvases.length).toBe(4);
         for (let i of [0, 1, 2, 3]) {
           expect(canvases[i].width).toBe(320);
@@ -72,7 +96,7 @@ describe('CanvasContainerComponent:', () => {
         }
 
         done();
-      });*/
+      });
   });
 
   it('should handle screen resize', done => {

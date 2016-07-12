@@ -4,7 +4,7 @@ import {
   ChangeDetectionStrategy, ChangeDetectorRef, NgZone,
   SimpleChange, forwardRef
 } from '@angular/core';
-import { ChartType, identity, shallowEqual, isDefined, isNotDefined } from './utils';
+import { ChartType, BoxModel, identity, shallowEqual, isDefined, isNotDefined } from './utils';
 import { EvaluatorConfig, Evaluator } from './scale/evaluator';
 import * as d3 from 'd3';
 import {
@@ -69,15 +69,15 @@ const tooltipStyle = `
   template: `
     <div [ngStyle]="setContainerStyles()" class="{{className}}" >
       <ng-canvas-container [width]="width" [height]="height" [type]="type" [zIndex]="zIndex"></ng-canvas-container>
-      <svg class="{{className}}" [attr.width]="width" [attr.height]="height" [ngStyle]="setSvgStyles()">
+      <svg [ngClass]="setSvgClass()" [attr.width]="width" [attr.height]="height" [ngStyle]="setSvgStyles()">
         <style>{{getCursorStyle()}}</style>
-        <defs>
-          <clipPath id="chart-area-clip">
-            <rect x="0" y="0" [attr.width]="dimensions.width" [attr.height]="dimensions.height" />
-          </clipPath>
-        </defs>
-        <g [attr.transform]="finalTransform">
-        </g>
+        <svg:defs>
+          <svg:clipPath id="chart-area-clip">
+            <svg:rect x="0" y="0" [attr.width]="dimensions.width" [attr.height]="dimensions.height" />
+          </svg:clipPath>
+        </svg:defs>
+        <svg:g [attr.transform]="finalTransform">
+        </svg:g>
       </svg>
     </div>
   `,
@@ -133,6 +133,8 @@ export class ChartCanvasComponent implements OnInit, OnChanges, OnDestroy {
     this.dimensions = getDimensions(this);
     this.calculateState();
 
+    console.log('main', this.responsive, this.dimensions, this.width);
+
     if (this.responsive) {
       window.addEventListener('resize', this.handleWindowResize);
       this.handleWindowResize();
@@ -178,7 +180,7 @@ export class ChartCanvasComponent implements OnInit, OnChanges, OnDestroy {
     return styles;
   }
 
-  private setSvgStyle(): any {
+  private setSvgStyles(): any {
     let styles = {
       'position': 'absolute',
       'zIndex': this.zIndex + 5
@@ -204,6 +206,10 @@ export class ChartCanvasComponent implements OnInit, OnChanges, OnDestroy {
     if (this.canvases) {
       return this.canvases.getCanvasContexts();
     }
+  }
+
+  public setSvgClass(): string {
+    return this.className;
   }
 
   public isChartHybrid(): boolean {
