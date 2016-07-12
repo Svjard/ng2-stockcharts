@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, Host } from '@angular/core';
-import { AxisAlignment, YAxisOrientation } from '../utils';
+import { AxisAlignment, YAxisOrientation } from '../types';
 import { AxisComponent } from 'axis.component';
 import { ChartComponent } from '../chart.component';
 

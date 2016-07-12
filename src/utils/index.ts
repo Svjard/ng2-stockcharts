@@ -211,47 +211,6 @@ export function shallowEqual(a: any, b: any): boolean {
   return numKeysA === numKeysB;
 }
 
-
-export enum YMousePointerDisplayLocation {
-  LEFT = 1,
-  RIGHT
-};
-
-export enum AxisAlignment {
-  TOP = 1,
-  BOTTOM,
-  MIDDLE
-};
-
-export enum Orientation {
-  TOP = 1,
-  BOTTOM,
-  LEFT,
-  RIGHT
-};
-
-export enum XAxisOrientation {
-  TOP = 1,
-  BOTTOM
-};
-
-export enum YAxisOrientation {
-  LEFT = 1,
-  RIGHT
-};
-
-export enum ChartType {
-  SVG = 1,
-  HYBRID
-};
-
-export interface BoxModel {
-  left?: number;
-  top?: number;
-  bottom?: number;
-  right?: number;
-}
-
 export function identity<T>(arg: T): T {
   return arg;
 }

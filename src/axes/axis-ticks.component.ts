@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges } from '@angular/core';
-import { Orientation } from '../utils';
+import { Orientation } from '../types';
 import { hexToRGBA, isNotDefined, identity } from '../utils';
 
 function tickTransform_svg_axisX(scale, tick) {
@@ -13,17 +13,17 @@ function tickTransform_svg_axisY(scale, tick) {
 @Component({
   selector: 'ng-axis-tick',
   template: `
-    <g class="{{className}}" [attr.transform]="finalTransform">
-      <line shape-rendering="crispEdges" [attr.opacity]="tickStrokeOpacity" [attr.stroke]="tickStroke" [attr.x2]="x2" [attr.y2]="y2" />
-      <text
+    <svg:g [ngClass]="setTickClass()" [attr.transform]="finalTransform">
+      <svg:line shape-rendering="crispEdges" [attr.opacity]="tickStrokeOpacity" [attr.stroke]="tickStroke" [attr.x2]="x2" [attr.y2]="y2" />
+      <svg:text
         [attr.dy]="dy" [attr.x]="x" [attr.y]="y"
         [attr.fill]="tickStroke"
         [attr.font-size]="fontSize"
         [attr.font-family]="fontFamily"
         [attr.text-anchor]="textAnchor">
         <ng-content></ng-content>
-      </text>
-    </g>
+      </svg:text>
+    </svg:g>
   `
 })
 export class AxisTickComponent implements OnChanges {
@@ -44,8 +44,11 @@ export class AxisTickComponent implements OnChanges {
   private finalTransform: string;
 
   ngOnChanges() {
-    this.className = this.defaultClassName.concat(this.className);
     this.finalTransform = `translate(${this.transform[0]}, ${this.transform[1]})`;
+  }
+
+  setTickClass(): string {
+    return this.defaultClassName.concat(this.className || '');
   }
 
   drawOnCanvasStatic(ctx, result) {
@@ -66,13 +69,13 @@ export class AxisTickComponent implements OnChanges {
 @Component({
   selector: 'ng-axis-ticks',
   template: `
-    <g>
+    <svg:g>
       <ng-axis-tick *ngFor="let tick of ticks" [transform]="result.tickTransform(scale, tick)"
         [tickStroke]="tickStroke" [tickStrokeOpacity]="tickStrokeOpacity"
         [dy]="result.dy" [x]="result.x" [y]="result.y"
         [x2]="result.x2" [y2]="result.y2" [textAnchor]="textAnchor"
         [fontSize]="fontSize" [fontFamily]="fontFamily">{{result.format(tick)}}</ng-axis-tick>
-    </g>
+    </svg:g>
   `
 })
 export class AxisTicksComponent implements OnChanges {

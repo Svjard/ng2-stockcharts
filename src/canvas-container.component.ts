@@ -1,6 +1,6 @@
-import { Component, Input, ElementRef, OnInit, ViewChild, Host, Inject, forwardRef } from '@angular/core';
+import { Component, Input, ElementRef, ViewChild, Host, Inject, forwardRef } from '@angular/core';
 import { ChartCanvasComponent } from './chart-canvas.component';
-import { ChartType } from './utils';
+import { ChartType } from './types';
 
 export interface CanvasContext {
   axes: CanvasRenderingContext2D;
@@ -27,7 +27,7 @@ export interface CanvasContext {
     }
   `]
 })
-export class CanvasContainerComponent implements OnInit {
+export class CanvasContainerComponent {
   @Input() public width: number;
   @Input() public height: number;
   @Input() public type: ChartType = ChartType.SVG;
@@ -46,10 +46,6 @@ export class CanvasContainerComponent implements OnInit {
   canvas_interactive: ElementRef;
 
   constructor(@Host() @Inject(forwardRef(() => ChartCanvasComponent)) private chartCanvas: ChartCanvasComponent) {}
-
-  ngOnInit() {
-    console.log('a', this.width);
-  }
 
   public getCanvasContexts(): CanvasContext  {
     if (!this.chartCanvas.isChartHybrid()) {

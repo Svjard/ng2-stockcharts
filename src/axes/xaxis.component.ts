@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AxisAlignment, XAxisOrientation } from '../utils';
+import { AxisAlignment, XAxisOrientation } from '../types';
 import { AxisComponent } from 'axis.component';
 
 @Component({

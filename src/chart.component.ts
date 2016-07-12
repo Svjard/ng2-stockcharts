@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, ElementRef, OnChanges, Host } from '@angular/core';
 import { ChartCanvasComponent } from './chart-canvas.component';
 import * as d3 from 'd3';
-import { YMousePointerDisplayLocation, BoxModel } from './utils';
+import { YMousePointerDisplayLocation, BoxModel } from './interfaces.d';
 
 interface OriginFunc {
   (): [number, number]

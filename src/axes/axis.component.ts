@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges, ViewChild, ElementRef, Host } from '@angular/core';
-import { Orientation, isDefined } from '../utils';
+import { isDefined } from '../utils';
+import { Orientation } from '../types';
 import { ChartComponent } from '../chart.component';
 import { AxisLineComponent } from './axis-line.component';
 import { AxisTicksComponent } from './axis-ticks.component';
@@ -8,10 +9,10 @@ import * as d3 from 'd3';
 @Component({
   selector: 'ng-axis',
   template: `
-    <g *ngIf="!chartCanvas.isChartHybrid()" class="{{className}}" [attr.transform]="finalTransform">
+    <svg:g *ngIf="!chartCanvas.isChartHybrid()" [ngClass]="setAxisClass()" [attr.transform]="finalTransform">
       <ng-axis-tick #axisTicks *ngIf="showTicks"></ng-axis-tick>
       <ng-axis-line #axisLine *ngIf="showDomain"></ng-axis-line>
-    </g>
+    </svg:g>
   `,
   directives: [AxisLineComponent, AxisTicksComponent]
 })
@@ -44,11 +45,14 @@ export class AxisComponent implements OnChanges {
   constructor(@Host() private chart: ChartComponent) {}
 
   ngOnChanges() {
-    this.className = this.defaultClassName.concat(this.className);
     this.finalTransform = `translate(${this.transform[0]}, ${this.transform[1]})`;
     if (this.chart.chartCanvas.isChartHybrid() && isDefined(this.chart.chartCanvas.getCanvases)) {
       this.drawOnCanvas(this);
     }
+  }
+
+  setAxisClass(): string {
+    return this.defaultClassName.concat(this.className || '');
   }
 
   public drawOnCanvas(component: AxisComponent) {

@@ -14,7 +14,7 @@ import {
 import {
   AxisTickComponent, AxisTicksComponent
 } from './axis-ticks.component';
-import { Orientation } from '../utils';
+import { Orientation } from '../types';
 import * as d3 from 'd3';
 
 @Component({

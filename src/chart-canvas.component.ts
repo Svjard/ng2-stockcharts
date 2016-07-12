@@ -4,7 +4,8 @@ import {
   ChangeDetectionStrategy, ChangeDetectorRef, NgZone,
   SimpleChange, forwardRef
 } from '@angular/core';
-import { ChartType, BoxModel, identity, shallowEqual, isDefined, isNotDefined } from './utils';
+import { ChartType, BoxModel } from './types';
+import { identity, shallowEqual, isDefined, isNotDefined } from './utils';
 import { EvaluatorConfig, Evaluator } from './scale/evaluator';
 import * as d3 from 'd3';
 import {
@@ -67,7 +68,7 @@ const tooltipStyle = `
 @Component({
   selector: 'ng-chart-canvas',
   template: `
-    <div [ngStyle]="setContainerStyles()" class="{{className}}" >
+    <div [ngStyle]="setContainerStyles()" [className]="setSvgClass()">
       <ng-canvas-container [width]="width" [height]="height" [type]="type" [zIndex]="zIndex"></ng-canvas-container>
       <svg [ngClass]="setSvgClass()" [attr.width]="width" [attr.height]="height" [ngStyle]="setSvgStyles()">
         <style>{{getCursorStyle()}}</style>
@@ -85,7 +86,7 @@ const tooltipStyle = `
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChartCanvasComponent implements OnInit, OnChanges, OnDestroy {
-  @Input() public width: number;
+  @Input() public width: number = 60;
   @Input() public height: number;
   @Input() public margin: { left: number, top: number, bottom: number, right: number } = { top: 20, right: 30, bottom: 30, left: 80 };
   @Input() public type: ChartType = ChartType.HYBRID;
@@ -94,7 +95,8 @@ export class ChartCanvasComponent implements OnInit, OnChanges, OnDestroy {
   @Input() public calculator: any = [];
   @Input() public xAccessor: (d: any) => any = identity;
   @Input() public xExtents: any = [d3.min, d3.max];
-  @Input() public className: string = 'ng2-stockcharts';
+  @Input() public className: string;
+  @Input() public defaultClassName: string = 'ng2-stockcharts ';
   @Input() public seriesName: string;
   @Input() public zIndex: number = 1;
   @Input() public postCalculator: any = identity;
@@ -130,11 +132,6 @@ export class ChartCanvasComponent implements OnInit, OnChanges, OnDestroy {
   constructor(private elRef: ElementRef, private cdr: ChangeDetectorRef, private zone: NgZone) {}
 
   ngOnInit() {
-    this.dimensions = getDimensions(this);
-    this.calculateState();
-
-    console.log('main', this.responsive, this.dimensions, this.width);
-
     if (this.responsive) {
       window.addEventListener('resize', this.handleWindowResize);
       this.handleWindowResize();
@@ -174,8 +171,8 @@ export class ChartCanvasComponent implements OnInit, OnChanges, OnDestroy {
   private setContainerStyles(): any {
     let styles = {
       'position': 'relative',
-      'height': this.height,
-      'width': this.width
+      'height': `${this.height}px`,
+      'width': `${this.width}px`
     };
     return styles;
   }
@@ -209,7 +206,7 @@ export class ChartCanvasComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   public setSvgClass(): string {
-    return this.className;
+    return this.defaultClassName.concat(this.className || '');
   }
 
   public isChartHybrid(): boolean {

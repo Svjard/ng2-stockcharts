@@ -1,19 +1,20 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { first, last, hexToRGBA, Orientation } from '../utils';
+import { first, last, hexToRGBA } from '../utils';
+import { Orientation } from '../types';
 import { AxisComponent } from './axis.component';
 
 @Component({
   selector: 'ng-axis-line',
   template: `
-    <path
-      class="{{className}}"
+    <svg:path
+      [ngClass]="setPathClass()"
       [attr.shape-rendering]="shapeRendering"
       [attr.d]="d"
       [attr.fill]="fill"
       [attr.opacity]="opacity"
       [attr.stroke]="stroke"
       [attr.stroke-width]="strokeWidth">
-    </path>
+    </svg:path>
   `
 })
 export class AxisLineComponent {
@@ -38,6 +39,10 @@ export class AxisLineComponent {
     } else {
       this.d = "M" + this.sign * this.outerTickSize + "," + this.range[0] + "H0V" + this.range[1] + "H" + this.sign * this.outerTickSize;
     }
+  }
+
+  setPathClass(): string {
+    return this.className || '';
   }
 
   drawOnCanvasStatic(ctx: CanvasRenderingContext2D) {
