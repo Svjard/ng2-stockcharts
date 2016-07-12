@@ -144,7 +144,7 @@ module.exports = function(config) {
     concurrency: 1
   });
 
-  if (process.env.TRAVIS_CI) {
+  if (process.env.TRAVIS) {
     config.browsers = ['Chrome_travis_ci'];
   }
 };
