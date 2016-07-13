@@ -32,7 +32,7 @@ export class AxisLineComponent {
   public d: string;
 
   ngOnInit() {
-    console.log('axis-line', this.range);
+    console.log('for sure is outerTickSize', this.outerTickSize);
     this.calculateState();
   }
 

@@ -25,11 +25,11 @@ function segment(points0, points1, ctx) {
 @Component({
   selector: 'ng-area',
   template: `
-    <path [d]={{d}} stroke={{stroke}} fill={{fill}} className={{className}} [opacity]={{opacity}} />
+    <svg:path [attr.d]="d" [attr.stroke]="stroke" [attr.fill]="fill" [className]="className" [attr.opacity]="opacity" />
   `
 })
 export class Area {
-  @Input() public className: string = 'area ';
+  @Input() public className: string = 'ng2-stockharts-area ';
   @Input() public xScale: any;
   @Input() public yScale: any;
   @Input() public xAccessor: any;
@@ -40,6 +40,8 @@ export class Area {
   @Input() public opacity: number = 1;
   @Input() public base: any = (yScale) => first(yScale.range());
   @Input() public defined: any = d => !isNaN(d);
+
+  private d: any;
 
   ngOnChanges() {
     this.className = this.className.concat(isDefined(this.stroke) ? '' : ' line-stroke');
@@ -60,18 +62,18 @@ export class Area {
     return areaSeries(this.plotData);
   }
 
-  static drawOnCanvas(area, ctx, xScale, yScale, plotData) {
-    let newBase = d3.functor(area.base);
+  drawOnCanvas(ctx, xScale, yScale, plotData) {
+    let newBase = d3.functor(this.base);
 
-    ctx.fillStyle = hexToRGBA(area.fill, area.opacity);
-    ctx.strokeStyle = area.stroke;
+    ctx.fillStyle = hexToRGBA(this.fill, this.opacity);
+    ctx.strokeStyle = this.stroke;
 
     let points0 = [], points1 = [];
 
     for (let i = 0; i < plotData.length; i++) {
       let d = plotData[i];
-      if (area.defined(area.yAccessor(d), i)) {
-        let [x, y1, y0] = [xScale(area.xAccessor(d)), yScale(area.yAccessor(d)), newBase(yScale, d)];
+      if (this.defined(this.yAccessor(d), i)) {
+        let [x, y1, y0] = [xScale(this.xAccessor(d)), yScale(this.yAccessor(d)), newBase(yScale, d)];
 
         points0.push([x, y0]);
         points1.push([x, y1]);
