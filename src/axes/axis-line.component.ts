@@ -31,41 +31,46 @@ export class AxisLineComponent {
   public sign: number;
   public d: string;
 
-  ngOnChanges() {
+  ngOnInit() {
+    console.log('axis-line', this.range);
+    this.calculateState();
+  }
+
+  private calculateState() {
     this.sign = this.orient === Orientation.TOP || this.orient === Orientation.LEFT ? -1 : 1;
 
     if (this.orient === Orientation.BOTTOM || this.orient === Orientation.TOP) {
-      this.d = "M" + this.range[0] + "," + this.sign * this.outerTickSize + "V0H" + this.range[1] + "V" + this.sign * this.outerTickSize;
+      this.d = `M${this.range[0]},${this.sign * this.outerTickSize}V0H${this.range[1]}V${this.sign * this.outerTickSize}`;
     } else {
-      this.d = "M" + this.sign * this.outerTickSize + "," + this.range[0] + "H0V" + this.range[1] + "H" + this.sign * this.outerTickSize;
+      this.d = `M${this.sign * this.outerTickSize},${this.range[0]}H0V${this.range[1]}H${this.sign * this.outerTickSize}`;
     }
+
+    console.log('calculateState', this.orient, this.range, this.sign, this.outerTickSize, this.d);
   }
 
   setPathClass(): string {
     return this.className || '';
   }
 
-  drawOnCanvasStatic(ctx: CanvasRenderingContext2D) {
-    let { orient, outerTickSize, stroke, strokeWidth, opacity, range } = this;
+  drawOnCanvas(ctx: CanvasRenderingContext2D) {
+    let sign: number = this.orient === Orientation.TOP || this.orient === Orientation.LEFT ? -1 : 1;
+    let xAxis: boolean = (this.orient === Orientation.BOTTOM || this.orient === Orientation.TOP);
 
-    let sign = orient === Orientation.TOP || orient === Orientation.LEFT ? -1 : 1;
-    let xAxis = (orient === Orientation.BOTTOM || orient === Orientation.TOP);
-
-    ctx.lineWidth = strokeWidth;
-    ctx.strokeStyle = hexToRGBA(stroke, opacity);
+    ctx.lineWidth = this.strokeWidth;
+    ctx.strokeStyle = hexToRGBA(this.stroke, this.opacity);
 
     ctx.beginPath();
 
     if (xAxis) {
-      ctx.moveTo(range[0], sign * outerTickSize);
-      ctx.lineTo(range[0], 0);
-      ctx.lineTo(range[1], 0);
-      ctx.lineTo(range[1], sign * outerTickSize);
+      ctx.moveTo(this.range[0], sign * this.outerTickSize);
+      ctx.lineTo(this.range[0], 0);
+      ctx.lineTo(this.range[1], 0);
+      ctx.lineTo(this.range[1], sign * this.outerTickSize);
     } else {
-      ctx.moveTo(sign * outerTickSize, range[0]);
-      ctx.lineTo(0, range[0]);
-      ctx.lineTo(0, range[1]);
-      ctx.lineTo(sign * outerTickSize, range[1]);
+      ctx.moveTo(sign * this.outerTickSize, this.range[0]);
+      ctx.lineTo(0, this.range[0]);
+      ctx.lineTo(0, this.range[1]);
+      ctx.lineTo(sign * this.outerTickSize, this.range[1]);
     }
 
     ctx.stroke();

@@ -13,12 +13,12 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 };
 var core_1 = require('@angular/core');
 var chart_canvas_component_1 = require('./chart-canvas.component');
-var utils_1 = require('./utils');
+var types_1 = require('./types');
 ;
 var CanvasContainerComponent = (function () {
     function CanvasContainerComponent(chartCanvas) {
         this.chartCanvas = chartCanvas;
-        this.type = utils_1.ChartType.SVG;
+        this.type = types_1.ChartType.SVG;
     }
     CanvasContainerComponent.prototype.getCanvasContexts = function () {
         if (!this.chartCanvas.isChartHybrid()) {
@@ -66,13 +66,15 @@ var CanvasContainerComponent = (function () {
     CanvasContainerComponent = __decorate([
         core_1.Component({
             selector: 'ng-canvas-container',
-            template: "\n    <div *ngIf=\"chartCanvas.isChartHybrid()\">\n      <canvas #bg class=\"ng2-stockcharts-canvas\" [attr.width]=\"{{width}}\" [attr.height]=\"{{height}}\"></canvas>\n      <canvas #canvas_axes class=\"ng2-stockcharts-canvas\" [attr.width]=\"{{width}}\" [attr.height]=\"{{height}}\"></canvas>\n      <canvas #canvas_mouse_coordinates class=\"ng2-stockcharts-canvas\" [attr.width]=\"{{width}}\" [attr.height]=\"{{height}}\"></canvas>\n      <canvas #canvas_interactive class=\"ng2-stockcharts-canvas\" [attr.width]=\"{{width}}\" [attr.height]=\"{{height}}\"></canvas>\n    </div>\n  ",
+            template: "\n    <div *ngIf=\"chartCanvas.isChartHybrid()\">\n      <canvas #bg class=\"ng2-stockcharts-canvas\" [attr.width]=\"width\" [attr.height]=\"height\"></canvas>\n      <canvas #canvas_axes class=\"ng2-stockcharts-canvas\" [attr.width]=\"width\" [attr.height]=\"height\"></canvas>\n      <canvas #canvas_mouse_coordinates class=\"ng2-stockcharts-canvas\" [attr.width]=\"width\" [attr.height]=\"height\"></canvas>\n      <canvas #canvas_interactive class=\"ng2-stockcharts-canvas\" [attr.width]=\"width\" [attr.height]=\"height\"></canvas>\n    </div>\n  ",
             styles: ["\n    .ng2-stockcharts-canvas {\n      position: absolute;\n      top: 0;\n      left: 0;\n    }\n  "]
         }),
-        __param(0, Host()), 
+        __param(0, core_1.Host()),
+        __param(0, core_1.Inject(core_1.forwardRef(function () { return chart_canvas_component_1.ChartCanvasComponent; }))), 
         __metadata('design:paramtypes', [chart_canvas_component_1.ChartCanvasComponent])
     ], CanvasContainerComponent);
     return CanvasContainerComponent;
 }());
 exports.CanvasContainerComponent = CanvasContainerComponent;
 ;
+//# sourceMappingURL=canvas-container.component.js.map

@@ -1,8 +1,8 @@
 import * as d3 from 'd3';
 import flattenDeep from 'lodash.flattendeep';
-
+import { BoxModel } from '../types';
 import { EventCapture } from '../event-capture.component';
-import { Chart } from '../chart.component';
+import { ChartComponent } from '../chart.component';
 
 import {
   isObject,
@@ -11,16 +11,26 @@ import {
   isDefined,
 } from './index';
 
-export function getChartOrigin(origin, contextWidth, contextHeight) {
-  const originCoordinates = typeof origin === 'function'
-    ? origin(contextWidth, contextHeight)
-    : origin;
+interface OriginFunc {
+  (contextWidth: number, contextHeight: number): [number, number];
+}
+
+interface Dimensions {
+  width: number;
+  height: number;
+}
+
+export function getChartOrigin(origin: [number, number] | OriginFunc, contextWidth: number, contextHeight: number) {
+  const originCoordinates: [number, number] =
+    typeof origin === 'function'
+      ? origin(contextWidth, contextHeight)
+      : origin;
   return originCoordinates;
 }
 
-export function getDimensions({ width, height }, chartProps) {
-  const chartWidth = (chartProps.width || width);
-  const chartHeight = (chartProps.height || height);
+export function getDimensions({ width: number, height: number }, chart: ChartComponent) {
+  const chartWidth: number = (chart.width || width);
+  const chartHeight: number = (chart.height || height);
 
   return {
     availableWidth: width,
@@ -30,14 +40,14 @@ export function getDimensions({ width, height }, chartProps) {
   };
 }
 
-function values(func) {
-  return (d) => {
+function values<T>(func): Array<T> {
+  return (d: T) => {
     let obj = func(d);
     return isObject(obj) ? Object.keys(obj).map(key => obj[key]) : obj;
   };
 }
 
-export function getNewChartConfig(innerDimension, children) {
+export function getNewChartConfig(innerDimension: Dimensions, children) {
   return children.map((each) => {
     if (each.type === Chart) {
       var { id, origin, padding, yExtents: yExtentsProp, yScale, flipYScale } = each.props;
@@ -46,7 +56,6 @@ export function getNewChartConfig(innerDimension, children) {
       var { yMousePointerRectWidth: rectWidth, yMousePointerRectHeight: rectHeight } = each.props;
       var mouseCoordinates = { at, yDisplayFormat, rectHeight, rectWidth };
       var yExtents = (Array.isArray(yExtentsProp) ? yExtentsProp : [yExtentsProp]).map(d3.functor);
-      // console.log(yExtentsProp, yExtents);
       return {
         id,
         origin: d3.functor(origin)(availableWidth, availableHeight),
@@ -73,9 +82,11 @@ export function getCurrentCharts(chartConfig, mouseXY) {
   return currentCharts;
 }
 
-function setRange(scale, height, padding, flipYScale) {
+function setRange(scale, height: number, padding: number | BoxModel, flipYScale: boolean) {
   if (scale.rangeRoundPoints) {
-    if (isNaN(padding)) throw new Error("padding has to be a number for ordinal scale");
+    if (isNaN(padding)) {
+      throw new Error('Padding has to be a number for ordinal scale');
+    }
     scale.rangeRoundPoints(flipYScale ? [0, height] : [height, 0], padding);
   } else {
     var { top, bottom } = isNaN(padding)

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, Host } from '@angular/core';
-import { AxisAlignment, YAxisOrientation } from '../types';
-import { AxisComponent } from 'axis.component';
+import { YAxisAlignment, YAxisOrientation } from '../types';
+import { AxisComponent } from './axis.component';
 import { ChartComponent } from '../chart.component';
 
 @Component({
@@ -8,48 +8,63 @@ import { ChartComponent } from '../chart.component';
   template: `
     <ng-axis
       [className]="className"
-      [transform]={[axisLocation, 0]}
-      [range]={[0, this.context.height]}
-      [tickFormat]={{tickFormat}} ticks={{[ticks]}} tickValues={{tickValues}}
-      [scale]={{yScale}></ng-axis>
-  `,
-  directives: [AxisComponent]
+      [transform]="transform"
+      [range]="range"
+      [tickFormat]="tickFormat" [ticks]="ticks" [tickValues]="tickValues"
+      [scale]="yScale"></ng-axis>`,
+  directives: [AxisComponent],
+  viewProviders: [ChartComponent]
 })
-export class YAxis {
-  @Input() public axisAt: number || AxisAlignment;
+export class YAxisComponent {
+  @Input() public axisAt: YAxisAlignment;
   @Input() public orient: YAxisOrientation;
   @Input() public innerTickSize: number;
-  @Input() public outerTickSize: number;
+  @Input() public outerTickSize: number = 1;
   @Input() public tickFormat: any;
   @Input() public tickPadding: number;
   @Input() public tickSize: number;
   @Input() public ticks: number = 10;
   @Input() public tickValues: Array<number>;
-  @Input() public percentScale: boolean;
+  @Input() public percentScale: boolean = false;
   @Input() public showTicks: boolean = true;
   @Input() public showGrid: boolean = false;
   @Input() public showDomain: boolean = false;
   @Input() public className: string = 'ng2-stockcharts-yaxis';
 
-  public axisLocation: number;
+  private yScale: any;
+  private range: [number, number];
+  private transform: [number, number];
 
   constructor(@Host() private chart: ChartComponent) {}
 
+  ngOnInit() {
+    this.calculateState();
+  }
+
   ngOnChanges() {
+    this.calculateState();
+  }
+
+  private calculateState() {
     this.yScale = (this.percentScale) ? this.chart.yScale.copy().domain([0, 1]) : this.chart.yScale;
 
     this.tickValues = this.tickValues || this.chart.yTicks;
 
-    if (this.axisAt === AxisAlignment.LEFT) {
-      this.axisLocation = 0;
+    let axisLocation: number;
+    console.log('test', this.axisAt);
+    if (this.axisAt === YAxisAlignment.LEFT) {
+      console.log('test a', 1);
+      axisLocation = 0;
+    } else if (this.axisAt ===  YAxisAlignment.RIGHT) {
+      console.log('test b', this.chart.width);
+      axisLocation = this.chart.width;
+    } else if (this.axisAt ===  YAxisAlignment.MIDDLE) {
+      console.log('test c', (this.chart.width) / 2);
+      axisLocation = (this.chart.width) / 2;
     }
-    else if (axisAt ===  AxisAlignment.RIGHT) {
-      this.axisLocation = this.context.width;
-    }
-    else if (axisAt ===  AxisAlignment.MIDDLE) {
-      this.axisLocation = (this.context.width) / 2;
-    }
-    else {
-      this.axisLocation = this.axisAt;
-    }
+
+    this.range = [0, this.chart.height];
+    console.log('as num', axisLocation);
+    this.transform = [axisLocation, 0];
+  }
 }

@@ -184,48 +184,10 @@ function shallowEqual(a, b) {
     return numKeysA === numKeysB;
 }
 exports.shallowEqual = shallowEqual;
-(function (YMousePointerDisplayLocation) {
-    YMousePointerDisplayLocation[YMousePointerDisplayLocation["LEFT"] = 1] = "LEFT";
-    YMousePointerDisplayLocation[YMousePointerDisplayLocation["RIGHT"] = 2] = "RIGHT";
-})(exports.YMousePointerDisplayLocation || (exports.YMousePointerDisplayLocation = {}));
-var YMousePointerDisplayLocation = exports.YMousePointerDisplayLocation;
-;
-(function (AxisAlignment) {
-    AxisAlignment[AxisAlignment["TOP"] = 1] = "TOP";
-    AxisAlignment[AxisAlignment["BOTTOM"] = 2] = "BOTTOM";
-    AxisAlignment[AxisAlignment["MIDDLE"] = 3] = "MIDDLE";
-})(exports.AxisAlignment || (exports.AxisAlignment = {}));
-var AxisAlignment = exports.AxisAlignment;
-;
-(function (Orientation) {
-    Orientation[Orientation["TOP"] = 1] = "TOP";
-    Orientation[Orientation["BOTTOM"] = 2] = "BOTTOM";
-    Orientation[Orientation["LEFT"] = 3] = "LEFT";
-    Orientation[Orientation["RIGHT"] = 4] = "RIGHT";
-})(exports.Orientation || (exports.Orientation = {}));
-var Orientation = exports.Orientation;
-;
-(function (XAxisOrientation) {
-    XAxisOrientation[XAxisOrientation["TOP"] = 1] = "TOP";
-    XAxisOrientation[XAxisOrientation["BOTTOM"] = 2] = "BOTTOM";
-})(exports.XAxisOrientation || (exports.XAxisOrientation = {}));
-var XAxisOrientation = exports.XAxisOrientation;
-;
-(function (YAxisOrientation) {
-    YAxisOrientation[YAxisOrientation["LEFT"] = 1] = "LEFT";
-    YAxisOrientation[YAxisOrientation["RIGHT"] = 2] = "RIGHT";
-})(exports.YAxisOrientation || (exports.YAxisOrientation = {}));
-var YAxisOrientation = exports.YAxisOrientation;
-;
-(function (ChartType) {
-    ChartType[ChartType["SVG"] = 1] = "SVG";
-    ChartType[ChartType["HYBRID"] = 2] = "HYBRID";
-})(exports.ChartType || (exports.ChartType = {}));
-var ChartType = exports.ChartType;
-;
 function identity(arg) {
     return arg;
 }
 exports.identity = identity;
 function noop() { }
 exports.noop = noop;
+//# sourceMappingURL=index.js.map

@@ -12,49 +12,41 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 var core_1 = require('@angular/core');
-var charts_container_component_1 = require('./charts-container.component');
+var chart_canvas_component_1 = require('./chart-canvas.component');
 var d3 = require('d3');
-var utils_1 = require('./utils');
+var types_1 = require('./types');
 var ChartComponent = (function () {
-    function ChartComponent(chartsContainer) {
+    function ChartComponent(chartCanvas) {
+        this.chartCanvas = chartCanvas;
         this.id = 0;
         this.yScale = d3.scale.linear();
         this.flipYScale = false;
         this.padding = 0;
-        this.margin = 0;
-        this.show = true;
         this.yMousePointerRectWidth = 60;
         this.yMousePointerRectHeight = 20;
         this.transform = '';
-        this.container = chartsContainer;
+        this.origin = [0, 0];
     }
-    ChartComponent.prototype.yScale = function () {
+    ChartComponent.prototype.getYScale = function () {
         return this.yScale.copy();
     };
     ChartComponent.prototype.getContext = function () {
         var chartId = this.id;
         var _a = this, width = _a.width, height = _a.height;
-        var canvasOriginX = 0.5 + chartConfig.origin[0] + this.context.margin.left;
-        var canvasOriginY = 0.5 + chartConfig.origin[1] + this.context.margin.top;
+        var canvasOriginX = 0.5 + this.origin[0] + this.chartCanvas.margin.left;
+        var canvasOriginY = 0.5 + this.origin[1] + this.chartCanvas.margin.top;
         return { chartId: chartId, canvasOriginX: canvasOriginX, canvasOriginY: canvasOriginY, width: width, height: height };
     };
-    ChartComponent.prototype.ngOnInit = function () {
-        window.addEventListener('resize', this.handleWindowResize);
-        //let w = this.el.parentNode.clientWidth;
-        //this.width = w;
-    };
-    ChartComponent.prototype.handleWindowResize = function () {
-    };
     ChartComponent.prototype.ngOnChanges = function () {
-        this.transform = "translate(" + this.origin.x + ", " + this.origin.y + ")";
+        this.transform = "translate(" + this.origin[0] + ", " + this.origin[1] + ")";
     };
     __decorate([
         core_1.Input(), 
-        __metadata('design:type', Object)
+        __metadata('design:type', Number)
     ], ChartComponent.prototype, "height", void 0);
     __decorate([
         core_1.Input(), 
-        __metadata('design:type', Object)
+        __metadata('design:type', Number)
     ], ChartComponent.prototype, "width", void 0);
     __decorate([
         core_1.Input(), 
@@ -88,14 +80,6 @@ var ChartComponent = (function () {
         core_1.Input(), 
         __metadata('design:type', Object)
     ], ChartComponent.prototype, "padding", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Object)
-    ], ChartComponent.prototype, "margin", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Boolean)
-    ], ChartComponent.prototype, "show", void 0);
     ChartComponent = __decorate([
         core_1.Component({
             selector: 'ng-chart',
@@ -103,9 +87,9 @@ var ChartComponent = (function () {
             styleUrls: ['./chart.component.css']
         }),
         __param(0, core_1.Host()), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof charts_container_component_1.ChartsContainerComponent !== 'undefined' && charts_container_component_1.ChartsContainerComponent) === 'function' && _a) || Object])
+        __metadata('design:paramtypes', [chart_canvas_component_1.ChartCanvasComponent])
     ], ChartComponent);
     return ChartComponent;
-    var _a;
 }());
 exports.ChartComponent = ChartComponent;
+//# sourceMappingURL=chart.component.js.map

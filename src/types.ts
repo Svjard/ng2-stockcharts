@@ -20,6 +20,18 @@ export enum YAxisOrientation {
   RIGHT
 };
 
+export enum XAxisAlignment {
+  TOP = 1,
+  MIDDLE,
+  BOTTOM
+};
+
+export enum YAxisAlignment {
+  LEFT = 1,
+  MIDDLE,
+  RIGHT
+};
+
 export enum ChartType {
   SVG = 1,
   HYBRID

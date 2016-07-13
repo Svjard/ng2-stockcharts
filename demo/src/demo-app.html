@@ -1,6 +1,6 @@
 <div id="wrapper">
   <nav id="sidebar-nav" class="sidebar-nav">
-    <div id="sidebar-wrapper" class="sidebar-wrapper">
+    <div id="sidebar-wrapper" class="sidebar-wrapper" data-background="default">
       <ul id="side-nav" class="side-nav nav" style="display: block;">
         <li [ngClass]="{active: selectedTab === 'documentation'}" (click)="changeTab('documentation')">
           <a href="dashboard.html">
@@ -95,7 +95,7 @@
       </ul>
     </div>
   </nav>
-  <div id="container-wrapper" class="container-wrapper">
+  <div id="container-wrapper" class="container-wrapper" style="height: 100%;">
     <div id="container-navbar" class="container-navbar navbar">
       <div class="l-container-navbar">
         <a href="#" class="sidebar-minimalizer btn btn-theme">
@@ -115,18 +115,16 @@
       </div>
     </div>
     <div id="container-content" class="container-content">
-      <ChartCanvas width={width} height={400}
-        margin={{ left: 50, right: 50, top:10, bottom: 30 }}
-        seriesName="MSFT"
-        data={data} type="svg"
-        xAccessor={d => d.date} xScale={d3.time.scale()}
-        xExtents={[new Date(2011, 0, 1), new Date(2013, 0, 2)]}>
-      <Chart id={0} yExtents={d => d.close}>
-        <XAxis axisAt="bottom" orient="bottom" ticks={6}/>
-        <YAxis axisAt="left" orient="left" />
-        <AreaSeries yAccessor={(d) => d.close}/>
-      </Chart>
-    </ChartCanvas>
+      <ng-chart-canvas [width]="width" [height]="height"
+        [margin]="margin" [seriesName]="MSFT"
+        [data]="data" [type]="type"
+        [xAccessor]="xAccessor" [xScale]="xScale"
+        [xExtents]="xExtents">
+        <ng-chart [id]="id" [yExtents]="yExtents">
+          <ng-xaxis [axisAt]="xAxisAt" [orient]="xAxisOrient" [ticks]="ticks"></ng-xaxis>
+          <ng-yaxis [axisAt]="yAxisAt" [orient]="yAxisOrient"></ng-yaxis>
+        </ng-chart>
+      </ng-chart-canvas>
     </div>
   </div>
 </div>

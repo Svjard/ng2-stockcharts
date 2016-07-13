@@ -78,6 +78,7 @@ const tooltipStyle = `
           </svg:clipPath>
         </svg:defs>
         <svg:g [attr.transform]="finalTransform">
+          <ng-content></ng-content>
         </svg:g>
       </svg>
     </div>
@@ -222,6 +223,8 @@ export class ChartCanvasComponent implements OnInit, OnChanges, OnDestroy {
 
     var { plotData, domain } = filterData(extent, this.xAccessor);
 
+    console.log('domain', xScale, domain);
+
     return {
       plotData,
       filterData,
@@ -237,7 +240,7 @@ export class ChartCanvasComponent implements OnInit, OnChanges, OnDestroy {
     let wholeData = isDefined(this.plotFull) ? this.plotFull : this.xAccessor === identity;
 
     const dimensions = getDimensions(this);
-    
+
     let { xAccessor, displayXAccessor, xScale, filterData, lastItem } = Evaluator.evaluate(this.data,
       {
         xAccessor: this.xAccessor,

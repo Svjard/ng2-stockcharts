@@ -21,7 +21,6 @@ $box-shadow-2px: 2px 2px 2px rgba(0, 0, 0, 0.30), 0 1px 0 rgba(0, 0, 0, 0.05);
         padding: 18px 10px 19px 10px;
         font-size: 16px;
         @include box-shadow('2px 2px 2px rgba(0, 0, 0, 0.15), 0 1px 0 rgba(0, 0, 0, 0.05)');
-        background: url("../img/sidebar-logo-skin.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
         background: none repeat scroll 0 0 rgba(0, 0, 0, 0.25);
         img {
             width: 50px;

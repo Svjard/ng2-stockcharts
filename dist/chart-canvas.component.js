@@ -9,8 +9,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var types_1 = require('./types');
 var utils_1 = require('./utils');
-//import evaluator from './scale/evaluator';
+var evaluator_1 = require('./scale/evaluator');
 var d3 = require('d3');
 var canvas_container_component_1 = require('./canvas-container.component');
 var SECOND = 1000;
@@ -40,19 +41,20 @@ var ChartCanvasComponent = (function () {
         this.elRef = elRef;
         this.cdr = cdr;
         this.zone = zone;
+        this.width = 60;
         this.margin = { top: 20, right: 30, bottom: 30, left: 80 };
-        this.type = utils_1.ChartType.HYBRID;
+        this.type = types_1.ChartType.HYBRID;
         this.responsive = true;
         this.calculator = [];
         this.xAccessor = utils_1.identity;
         this.xExtents = [d3.min, d3.max];
-        this.className = 'ng2-stockcharts';
+        this.defaultClassName = 'ng2-stockcharts ';
         this.zIndex = 1;
         this.postCalculator = utils_1.identity;
         this.flipXScale = false;
         this.padding = 0;
         this.indexAccessor = function (d) { return d.idx; };
-        //public indexMutator: any = (d, idx) => ({ ...d, idx });
+        this.indexMutator = function (d, idx) { return Object.assign({}, d, { idx: idx }); };
         this.map = utils_1.identity;
     }
     ChartCanvasComponent.ohlcv = function (d) {
@@ -66,8 +68,6 @@ var ChartCanvasComponent = (function () {
         };
     };
     ChartCanvasComponent.prototype.ngOnInit = function () {
-        this.dimensions = getDimensions(this);
-        this.calculateState();
         if (this.responsive) {
             window.addEventListener('resize', this.handleWindowResize);
             this.handleWindowResize();
@@ -81,6 +81,7 @@ var ChartCanvasComponent = (function () {
     ChartCanvasComponent.prototype.ngOnChanges = function (changes) {
         this.dimensions = getDimensions(this);
         this.calculateState();
+        this.finalTransform = "translate(" + (this.margin.left + 0.5) + ", " + (this.margin.top + 0.5) + ")";
         for (var k in changes) {
             if (CANDIDATES_FOR_RESET.indexOf(k) !== -1 && !changes[k].isFirstChange() && !utils_1.shallowEqual(changes[k].currentValue, changes[k].previousValue)) {
                 this.forceUpdate();
@@ -101,12 +102,12 @@ var ChartCanvasComponent = (function () {
     ChartCanvasComponent.prototype.setContainerStyles = function () {
         var styles = {
             'position': 'relative',
-            'height': this.height,
-            'width': this.width
+            'height': this.height + "px",
+            'width': this.width + "px"
         };
         return styles;
     };
-    ChartCanvasComponent.prototype.setSvgStyle = function () {
+    ChartCanvasComponent.prototype.setSvgStyles = function () {
         var styles = {
             'position': 'absolute',
             'zIndex': this.zIndex + 5
@@ -130,8 +131,11 @@ var ChartCanvasComponent = (function () {
             return this.canvases.getCanvasContexts();
         }
     };
+    ChartCanvasComponent.prototype.setSvgClass = function () {
+        return this.defaultClassName.concat(this.className || '');
+    };
     ChartCanvasComponent.prototype.isChartHybrid = function () {
-        return this.type == utils_1.ChartType.HYBRID;
+        return this.type == types_1.ChartType.HYBRID;
     };
     ChartCanvasComponent.prototype.calculateState = function () {
         var _this = this;
@@ -153,16 +157,17 @@ var ChartCanvasComponent = (function () {
     ChartCanvasComponent.prototype.calculateFullData = function () {
         var wholeData = utils_1.isDefined(this.plotFull) ? this.plotFull : this.xAccessor === utils_1.identity;
         var dimensions = getDimensions(this);
-        var evaluate = evaluator()
-            .xAccessor(this.xAccessor)
-            .indexAccessor(this.indexAccessor)
-            .map(this.map)
-            .useWholeData(wholeData)
-            .width(dimensions.width)
-            .scaleProvider(this.xScaleProvider)
-            .xScale(this.xScale)
-            .calculator(this.calculator);
-        var _a = evaluate(this.data), xAccessor = _a.xAccessor, displayXAccessor = _a.displayXAccessor, xScale = _a.xScale, filterData = _a.filterData, lastItem = _a.lastItem;
+        var _a = evaluator_1.Evaluator.evaluate(this.data, {
+            xAccessor: this.xAccessor,
+            indexAccessor: this.indexAccessor,
+            indexMutator: this.indexMutator,
+            map: this.map,
+            useWholeData: wholeData,
+            width: dimensions.width,
+            scaleProvider: this.xScaleProvider,
+            xScale: this.xScale,
+            calculator: this.calculator
+        }), xAccessor = _a.xAccessor, displayXAccessor = _a.displayXAccessor, xScale = _a.xScale, filterData = _a.filterData, lastItem = _a.lastItem;
         return { xAccessor: xAccessor, displayXAccessor: displayXAccessor, xScale: xScale, filterData: filterData, lastItem: lastItem };
     };
     __decorate([
@@ -208,6 +213,10 @@ var ChartCanvasComponent = (function () {
     __decorate([
         core_1.Input(), 
         __metadata('design:type', String)
+    ], ChartCanvasComponent.prototype, "defaultClassName", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
     ], ChartCanvasComponent.prototype, "seriesName", void 0);
     __decorate([
         core_1.Input(), 
@@ -234,13 +243,14 @@ var ChartCanvasComponent = (function () {
         __metadata('design:type', Object)
     ], ChartCanvasComponent.prototype, "xScale", void 0);
     __decorate([
-        core_1.ViewChild(canvas_container_component_1.CanvasContainerComponent), 
+        core_1.ViewChild(core_1.forwardRef(function () { return canvas_container_component_1.CanvasContainerComponent; })), 
         __metadata('design:type', canvas_container_component_1.CanvasContainerComponent)
     ], ChartCanvasComponent.prototype, "canvases", void 0);
     ChartCanvasComponent = __decorate([
         core_1.Component({
             selector: 'ng-chart-canvas',
-            template: "\n    <div [ngStyle]=\"setContainerStyles()\" class=\"{{className}}\" >\n      <ng-canvas-container [width]=\"width\" [height]=\"height\" [type]=\"type\" [zIndex]=\"zIndex\" />\n      <svg class=\"{{className}}\" [attr.width]=\"width\" [attr.height]=\"height\" [ngStyle]=\"setSvgStyles()\">\n        <style>{{getCursorStyle()}}</style>\n        <defs>\n          <clipPath id=\"chart-area-clip\">\n            <rect x=\"0\" y=\"0\" [attr.width]=\"dimensions.width\" [attr.height]=\"dimensions.height\" />\n          </clipPath>\n        </defs>\n        <g transform=\"translate({{margin.left + 0.5}}, {{margin.top + 0.5}})\"}>\n        </g>\n      </svg>\n    </div>\n  ",
+            template: "\n    <div [ngStyle]=\"setContainerStyles()\" [className]=\"setSvgClass()\">\n      <ng-canvas-container [width]=\"width\" [height]=\"height\" [type]=\"type\" [zIndex]=\"zIndex\"></ng-canvas-container>\n      <svg [ngClass]=\"setSvgClass()\" [attr.width]=\"width\" [attr.height]=\"height\" [ngStyle]=\"setSvgStyles()\">\n        <style>{{getCursorStyle()}}</style>\n        <svg:defs>\n          <svg:clipPath id=\"chart-area-clip\">\n            <svg:rect x=\"0\" y=\"0\" [attr.width]=\"dimensions.width\" [attr.height]=\"dimensions.height\" />\n          </svg:clipPath>\n        </svg:defs>\n        <svg:g [attr.transform]=\"finalTransform\">\n        </svg:g>\n      </svg>\n    </div>\n  ",
+            directives: [core_1.forwardRef(function () { return canvas_container_component_1.CanvasContainerComponent; })],
             changeDetection: core_1.ChangeDetectionStrategy.OnPush
         }), 
         __metadata('design:paramtypes', [core_1.ElementRef, core_1.ChangeDetectorRef, core_1.NgZone])
@@ -249,3 +259,4 @@ var ChartCanvasComponent = (function () {
 }());
 exports.ChartCanvasComponent = ChartCanvasComponent;
 ;
+//# sourceMappingURL=chart-canvas.component.js.map

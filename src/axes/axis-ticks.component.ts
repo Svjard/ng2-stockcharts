@@ -51,7 +51,7 @@ export class AxisTickComponent implements OnChanges {
     return this.defaultClassName.concat(this.className || '');
   }
 
-  drawOnCanvasStatic(ctx, result) {
+  drawOnCanvas(ctx: CanvasRenderingContext2D, result) {
     let { scale, tickTransform, canvas_dy, x, y, x2, y2, format } = result;
 
     let origin = tickTransform(scale, this);
@@ -98,8 +98,8 @@ export class AxisTicksComponent implements OnChanges {
     this.result = this.process();
   }
 
-  drawOnCanvasStatic(ctx: CanvasRenderingContext2D, xScale: any, yScale: any) {
-    let xAxis = (this.orient === Orientation.BOTTOM || this.orient === Orientation.TOP);
+  drawOnCanvas(ctx: CanvasRenderingContext2D, xScale: any, yScale: any) {
+    let xAxis: boolean = (this.orient === Orientation.BOTTOM || this.orient === Orientation.TOP);
 
     let result = this.process(xAxis ? xScale : yScale);
 
@@ -112,7 +112,7 @@ export class AxisTicksComponent implements OnChanges {
     ctx.textAlign = result.textAnchor === 'middle' ? 'center' : result.textAnchor;
 
     result.ticks.forEach((tick) => {
-      tick.drawOnCanvasStatic(ctx, result);
+      tick.drawOnCanvas(ctx, result);
     });
   }
 

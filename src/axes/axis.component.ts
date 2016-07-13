@@ -1,6 +1,6 @@
-import { Component, Input, OnChanges, ViewChild, ElementRef, Host } from '@angular/core';
+import { Component, Input, OnChanges, ViewChild, ElementRef, Host, OnInit } from '@angular/core';
 import { isDefined } from '../utils';
-import { Orientation } from '../types';
+import { XAxisOrientation, YAxisOrientation } from '../types';
 import { ChartComponent } from '../chart.component';
 import { AxisLineComponent } from './axis-line.component';
 import { AxisTicksComponent } from './axis-ticks.component';
@@ -9,18 +9,19 @@ import * as d3 from 'd3';
 @Component({
   selector: 'ng-axis',
   template: `
-    <svg:g *ngIf="!chartCanvas.isChartHybrid()" [ngClass]="setAxisClass()" [attr.transform]="finalTransform">
+    <svg:g *ngIf="!chart.chartCanvas.isChartHybrid()" [ngClass]="setAxisClass()" [attr.transform]="finalTransform">
       <ng-axis-tick #axisTicks *ngIf="showTicks"></ng-axis-tick>
-      <ng-axis-line #axisLine *ngIf="showDomain"></ng-axis-line>
+      <ng-axis-line #axisLine *ngIf="showDomain" [className]="className" [orient]="orient" [outerTickSize]="outerTickSize" [range]="range"></ng-axis-line>
     </svg:g>
   `,
   directives: [AxisLineComponent, AxisTicksComponent]
 })
-export class AxisComponent implements OnChanges {
+export class AxisComponent implements OnInit, OnChanges {
   @Input() public className: string;
   @Input() public defaultClassName: string = 'ng2-stockcharts-axis ';
   @Input() public transform: Array<number>;
-  @Input() public orient: Orientation;
+  @Input() public range: [number, number];
+  @Input() public orient: XAxisOrientation | YAxisOrientation;
   @Input() public innerTickSize: number;
   @Input() public outerTickSize: number;
   @Input() public tickFormat: any;
@@ -44,7 +45,10 @@ export class AxisComponent implements OnChanges {
 
   constructor(@Host() private chart: ChartComponent) {}
 
+  ngOnInit() {}
+
   ngOnChanges() {
+    console.log('AxisComponent', 'ngOnChanges', this.orient, this.outerTickSize);
     this.finalTransform = `translate(${this.transform[0]}, ${this.transform[1]})`;
     if (this.chart.chartCanvas.isChartHybrid() && isDefined(this.chart.chartCanvas.getCanvases)) {
       this.drawOnCanvas(this);
@@ -59,11 +63,11 @@ export class AxisComponent implements OnChanges {
     let contexts = component.chart.chartCanvas.getCanvases();
     if (contexts) {
       let { canvasOriginX, canvasOriginY } = component.chart.getContext();
-      this.drawOnCanvasStatic(component.chart.chartCanvas.margin, [canvasOriginX, canvasOriginY], component.chart.chartCanvas.getCanvases(), component.scale, component.scale);  
+      this._drawOnCanvas(component.chart.chartCanvas.margin, [canvasOriginX, canvasOriginY], component.chart.chartCanvas.getCanvases(), component.scale, component.scale);  
     }
   }
 
-  private drawOnCanvasStatic(margin, canvasOrigin, ctx, xScale, yScale) {
+  private _drawOnCanvas(margin, canvasOrigin, ctx, xScale, yScale) {
     let { transform, showDomain, showTicks } = this;
     ctx.save();
 
@@ -71,11 +75,11 @@ export class AxisComponent implements OnChanges {
     ctx.translate(canvasOrigin[0] + transform[0], canvasOrigin[1] + transform[1]);
 
     if (showDomain) {
-      this.axisLine.drawOnCanvasStatic(ctx);
+      this.axisLine.drawOnCanvas(ctx);
     }
 
     if (showTicks) {
-      this.axisTicks.drawOnCanvasStatic(ctx, xScale, yScale);
+      this.axisTicks.drawOnCanvas(ctx, xScale, yScale);
     }
 
     ctx.restore();

@@ -1,0 +1,32 @@
+import { OnChanges } from '@angular/core';
+import { Orientation } from '../types';
+import { ChartComponent } from '../chart.component';
+import { AxisLineComponent } from './axis-line.component';
+import { AxisTicksComponent } from './axis-ticks.component';
+export declare class AxisComponent implements OnChanges {
+    private chart;
+    className: string;
+    defaultClassName: string;
+    transform: Array<number>;
+    orient: Orientation;
+    innerTickSize: number;
+    outerTickSize: number;
+    tickFormat: any;
+    tickPadding: number;
+    tickSize: number;
+    ticks: Array<number>;
+    tickValues: any;
+    scale: any;
+    showDomain: boolean;
+    showTicks: boolean;
+    fontFamily: string;
+    fontSize: number;
+    axisTicks: AxisTicksComponent;
+    axisLine: AxisLineComponent;
+    private finalTransform;
+    constructor(chart: ChartComponent);
+    ngOnChanges(): void;
+    setAxisClass(): string;
+    drawOnCanvas(component: AxisComponent): void;
+    private _drawOnCanvas(margin, canvasOrigin, ctx, xScale, yScale);
+}

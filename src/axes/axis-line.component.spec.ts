@@ -14,8 +14,8 @@ import {
 import {
   AxisLineComponent
 } from './axis-line.component';
+import { hexToRGBA } from '../utils';
 import { Orientation } from '../types';
-import * as d3 from 'd3';
 
 @Component({
   template: `
@@ -151,9 +151,5 @@ describe('AxisLineComponent:', () => {
 
         done();
       });
-  });
-
-  it('should throw an error is the range is invalid', done => {
-    done();
   });
 });

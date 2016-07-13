@@ -1,7 +1,7 @@
 import { ElementRef } from '@angular/core';
 import { ChartCanvasComponent } from './chart-canvas.component';
-import { ChartType } from './utils';
-export interface ICanvasContext {
+import { ChartType } from './types';
+export interface CanvasContext {
     axes: CanvasRenderingContext2D;
     mouseCoord: CanvasRenderingContext2D;
     interactive: CanvasRenderingContext2D;
@@ -18,5 +18,5 @@ export declare class CanvasContainerComponent {
     canvas_mouse_coordinates: ElementRef;
     canvas_interactive: ElementRef;
     constructor(chartCanvas: ChartCanvasComponent);
-    getCanvasContexts(): ICanvasContext;
+    getCanvasContexts(): CanvasContext;
 }

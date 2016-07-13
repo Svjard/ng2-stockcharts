@@ -1,24 +1,23 @@
 import { Component, Input, Output, EventEmitter, ElementRef, OnChanges, Host } from '@angular/core';
 import { ChartCanvasComponent } from './chart-canvas.component';
 import * as d3 from 'd3';
-import { YMousePointerDisplayLocation, BoxModel } from './interfaces.d';
+import { YMousePointerDisplayLocation, BoxModel } from './types';
 
-interface OriginFunc {
+export interface OriginFunc {
   (): [number, number]
 }
 
 @Component({
   selector: 'ng-chart',
   template: `
-    <g [attr.transform]="transform">
+    <svg:g [attr.transform]="transform">
       <ng-content></ng-content>
-    </g>
-  `,
-  styleUrls: ['./chart.component.css']
+    </svg:g>
+  `
 })
 export class ChartComponent implements OnChanges {
-  @Input() public height: number | string;
-  @Input() public width: number | string;
+  @Input() public height: number;
+  @Input() public width: number;
   @Input() public origin: [number, number] | OriginFunc;
   @Input() public id: string | number = 0;
   @Input() public yExtents: any;
@@ -27,6 +26,8 @@ export class ChartComponent implements OnChanges {
   @Input() public yMousePointerDisplayFormat: any;
   @Input() public flipYScale: boolean = false;
   @Input() public padding: (number | BoxModel) = 0;
+
+  public yTicks: any;
 
   private yMousePointerRectWidth: number = 60;
   private yMousePointerRectHeight: number = 20;

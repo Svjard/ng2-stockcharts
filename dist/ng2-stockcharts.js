@@ -4,6 +4,6 @@ function __export(m) {
 }
 __export(require('./chart-canvas.component'));
 __export(require('./chart.component'));
-__export(require('./axis/xaxis.component'));
-__export(require('./axis/yaxis.component'));
-__export(require('./series/area-series.component'));
+__export(require('./axes/xaxis.component'));
+__export(require('./axes/yaxis.component'));
+//# sourceMappingURL=ng2-stockcharts.js.map

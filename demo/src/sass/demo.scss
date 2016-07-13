@@ -129,12 +129,6 @@ $demo-settings-color: #555555;
     font-style: italic;
 }
 
-// Sky background
-div.sky-background {
-    background: rgba(0, 0, 0, 0) url("../img/demo/sky.jpg") no-repeat scroll center bottom;
-    border: 1px solid #888888;
-}
-
 /** Theme selector **/
 .theme-default-background {
     background-color: $theme-default-background;

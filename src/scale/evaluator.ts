@@ -95,7 +95,7 @@ export class Evaluator {
       return { plotData, domain };
     }
 
-    domain.isItemVisibleInDomain = function(d, domain) {};
+    // domain.isItemVisibleInDomain = function(d, domain) {};
 
     return domain;
   }
