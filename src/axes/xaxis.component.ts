@@ -11,7 +11,15 @@ import { ChartCanvasComponent } from '../chart-canvas.component'
       [className]="className"
       [range]="range"
       [transform]="transform"
-      [showTicks]="showTicks" [tickFormat]="tickFormat" [ticks]="ticks"
+      [orient]="orient"
+      [innerTickSize]="innerTickSize"
+      [outerTickSize]="outerTickSize"
+      [tickFormat]="tickFormat"
+      [tickPadding]="tickPadding"
+      [tickSize]="tickSize"
+      [ticks]="ticks"
+      [tickValues]="tickValues"
+      [showTicks]="showTicks" 
       [scale]="chart.chartCanvas.xScale"></ng-axis>`,
   directives: [AxisComponent],
   viewProviders: [ChartComponent]

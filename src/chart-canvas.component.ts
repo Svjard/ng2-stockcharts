@@ -87,23 +87,22 @@ const tooltipStyle = `
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChartCanvasComponent implements OnInit, OnChanges, OnDestroy {
-  @Input() public width: number = 60;
-  @Input() public height: number;
-  @Input() public margin: { left: number, top: number, bottom: number, right: number } = { top: 20, right: 30, bottom: 30, left: 80 };
+  @Input() public width: number = 640;
+  @Input() public height: number = 480;
+  @Input() public margin: BoxModel = { top: 20, right: 30, bottom: 30, left: 80 };
   @Input() public type: ChartType = ChartType.HYBRID;
   @Input() public data: Array<any>;
   @Input() public responsive: boolean = true;
   @Input() public calculator: any = [];
   @Input() public xAccessor: (d: any) => any = identity;
   @Input() public xExtents: any = [d3.min, d3.max];
-  @Input() public className: string;
   @Input() public defaultClassName: string = 'ng2-stockcharts ';
+  @Input() public className: string;
   @Input() public seriesName: string;
   @Input() public zIndex: number = 1;
   @Input() public postCalculator: any = identity;
   @Input() public flipXScale: boolean = false;
-  @Input() public padding: number | { left: number, top: number, bottom: number, right: number } = 0;
-  @Input() public xScaleProvider: any;
+  @Input() public padding: BoxModel = { top: 0, right: 0, bottom: 0, left: 0 };
   @Input() public xScale: any;
 
   //@ViewChild(EventHandlerComponent)
@@ -118,17 +117,6 @@ export class ChartCanvasComponent implements OnInit, OnChanges, OnDestroy {
 
   private plotFull: boolean;
   private finalTransform: string;
-
-  static ohlcv(d: any) {
-    return {
-      date: d.date,
-      open: d.open,
-      high: d.high,
-      low: d.low,
-      close: d.close,
-      volume: d.volume
-    };
-  }
 
   constructor(private elRef: ElementRef, private cdr: ChangeDetectorRef, private zone: NgZone) {}
 
@@ -159,8 +147,8 @@ export class ChartCanvasComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   handleWindowResize() {
-    this.width = this.elRef.nativeElement.parentNode.clientWidth;
-    this.forceUpdate();
+    //this.width = this.elRef.nativeElement.parentNode.clientWidth;
+    //this.forceUpdate();
   }
 
   forceUpdate() {
@@ -249,7 +237,6 @@ export class ChartCanvasComponent implements OnInit, OnChanges, OnDestroy {
         map: this.map,
         useWholeData: wholeData,
         width: dimensions.width,
-        scaleProvider: this.xScaleProvider,
         xScale: this.xScale,
         calculator: this.calculator
       } as EvaluatorConfig);

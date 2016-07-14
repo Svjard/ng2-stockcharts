@@ -8,9 +8,18 @@ import { ChartComponent } from '../chart.component';
   template: `
     <ng-axis
       [className]="className"
-      [transform]="transform"
       [range]="range"
-      [tickFormat]="tickFormat" [ticks]="ticks" [tickValues]="tickValues"
+      [transform]="transform"
+      [orient]="orient"
+      [innerTickSize]="innerTickSize"
+      [outerTickSize]="outerTickSize"
+      [tickFormat]="tickFormat"
+      [tickPadding]="tickPadding"
+      [tickSize]="tickSize"
+      [ticks]="ticks"
+      [tickValues]="tickValues"
+      [showTicks]="showTicks"
+      [showGrid]="showGrid" 
       [scale]="yScale"></ng-axis>`,
   directives: [AxisComponent],
   viewProviders: [ChartComponent]

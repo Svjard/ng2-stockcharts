@@ -9,7 +9,7 @@ import * as d3 from 'd3';
 @Component({
   selector: 'ng-axis',
   template: `
-    <svg:g *ngIf="!chart.chartCanvas.isChartHybrid()" [ngClass]="setAxisClass()" [attr.transform]="finalTransform">
+    <svg:g *ngIf="!chart.chartCanvas.isChartHybrid()" [ngClass]="setAxisClass()" >
       <ng-axis-tick #axisTicks *ngIf="showTicks"></ng-axis-tick>
       <ng-axis-line #axisLine *ngIf="showDomain" [className]="className" [orient]="orient" [range]="range"></ng-axis-line>
     </svg:g>
